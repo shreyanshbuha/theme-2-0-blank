@@ -1,0 +1,31 @@
+<div class="tree-item level-5">
+  {{ block.settings.title }}
+</div>
+{% content_for 'blocks' %}
+
+{% schema %}
+{
+  "name": "Level 5 slide",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title" },
+    { "type": "text", "id": "parent_key", "label": "Parent Key" },
+    { "type": "text", "id": "child_key", "label": "Child Key" },
+    { "type": "text", "id": "subchild_key", "label": "Sub Child Key" },
+    { "type": "text", "id": "level4_key", "label": "Level 4 Key" },
+    { "type": "text", "id": "level5_key", "label": "Level 5 Key" }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "@theme"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Level 5 slide"
+    }
+  ]
+}
+{% endschema %}

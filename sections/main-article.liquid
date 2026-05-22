@@ -1,0 +1,49 @@
+<section class="article-page-content" data-section="artical-content">
+  <div class="container">
+    <div class="section-title text-center">
+      {% if article.published_at != blank %}
+        <div class="subtitle">{{ article.published_at | date: '%d %b' }}</div>
+      {% endif %}
+      <h2>{{ article.title }}</h2>
+    </div>
+    {% if article.content != blank %}
+      {{ article.content }}
+    {% else %}
+      {{ article.excerpt }}
+    {% endif %}
+    <div class="text-center">
+      {% if section.settings.text != blank %}
+        <div class="social-title">{{ section.settings.text }}</div>
+      {% endif %}
+      {% if section.settings.checkbox == true %}
+        {% render 'share-link' %}
+      {% endif %}
+    </div>
+    <div style="display:flex; position: relative;">
+      {% if blog.previous_article != blank %}
+        <a href="{{ blog.previous_article }}" class="art-link">Previous</a>
+      {% endif %}
+      {% if blog.next_article != blank %}
+        <a href="{{ blog.next_article }}" class="art-link" style="position: absolute; right:0;">Next</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Article Content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Social Media Heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "checkbox",
+      "label": "Show Social Media Icon"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,229 @@
+{% if section.blocks.size > 0 %}
+  <section class="ivory-home-banner overflow-hidden gradient color-{{ section.settings.color_scheme }}" data-section="hero-section">
+    <div class="home-banner-content">
+      <div class="home-banner-inner">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'text' %}
+              {% if block.settings.text != blank %}
+                <h1 {{ block.shopify_attributes }}>{{ block.settings.text }}</h1>
+              {% endif %}
+              {{ block.settings.description }}
+              {% if block.settings.btntext != blank and block.settings.btnurl != blank %}
+                <a href="{{ block.settings.btnurl }}" class="btn-primary">
+                  {{- block.settings.btntext -}}
+                </a>
+              {% endif %}
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="home-banner-img">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'Image' %}
+            {% if block.settings.heroimage != blank %}
+              <img src="{{ block.settings.heroimage | image_url }}" width="" height="" {{ block.shopify_attributes }}>
+            {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+
+<style>
+  #spin-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    z-index: 999999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  #wheel-container {
+    position: relative;
+    width: 290px;
+    margin: auto;
+  }
+
+  #wheel {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: conic-gradient(
+      #ff4d4d 0deg 45deg,
+      #ffd11a 45deg 90deg,
+      #4dff4d 90deg 135deg,
+      #4dd2ff 135deg 180deg,
+      #b84dff 180deg 225deg,
+      #ff944d 225deg 270deg,
+      #66ffcc 270deg 315deg,
+      #ff66b3 315deg 360deg
+    );
+    transition: transform 3s ease-out;
+    border: 5px solid #333;
+    position: relative;
+  }
+
+  .label {
+    position: absolute;
+    top: 46%;
+    left: 39%;
+    transform-origin: center;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    width: 60px;
+    color: white;
+  }
+
+  #arrow {
+      position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: red;
+    font-size: 40px;
+  }
+
+  #spin-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+</style>
+
+<div id="spin-popup">
+  <div id="wheel-container">
+    <button id="close-btn">❌</button>
+    <div id="wheel"></div>
+    <div id="arrow">⬅</div>
+  </div>
+
+  <button id="spin-btn">SPIN</button>
+  <p id="result"></p>
+</div>
+
+<script>
+  window.onload = function () {
+    let already = localStorage.getItem('spinwheel');
+    if (already) {
+      document.getElementById('spin-popup').style.display = 'none';
+      return;
+    }
+    spinwheel();
+  };
+
+  function spinwheel() {
+    document.getElementById('close-btn').onclick = function () {
+      document.getElementById('spin-popup').remove();
+    };
+
+    const rewardName = ['BY1 GET1', 'NOTHING', '5% OFF', '22% OFF', 'NOTHING', '15% OFF', '10% OFF', '20% OFF'];
+    const rewards = ['BOGO', 'NOTHING', 'GET5', '222', 'NOTHING', 'GET15', 'GET10', 'GET20'];
+    const wheel = document.getElementById('wheel');
+    const result = document.getElementById('result');
+    const btn = document.getElementById('spin-btn');
+    const angle = 360 / rewardName.length;
+    let currentRotation = 0;
+
+    rewardName.forEach((text, i) => {
+      let span = document.createElement('div');
+      span.className = 'label';
+      span.innerHTML = text;
+
+      let rotate = i * angle + angle / 2;
+      span.style.transform = `
+      rotate(${rotate}deg)
+      translate(100px)
+      rotate(90deg)
+    `;
+      wheel.appendChild(span);
+    });
+
+    btn.onclick = function () {
+      let already = localStorage.getItem('spinwheel');
+      if (already) {
+        result.innerHTML = 'You already got: ' + already;
+        return;
+      }
+      let spin = Math.floor(Math.random() * 360) + 720;
+      currentRotation += spin;
+      wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+      setTimeout(() => {
+        let actualDeg = currentRotation % 360;
+        let index = Math.floor((360 - actualDeg) / angle) % rewardName.length;
+        let reward = rewards[index];
+
+        result.innerHTML = 'You got: ' + reward;
+
+        localStorage.setItem('spinwheel', reward);
+      }, 3000);
+    };
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme_1",
+      "label": "Color scheme"
+    },
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Hero Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "btntext",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "btnurl",
+          "label": "Button URL"
+        }
+      ]
+    },
+    {
+      "type": "Image",
+      "name": " Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "heroimage",
+          "label": "Hero Image"
+        }
+      ]
+    },
+
+  ],
+  "presets": [
+    {
+      "name": "Hero Section"
+    }
+  ]
+}
+{% endschema %}

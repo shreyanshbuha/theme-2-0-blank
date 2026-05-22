@@ -1,0 +1,73 @@
+<section class="shop-grid-section show-filter-data" data-section="shop-all-products">
+  <div class="container">
+    {% render 'filters', results: collection, filter: section.settings.selcetdfilter %}
+    
+    {% assign current_collection = collection.handle %}
+
+    {% if section.settings.collectionlist != blank %}
+      <ul class="cat-tab tabs justify-center">
+        {% for collection in section.settings.collectionlist %}
+          <li
+            class="tab-link {% if collection.handle == current_collection %}active{% endif %}"
+          >
+            <a href="{{- collection.url -}} "> {{ collection.title }} </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% render 'breadcrumbs' %}
+
+    {% if collection.products != blank %}
+      <div class="product-row product-row-collection flex" style="position: relative;">
+        {% for product in collection.products %}
+          {% render 'product-card', product: product %}        
+        {% endfor %}
+      
+      </div>
+    {% else %}
+      <div style="text-align:center; margin:80px 0;">
+        <h3 style="margin:10px;">{{ 'products.product.not_found' | t }}</h3>
+        <a href="{{ collection.url }}" style="text-decoration: underline;">Clear all</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .wk-button{
+        left: 5px !important;
+  }
+  </style>
+
+{% schema %}
+{
+  "name": "Shop All Product",
+  "settings": [
+    {
+      "type": "collection_list",
+      "id": "collectionlist",
+      "label": "Collection List"
+    },
+    {
+      "type": "select",
+      "id": "selcetdfilter",
+      "label": "Select Filter",
+      "options": [
+        {
+          "label": "Store Front Filter",
+          "value": "stor_front_filter"
+        },
+        {
+          "label": "Tag Filters",
+          "value": "tag_filters"
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop All Products"
+    }
+  ]
+}
+{% endschema %}

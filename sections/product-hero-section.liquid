@@ -1,0 +1,96 @@
+<div class="pdp-first-section section___scroll" data-section="pdp-hero-section">
+  {% if product.images[1] != blank or product.featured_image != blank %}
+    <div class="pdp-cover">
+      {% if product.images[1] != blank %}
+        <picture>
+          <source
+            style="object-fit:cover;"
+            media="(min-width: 767px)"
+            srcset=" {{ product.images[1] | image_url: width: 1000, height: 1500  }}"
+          >
+          {{ product.images[1] | image_url: width: 1000, height: 1500 | image_tag }}
+        </picture>
+      {% endif %}
+      {% if product.featured_image != blank %}
+        <div class="responsive-pdp-img" style="object-fit:cover;">
+          {{ product.featured_image | image_url: width: 1000, height: 1000 | image_tag }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+  <div class="pdp-avitar-section">
+    <div class="reassure-wrapper">
+      <div class="reassure-block">
+        {% render 'cart-content' %}
+      </div>
+    </div>
+  </div>
+
+  <div class="pdp-description">
+    <h1>{{ product.title }}</h1>
+
+    {{ product.description }}
+
+    <div class="responsive-pdp-reassure-slider ">
+      <div class="cartTop-slider">
+        <div class="reassure-slider">
+          {% render 'cart-content' %}
+        </div>
+      </div>
+    </div>
+    <div class="pdp-button-group">
+      {% if product.variants != blank %}
+        <ul class="pdp-switch">
+          {% for variant in product.variants limit: 1 %}
+            <li>
+              <a class="active" style="margin-right:15px;">
+                {{- variant.weight | weight_with_unit: variant.weight_unit -}}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      {% form 'product', product %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" name="add" class="add-to-cart-button">
+          <span>
+            {{- 'products.product.add_to_cart' | t }}
+            {{ product.price | money_without_trailing_zeros -}}
+          </span>
+        </button>
+      {% endform %}
+
+      <div style="margin: 0 20px;">{% render 'share-link' %}</div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Hero Section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "Cart",
+      "name": "Cart",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "cartlogo",
+          "label": "Cart Logo"
+        },
+        {
+          "type": "text",
+          "id": "cartheading",
+          "label": "Cart Heading"
+        }
+      ]
+    },
+  ],
+  "presets": [
+    {
+      "name": "Product-Hero-Section"
+    }
+  ]
+}
+{% endschema %}

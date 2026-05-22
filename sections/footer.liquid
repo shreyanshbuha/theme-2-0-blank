@@ -1,0 +1,294 @@
+<footer class="ivory-footer footer-style-one">
+  <div class="container">
+    {% if section.settings.footerlogo != blank %}
+      <img src="{{ section.settings.footerlogo | image_url}}" class="footer-bottom-svg" width="" height="">
+    {% endif %}
+    <div class="footer-row flex">
+      <div class="footer-left">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'social_media' %}
+              {% if block.settings.socialmediabox == true %}
+                <div class="footer-col footer-social-widget" {{ block.shopify_attributes }}>
+                  <div class="footer-widget">
+                    <ul>
+                      <li>
+                        {% if settings['facebook-url'] != blank %}
+                          <a href="{{ settings.facebook-url }}">
+                            {% render 'icons', icon: 'facebook' %}
+                          </a>
+                        {% endif %}
+                      </li>
+                      <li>
+                        {% if settings['instagram-url'] != blank %}
+                          <a href="{{ settings.instagram-url }}">
+                            {% render 'icons', icon: 'instagram' %}
+                          </a>
+                        {% endif %}
+                      </li>
+                      <li>
+                        {% if settings['tiktok-url'] != blank %}
+                          <a href="{{ settings.tiktok-url }}">
+                            {% render 'icons', icon: 'tiktok' %}
+                          </a>
+                        {% endif %}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              {% endif %}
+
+            {% when 'linklist' %}
+              <div class="footer-col footer-aide-widget" {{ block.shopify_attributes }}>
+                <div class="footer-widget">
+                  {% if block.settings.linkheading != blank %}
+                    <h4>{{ block.settings.linkheading }}</h4>
+                  {% elsif block.settings.linklist.links != blank %}
+                    <h4>{{ block.settings.linklist.title }}</h4>
+                  {% endif %}
+                  
+                  {% if block.settings.linklist.links != blank %}
+                    <ul>
+                      {% for link in block.settings.linklist.links -%}
+                        <li>
+                          <a href=" {{ link.url }}"> {{ link.title }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+        <div style="color:white;">
+          {% unless template == 'customers/account'
+            and 'customers/account.order_history'
+            and 'customers/activate_account'
+            and 'customers/addresses'
+            and 'customers/login'
+            and 'customers/register'
+            and 'customers/reset_password'
+            and 'customers/order'
+          %}
+            {% form 'localization', style: 'position:relative;' %}
+              <div><label for="country_code">Select country :-</label></div>
+              <select name="country_code" id="country_code" style="padding: 5px 28px 5px 15px; margin: 5px 0;">
+                {% for country in localization.available_countries %}
+                  <option
+                    value="{{ country.iso_code }}"
+                    {% if country.iso_code == localization.country.iso_code %}
+                      selected
+                    {% endif %}
+                  >
+                    {{ country.name }}
+                  </option>
+                {% endfor %}
+              </select>
+              <img
+                src="{{- '11.png' | asset_url -}}"
+                width="15px"
+                height="15px"
+                style="
+                  margin: 5px 10px;
+                  position: absolute;
+                  right: 9px;
+                  top: 33px;
+                "
+              >
+
+              <div style="margin:20px 0;">
+                <div><label for="language-selector">Select language :-</label></div>
+                <select id="language-selector" name="language_code" style="padding: 5px 28px 5px 15px; margin: 5px 0;">
+                  {%- for language in localization.available_languages -%}
+                    <option
+                      value="{{ language.iso_code }}"
+                      {% if language.iso_code == localization.language.iso_code %}
+                        selected
+                      {% endif %}
+                    >
+                      {{ language.name }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+                <img
+                  src="{{- '11.png' | asset_url -}}"
+                  width="15px"
+                  height="15px"
+                  style="
+                    margin: 5px 10px;
+                    position: absolute;
+                    right: 45px;
+                    bottom: 9px;
+                  "
+                >
+              </div>
+            {% endform %}
+          {% endunless %}
+        </div>
+      </div>
+
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'text' -%}
+            {% if block.settings.newstitle != blank
+              or block.settings.textarea != blank
+              or block.settings.btntext != blank
+              or block.settings.btnurl != blank
+            %}
+              <div class="footer-right" style="padding:10px 0 10px 35px;" {{ block.shopify_attributes }}>
+                <div class="footer-col footer-contact-widget">
+                  <div class="footer-widget">
+                    {% if block.settings.newstitle != blank %}
+                      <h4>{{ block.settings.newstitle }}</h4>
+                    {% endif %}
+                    {% if block.settings.textarea != blank %}
+                      <p>{{ block.settings.textarea }}</p>
+                    {% endif %}
+
+                    {% form 'customer', class: 'subscribe-form' %}
+                      <div class="form-inner">
+                        <input
+                          type="email"
+                          name="contact[email]"
+                          value="{{ form.email }}"
+                          placeholder="{{ 'customer.newsletter.label' | t }}"
+                          id="NewsletterForm--{{ section.id }}"
+                        >
+
+                        <button
+                          type="submit"
+                          class="newsletter-form__button field__button btn-primary"
+                          name="submit"
+                          id="Subscribe"
+                          aria-label="{{ 'customer.newsletter.form_success' | t }}"
+                        >
+                          <span class="svg-wrapper">
+                            {{- 'customer.account.submit' | t -}}
+                          </span>
+                        </button>
+                      </div>
+                      {%- if form.errors -%}
+                        <small class="newsletter-form__message form__message" id="ContactFooter-error">
+                          <span class="svg-wrapper" style="display:flex;">
+                            <img
+                              src="{{- 'not-yet.svg' | asset_url -}}"
+                              width="15px"
+                              height="15px"
+                              style="margin: 5px 8px "
+                            >
+                            <div style="margin-top:4px;">
+                              {{ form.errors.translated_fields.email | camelize }}
+                              {{ form.errors.messages.email }}
+                            </div>
+                          </span>
+                        </small>
+                      {%- endif -%}
+                      {%- if form.posted_successfully? -%}
+                        <h3
+                          class="newsletter-form__message newsletter-form__message--success form__message"
+                          id="ContactFooter-success"
+                          tabindex="-1"
+                          autofocus
+                        >
+                          <span class="svg-wrapper" style="display:flex;">
+                            <img
+                              src="{{- 'check.svg' | asset_url -}}"
+                              width="15px"
+                              height="15px"
+                              style="margin: 5px 8px "
+                            >
+                            {{- 'customer.newsletter.success' | t }}
+                          </span>
+                        </h3>
+                      {%- endif -%}
+                    {% endform %}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.paymentimage != blank %}
+      <div class="footer-payment flex justify-center">
+        <ul class="flex justify-center align-center">
+          <li>
+            <a href="Javascript:void(0);"
+              ><img src="{{ section.settings.paymentimage | image_url: width: 200, height: 200 }}" height="" width=""
+            ></a>
+          </li>
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "paymentimage",
+      "label": "Payment Method Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "footerlogo",
+      "label": "Footer Logo Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "linklist",
+      "name": "Link List",
+      "settings": [
+        {
+          "type": "text",
+          "id": "linkheading",
+          "label": "Link List Title"
+        },
+        {
+          "type": "link_list",
+          "id": "linklist",
+          "label": "Link List"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "newstitle",
+          "label": "New Title"
+        },
+        {
+          "type": "textarea",
+          "id": "textarea",
+          "label": "Contect Information"
+        }
+      ]
+    },
+    {
+      "type": "social_media",
+      "name": "Social Media",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "socialmediabox",
+          "label": "Social Media On/Off Button",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
+}
+{% endschema %}

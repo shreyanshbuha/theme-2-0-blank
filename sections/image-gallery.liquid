@@ -1,0 +1,83 @@
+{% if section.settings.image_left
+  or section.settings.image_right
+  or section.settings.heading != blank
+  or section.settings.rate_image
+%}
+  <div class="page-width" data-section="history">
+    <div class="history-wrap">
+      {% if section.settings.image_left %}
+        <div class="content-left">
+          <img
+            src="{{ section.settings.image_left | image_url }}"
+            alt="{{ section.settings.image_left.alt }}"
+            width="100%"
+            height="100%"
+          >
+        </div>
+      {% endif %}
+
+      {% if section.settings.rate_image or section.settings.heading != blank %}
+        <div class="content-center">
+          {% if section.settings.heading != blank %}
+            <h2>{{ section.settings.heading }}</h2>
+          {% endif %}
+          {% if section.settings.rate_image %}
+            <img
+              src="{{ section.settings.rate_image | image_url }}"
+              alt="{{ section.settings.rate_image.alt }}"
+              width="100%"
+              height="100%"
+            >
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.image_right %}
+        <div class="content-right">
+          <img
+            src="{{ section.settings.image_right | image_url }}"
+            alt="{{ section.settings.image_right.alt }}"
+            width="100%"
+            height="100%"
+          >
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "History",
+  "tag": "section",
+  "class": "history",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Image left"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "rate_image",
+      "label": "Rate image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Image right"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "History"
+    }
+  ]
+}
+{% endschema %}

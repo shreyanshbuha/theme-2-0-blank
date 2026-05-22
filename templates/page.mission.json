@@ -1,0 +1,65 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "mission_hero_section_FejRmU": {
+      "type": "mission-hero-section",
+      "name": "Mission Hero Section",
+      "settings": {
+        "bannerimg": "shopify://shop_images/smoke.jpg",
+        "inlinetext": "PIONNIERS DE L’INDUSTRIE DU CBD EUROPÉEN ET CONVAINCU DE SON IMPACT SUR L’AVENIR",
+        "discription": "Nous avons fondé le groupe IVORY en 2017. Passionnés par le cannabis légal, notre souhait est de faire avancer cette industrie en investissant dans la recherche et le développement des produits à base de CBD. Entourés par les meilleurs, nos équipes s’occupent du produit de la plante mère à la mise en sachet, ceci garantissant un produit 100 % traçable et entièrement produit en Suisse."
+      }
+    },
+    "mission_story_btPyFL": {
+      "type": "mission-story",
+      "name": "Mission Story",
+      "settings": {
+        "storyimg": "shopify://shop_images/smoking-man.jpg",
+        "storyheading": "A STORY OF PASSION",
+        "storydescription": "Nous collaborons avec des master growers passionnés par le développement et les différentes techniques de production liées au CBD. Soucieux de l’environnement et travaillant en symbiose avec la nature, nous produisons nos plants avec les principes de la permaculture. Ce type de production innovant et sain nous permet de miser sur la durabilité de ce marché et nous offre un produit unique d’une qualité exceptionnelle."
+      }
+    },
+    "mission_premium_swiss_XHYqmF": {
+      "type": "mission-premium-swiss",
+      "name": "Mission Premium Swiss",
+      "settings": {
+        "heading": "PREMIUM SWISS CANNABIS",
+        "description": "Toutes nos Fleurs de CBD sont certifiées 100 % Suisse. Produites avec le plus grand soin dans nos plantations situés sur la Riviera Vaudoise, notre mission est de vous offrir une fleur de CBD cultivée dans des conditions exceptionnelles. Produit en totale symbiose avec la nature, notre cannabis pousse organiquement sans apport de produits artificiels. Nos méthodes de production vous offriront non seulement un produit plus sain mais également des saveurs plus prononcées au goût authentique. Tous nos produits sont ensuite analysés dans un laboratoire afin de certifier nos taux de CBD et de THC correspondant aux normes européennes."
+      }
+    },
+    "pdp_show_all_product_mADfUe": {
+      "type": "pdp-show-all-product",
+      "name": "Pdp Show All Product",
+      "settings": {
+        "Heading": "All Products",
+        "productlist": [
+          "fleurs-flakes",
+          "hash",
+          "huiles",
+          "infusticks",
+          "space-bag",
+          "infusticks-1"
+        ]
+      }
+    }
+  },
+  "order": [
+    "main",
+    "mission_hero_section_FejRmU",
+    "mission_story_btPyFL",
+    "mission_premium_swiss_XHYqmF",
+    "pdp_show_all_product_mADfUe"
+  ]
+}

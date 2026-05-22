@@ -1,0 +1,89 @@
+{% if section.blocks.size > 0 %}
+  <section class="all-category-section overflow-hidden" data-section="featured-collection">
+    <div class="all-category-section-inner offset-left">
+      <div class="all-category-head">
+        {% if section.settings.categoryheading != blank %}
+          <div class="section-title">
+            <h2>{{ section.settings.categoryheading }}</h2>
+          </div>
+        {% endif %}
+        <ul class="cat-tab tabs">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'tab' %}
+                {% if block.settings.collection != blank %}
+                  <li
+                    class="tab-link {% if forloop.first %}active{% endif %}"
+                    data-tab="tab-{{ block.id }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <a href="javascript:;">{{ block.settings.collection }}</a>
+                  </li>
+                {% endif %}
+            {% endcase %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      {% for block in section.blocks %}
+        {% if block.settings.collection.products != blank %}
+          <div id="tab-{{ block.id }}" class="tab-content {% if forloop.first %}active{% endif %}">
+            <div class="best-seller-slider desk_only_slider product-row">
+              {% for product in block.settings.collection.products %}
+                {% render 'product-card', product: product %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% if section.settings.btnurl != blank and section.settings.btntext != blank %}
+      <div class="best-sell-btn flex justify-center">
+        {% if section.settings.btntext != blank %}
+          <a href="{{ section.settings.btnurl }}" class="btn-primary all-cat-btn">{{ section.settings.btntext }}</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Categories Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "categoryheading",
+      "label": "Category Heading"
+    },
+    {
+      "type": "text",
+      "id": "btntext",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btnurl",
+      "label": "Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tabbing",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Categories Section"
+    }
+  ]
+}
+{% endschema %}

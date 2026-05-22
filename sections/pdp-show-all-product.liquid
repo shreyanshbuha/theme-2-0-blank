@@ -1,0 +1,45 @@
+{% if section.settings.productlist != blank %}
+  <div class="pdp-third-section mission-fourth-section" data-section="pdp-products-section">
+    <div class="container">
+      {% if section.settings.Heading != blank %}
+        <div class="section-title text-center">
+          <h2>{{ section.settings.Heading }}</h2>
+        </div>
+      {% endif %}
+
+      <div class="best-seller-slider desk_only_slider product-row">
+        {% for product in section.settings.productlist %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% style %}
+  .desk_only_slider .slick-arrow{
+      background-image: url("{{ 'arrow-red-right.svg' | asset_url }}")
+  }
+
+{% endstyle %}
+{% schema %}
+{
+  "name": "pdp show all product",
+  "settings": [
+    {
+      "type": "text",
+      "id": "Heading",
+      "label": "Product Heading"
+    },
+    {
+      "type": "product_list",
+      "id": "productlist",
+      "label": "Add Products"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pdp Show All Product"
+    }
+  ]
+}
+{% endschema %}

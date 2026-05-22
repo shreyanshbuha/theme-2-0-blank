@@ -1,0 +1,81 @@
+{% if section.settings.dekstopbackimg.size > 0 %}
+  <section class="story-of-passion" data-section="story-section">
+    <div class="container">
+      {% if section.settings.storyheading != blank
+        or section.settings.description != blank
+        or section.settings.btntext != blank
+      %}
+        <div class="section-title text-center">
+          {% if section.settings.storyheading != blank %}
+            <h2>{{ section.settings.storyheading }}</h2>
+          {% endif %}
+          {% if section.settings.description != blank %}
+            {{ section.settings.description }}
+          {% endif %}
+          {% if section.settings.btntext != blank and section.settings.btnurl != blank %}
+            <a
+              {% if section.settings.btnurl %}
+                href="{{ section.settings.btnurl }}"
+              {% else %}
+                role="link" aria-disabled="true"
+              {% endif %}
+              class="btn-primary"
+            >
+              {{- section.settings.btntext -}}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+    {% if section.settings.dekstopbackimg != blank %}
+      <img src="{{ section.settings.dekstopbackimg | image_url }}" class="sop-bottom desk-only" width="" height="">
+    {% endif %}
+    {% if section.settings.mobilebackimg != blank %}
+      <img src="{{ section.settings.mobilebackimg | image_url }}" class="sop-bottom mobile-only" width="" height="">
+    {% endif %}
+  </section>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Story Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "storyheading",
+      "label": "Story Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Story Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "dekstopbackimg",
+      "label": "Dekstop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobilebackimg",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "text",
+      "id": "btntext",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btnurl",
+      "label": "Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Story Section"
+    }
+  ]
+}
+{% endschema %}

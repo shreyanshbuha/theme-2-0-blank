@@ -1,0 +1,793 @@
+{%- liquid
+  assign product_variant_media = product.selected_or_first_available_variant.featured_media.preview_image | image_url: width: 100
+  if product.selected_or_first_available_variant.featured_media.preview_image == blank
+    assign product_variant_media = product.featured_media.preview_image | image_url: width: 100
+  endif
+-%}
+
+{% assign variant = product.selected_or_first_available_variant %}
+{% unless product.title == 'HASH' and settings.shippingprotection.title == 'Shipping Protection' %}
+  <div
+    class="container space main-product-section variant"
+    data-variant-id="{{ product.id }}"
+    data-product-variant-media="{{ product_variant_media }}"
+    data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
+  >
+    {% if section.settings.product_media == 'thumbcarousel' %}
+      <div class="product-media">
+        <div
+          class="thumb-click-img"
+          style="display:flex; flex-wrap: wrap; width:60%; margin: 0 auto;"
+        >
+          {%- if variant.featured_media != null -%}
+            <div
+              class="imageloop product-image"
+              data-variant-id="{{ variant.id }}"
+              data-slick-index="{{ variant.featured_image.position }}"
+              style="cursor:zoom-in; margin:0 auto;"
+            >
+              {% render 'zoom', variant: variant %}
+            </div>
+          {% endif %}
+        </div>
+        <div class="product-thumbnails js-thumb-slider">
+          {% for media in product.media %}
+            <div class="thumb-item {% if media.id == variant.featured_media.id %}active{% endif %}">
+              <img
+                src="{{ media | image_url: width: 150 }}"
+                data-full-image="{{ media | image_url: width: 1000 }}"
+                data-media-id="{{ media.id }}"
+                width=""
+                height=""
+              >
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    {% elsif section.settings.product_media == 'slider' %}
+      <div class="product-media">
+        <div
+          class="mobile_only_slider"
+          style="display:flex; flex-wrap: wrap; width:60%; margin: 0 auto;"
+        >
+          {%- if variant.featured_media != null -%}
+            <div
+              class="imageloop product-image"
+              data-variant-id="{{ variant.id }}"
+              data-slick-index="{{ variant.featured_image.position }}"
+              style="cursor:zoom-in; margin:0 auto;"
+            >
+              {% render 'zoom', variant: variant %}
+            </div>
+          {% endif %}
+          {% for media in product.media %}
+            {%- unless media.id == variant.featured_media.id -%}
+              {% if media.alt == variant.image.alt or product.metafields.custom.bundelproductimage.value %}
+                <div
+                  class="imageloop"
+                  data-variant-id="{{ variant.id }}"
+                  data-slick-index="{{ variant.featured_image.position }}"
+                  style="margin:0 auto;"
+                >
+                  {% if media.media_type == 'image' %}
+                    <div style="cursor:zoom-in;">
+                      {% render 'zoom', media: media %}
+                    </div>
+
+                  {% elsif media.media_type == 'video' %}
+                    <video loop muted autoplay width="500px" style="margin: 100px 0;" class="image-selector">
+                      <source src="{{ media.sources[1].url }}" type="video/mp4">
+                    </video>
+
+                  {% elsif media.media_type == 'external_video' %}
+                    {{
+                      media
+                      | external_video_url: loop: true, muted: true, autoplay: true, width: 500
+                      | external_video_tag: class: 'image-selector'
+                    }}
+
+                  {% elsif media.media_type == 'model' %}
+                    {{ media | media_tag: width: 1000 }}
+                  {% endif %}
+                </div>
+              {% else %}
+                {% if media.preview_image.alt == blank %}
+                  {{ media.preview_image | image_url: width: 100, height: 100 | image_tag }}
+                {% endif %}
+              {% endif %}
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% form 'product', product, id: 'myForm', style: "width:40%"; %}
+      <div class="product-content">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'title' %}
+              <h3
+                class="product-title"
+                style="font-size:40px; font-weight:500; margin-bottom:30px;"
+                {{ block.shopify_attributes }}
+              >
+                {{ product.title }}
+              </h3>
+            {% when 'price' %}
+              <div style="display:flex;" {{ block.shopify_attributes }}>
+                <div class="product-price">
+                  {{ variant.price | money_with_currency -}}
+                </div>
+                {% if variant.compare_at_price > variant.price %}
+                  <del class="comapre-price" style="padding:0px 5px; margin:0 10px;">
+                    {{- variant.compare_at_price | money_with_currency -}}
+                  </del>
+                {% endif %}
+              </div>
+            {% when 'variant_picker' %}
+              <div
+                class="image-wrapper"
+                id="imageWrapper"
+                data-section-id="{{ section.id }}"
+              >
+                <div class="main-image">
+                  <div class="img-box">
+                    <img class="clickable-image" src="" width="" height="">
+                  </div>
+                </div>
+
+                <div class="main-image">
+                  <div class="img-box">
+                    <img class="clickable-image" src="" width="" height="">
+                  </div>
+                </div>
+
+                <div class="plus-icon" id="addImageBtn">
+                  <img src="https://cdn-icons-png.flaticon.com/512/32/32339.png" width="40" height="">
+                </div>
+              </div>
+
+              <div id="productPopup" class="popup">
+                <div class="popup-content">
+                  <span class="close-popup">&times;</span>
+
+                  <div class="popup-products">
+                    {% for product in section.settings.product_list %}
+                      <div style="margin-bottom: 40px;">
+                        <img
+                          class="popup-product"
+                          src="{{ product.featured_image | image_url }}"
+                          data-image="{{ product.featured_image | image_url }}"
+                          data-variant-id="{{ product.variants.first.id }}"
+                          width=""
+                          height="100%"
+                        >
+                        {{ product.title }}
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+
+            {% when 'parent-child-bundelpro' %}
+              {% render 'parent-child-bundel-product' %}
+
+            {% when 'static_bundel_products' %}
+              {% render 'static-bundel-product-metaobject' %}
+
+            {% when 'bundel_products' %}
+              {% render 'bundel-products' %}
+
+            {% when 'compare_product' %}
+              
+
+            {% when 'giftcard_form' %}
+              {% render 'gift-card-form' %}
+
+            {% when 'subscription' %}
+              {% render 'subscription' %}
+
+            {% when 'Quantity_selector' %}
+              <div class="quantity-wrapper" {{ block.shopify_attributes }}>
+                <input
+                  type="hidden"
+                  name="id[]"
+                  value="{{ product.selected_or_first_available_variant.id }}"
+                  class="metafield_product_id"
+                  checked
+                >
+
+                <button type="button" class="qty-down btn-space" name="minus">-</button>
+                <input type="number" name="quantity" value="1" min="1" max="100" id="quantity">
+                <button type="button" class="qty-up btn-space" name="plus">+</button>
+              </div>
+
+            {% when '@app' %}
+              {% render block %}
+
+            {% when 'Buy_Button' %}
+              <div class="main-product">
+                <div
+                  class="fly-source"
+                  style="background-image:url('{{ product.featured_image | image_url }}'); width: 30px; height: 30px; right: 38.5%;"
+                ></div>
+                <input
+                  type="hidden"
+                  id="mainProductVariantId"
+                  value="{{ product.selected_or_first_available_variant.id }}"
+                >
+                <button
+                  type="submit"
+                  {% if variant.available %}
+                    name="add"
+                  {% endif %}
+                  id="addToCartBtn"
+                  class="btn-space {% if product.selected_or_first_available_variant.available %} cart-btn {% endif %} "
+                  {% if variant.available %}
+                    style="margin:10px 25px;"
+                  {% else %}
+                    style="cursor: not-allowed; margin:10px 40px;"
+                  {% endif %}
+                  {% unless variant.available %}
+                    disabled
+                  {% endunless %}
+                  {{ block.shopify_attributes }}
+                >
+                  {% assign preorder = false %}
+                  {% assign selected_variant = product.selected_or_first_available_variant %}
+                  {% if selected_variant.inventory_management and selected_variant.inventory_quantity <= 0 %}
+                    {% assign preorder = true %}
+                  {% endif %}
+
+                  {% if variant.available %}
+                    {% if preorder == true %}
+                      {{- 'products.product.pre_sale' | t }}
+                    {% else %}
+                      {{- 'products.product.add_to_cart' | t }}
+                    {% endif %}
+                  {% elsif variant.available == false %}
+                    {{ 'products.product.sold_out' | t }}
+                  {% else %}
+                    {{ 'products.product.unavailable' | t }}
+                  {% endif %}
+                </button>
+              </div>
+
+              <div class="error"></div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+
+      {% if product.metafields.custom.product_gift.value != blank %}
+        <h2>Metafield & Metaobject</h2>
+        <div style="display: flex; position: reletive;">
+          {% for object in product.metafields.custom.product_gift.value %}
+            <div>
+              <h3>{{ object.label }}</h3>
+              <img
+                src="{{ object.image | image_url: width: 250 , height: 250 }}"
+                width=""
+                height=""
+              >
+            </div>
+
+            {% for list in section.settings.my_material_list_setting %}
+              {% if list.label == object.label %}
+                <div>
+                  {{ section.settings.image.preview_image | image_url: width: 50 | image_tag: widths: '50' }}
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endform %}
+  </div>
+{% endunless %}
+
+{% if section.settings.product_media == 'thumbcarousel' %}
+  <style>
+    .main-product-section {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .product-media {
+      width: 50%;
+    }
+
+    .product-content {
+      width: 50%;
+    }
+
+    .mobile_only_slider {
+      width: 100%;
+    }
+
+    .imageloop {
+      width: 100%;
+    }
+
+    .imageloop img {
+      width: 100%;
+      display: block;
+    }
+
+    .product-thumbnails {
+      width: 100%;
+      margin-top: 15px;
+      overflow: hidden;
+    }
+
+    .product-thumbnails .slick-list {
+      overflow: hidden !important;
+    }
+
+    .product-thumbnails .slick-track {
+      display: flex;
+      align-items: center;
+    }
+
+    .product-thumbnails .thumb-item {
+      padding: 4px;
+      box-sizing: border-box;
+    }
+
+    .product-thumbnails img {
+      width: 100%;
+      height: auto;
+      display: block;
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 6px;
+    }
+
+    .product-thumbnails .thumb-item.active img {
+      border-color: #000;
+    }
+
+    .product-thumbnails .slick-prev,
+    .product-thumbnails .slick-next {
+      z-index: 5;
+    }
+
+    @media (max-width: 768px) {
+      .main-product-section {
+        flex-direction: column;
+      }
+
+      .product-media,
+      .product-content {
+        width: 100%;
+      }
+    }
+  </style>
+{% endif %}
+
+
+<style>
+      .main-image {
+        position: relative;
+        display: inline-block;
+      }
+
+      .remove-btn {
+        position: absolute;
+        top: 5px;
+        right: 8px;
+        background: #000;
+        color: #fff;
+        font-size: 14px;
+        padding: 2px 6px;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+              .popup {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+          }
+
+          .popup-content {
+            background: #fff;
+            margin: 10% auto;
+            padding: 30px 5px;
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+          }
+
+          .popup-products img {
+            width: 200px;
+            margin: 10px;
+            cursor: pointer;
+          }
+
+          .popup-products{
+            display: flex;
+            flex-wrap: wrap;
+            max-height: 415px;   /* height limit */
+            overflow-y: auto;    /* vertical scroll */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+          }
+
+          .close-popup {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+          }
+          .image-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+        }
+
+        .main-image img {
+          width: 200px;
+          cursor: pointer;
+        }
+
+        .plus-icon img {
+          opacity: 0.6;
+        }
+
+        .image-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* IMAGE BOX */
+    .main-image {
+      position: relative;
+    }
+
+    .img-box {
+      width: 150px;
+      height: 150px;
+      position: relative;
+    }
+
+    .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* EMPTY STATE */
+    .img-box img.empty {
+      background: #f5f5f5;
+      border: 2px dashed #ccc;
+    }
+
+    /* QUESTION MARK */
+    .img-box img.empty::after {
+      content: "?";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* REMOVE BUTTON */
+    .remove-btn {
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      background: #000;
+      color: #fff;
+      font-size: 14px;
+      padding: 2px 6px;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .image-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* 🔥 MUST */
+    gap: 15px;
+    align-items: center;
+  }
+
+  .main-image {
+    width: auto;  
+  }
+
+  .plus-icon {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const wrapper = document.getElementById('imageWrapper');
+    const addBtn = document.getElementById('addImageBtn');
+    const popup = document.getElementById('productPopup');
+    const closeBtn = document.querySelector('.close-popup');
+
+    let isAddingNew = false;
+    let currentTarget = null;
+
+    let selectedProducts = [];
+
+    function ensurePlusVisible() {
+      wrapper.appendChild(addBtn);
+    }
+
+    function updateAddToCartState() {
+      const btn = document.getElementById('addToCartBtn');
+      const images = wrapper.querySelectorAll('.clickable-image');
+      const firstFilled = images[0]?.src && !images[0].src.includes('kleurenkiezer');
+      const secondFilled = images[1]?.src && !images[1].src.includes('kleurenkiezer');
+
+      if (firstFilled && secondFilled) {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+      } else {
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+        btn.style.cursor = 'not-allowed';
+      }
+    }
+
+    function createImage(src, variantId) {
+      const div = document.createElement('div');
+      div.className = 'main-image';
+
+      const box = document.createElement('div');
+      box.className = 'img-box';
+
+      const img = document.createElement('img');
+      img.src = src;
+      img.className = 'clickable-image';
+
+      box.appendChild(img);
+      div.appendChild(box);
+
+      wrapper.insertBefore(div, addBtn);
+
+      selectedProducts.push(variantId);
+      updateAddToCartState();
+      ensurePlusVisible();
+      updateRemoveButtons();
+    }
+
+    function updateRemoveButtons() {
+      const items = wrapper.querySelectorAll('.main-image');
+      items.forEach((div, index) => {
+        let btn = div.querySelector('.remove-btn');
+
+        if (index < 2) {
+          if (btn) btn.remove();
+        } else {
+          if (!btn) {
+            const removeBtn = document.createElement('span');
+            removeBtn.innerHTML = '✕';
+            removeBtn.className = 'remove-btn';
+
+            removeBtn.onclick = function (e) {
+              e.stopPropagation();
+
+              div.remove();
+              selectedProducts.splice(index, 1);
+              updateAddToCartState();
+              updateRemoveButtons();
+              ensurePlusVisible();
+            };
+
+            div.appendChild(removeBtn);
+          }
+        }
+      });
+    }
+
+    function loadImages() {
+      const allBlocks = wrapper.querySelectorAll('.main-image');
+
+      allBlocks.forEach((div, index) => {
+        const img = div.querySelector('img');
+        if (index < 2) img.src = 'https://laque-nails.com/cdn/shop/files/kleurenkiezer.jpg?v=12281305187552406527';
+      });
+
+      allBlocks.forEach((div, index) => {
+        if (index >= 2) div.remove();
+      });
+
+      selectedProducts = [];
+
+      updateRemoveButtons();
+      ensurePlusVisible();
+    }
+
+    wrapper.addEventListener('click', function (e) {
+      if (e.target.classList.contains('clickable-image')) {
+        currentTarget = e.target;
+        isAddingNew = false;
+        popup.style.display = 'block';
+      }
+    });
+
+    addBtn.addEventListener('click', function () {
+      isAddingNew = true;
+      currentTarget = null;
+      popup.style.display = 'block';
+    });
+
+    document.querySelectorAll('.popup-product').forEach((img) => {
+      img.addEventListener('click', function () {
+        const newSrc = this.dataset.image;
+        const variantId = this.dataset.variantId;
+
+        if (isAddingNew) {
+          createImage(newSrc, variantId);
+        } else if (currentTarget) {
+          currentTarget.src = newSrc;
+
+          const index = Array.from(wrapper.querySelectorAll('.clickable-image')).indexOf(currentTarget);
+          selectedProducts[index] = variantId;
+          updateAddToCartState();
+          console.log(selectedProducts, '111111111');
+          console.log(selectedProducts[index], '111111111');
+        }
+
+        popup.style.display = 'none';
+      });
+    });
+
+      document.getElementById('addToCartBtn').addEventListener('click', function () {
+        const mainVariantId = document.getElementById('mainProductVariantId').value;
+        const items = [
+          {
+            id: mainVariantId,
+            quantity: 1,
+          },
+        ];
+
+        selectedProducts.forEach((id) => {
+          items.push({
+            id: id,
+            quantity: 1,
+          });
+        });
+
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ items, sections: ['cart-drawer', 'main-cart'] }),
+        })
+          .then((res) => res.json())
+          .then((response) => {
+            getCartData(response);
+          })
+          .catch((err) => console.error(err));
+      });
+
+    closeBtn.onclick = () => (popup.style.display = 'none');
+
+    window.onclick = (e) => {
+      if (e.target === popup) popup.style.display = 'none';
+    };
+    loadImages();
+    updateAddToCartState();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "User Selected Product",
+  "settings": [
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Select Products"
+    },
+    {
+      "type": "select",
+      "id": "zoomlayout",
+      "label": "Zoom",
+      "options": [
+        {
+          "value": "hover",
+          "label": "Click and Hover"
+        },
+        {
+          "value": "lightbox",
+          "label": "Light Box"
+        },
+        {
+          "value": "fancybox",
+          "label": "Fancy Box"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "product_media",
+      "label": "Product Media",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "thumbcarousel",
+          "label": "Thumbnail Carousel"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title"
+    },
+    {
+      "type": "price",
+      "name": "Price"
+    },
+    {
+      "type": "variant_picker",
+      "name": "Variant Picker"
+    },
+    {
+      "type": "parent-child-bundelpro",
+      "name": "Parent Child Bundel Prod"
+    },
+    {
+      "type": "static_bundel_products",
+      "name": "Static Bundel Products"
+    },
+    {
+      "type": "bundel_products",
+      "name": "Bundel Products"
+    },
+    {
+      "type": "compare_product",
+      "name": "Compare Product"
+    },
+    {
+      "type": "giftcard_form",
+      "name": "Gift Card Form"
+    },
+    {
+      "type": "subscription",
+      "name": "Subscription"
+    },
+    {
+      "type": "Quantity_selector",
+      "name": "Quantity selector"
+    },
+    {
+      "type": "Buy_Button",
+      "name": "Buy Button"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "User Selected Product"
+    }
+  ]
+}
+{% endschema %}

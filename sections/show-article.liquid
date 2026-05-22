@@ -1,0 +1,32 @@
+{% if blog.articles != blank %}
+  <section class="related-post-section">
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>{{ section.settings.heading }}</h2>
+      </div>
+      <div class="blog-grid flex">
+        {% for article in blog.articles limit: 3 %}
+          {% render 'article-card', article: article %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Show Article",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Show Article"
+    }
+  ]
+}
+{% endschema %}

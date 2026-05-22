@@ -1,0 +1,17 @@
+<div class="blog-card">
+  <div class="blog-card-img">
+    {% if article.image != blank %}
+      <img src="{{ article.image | image_url }}" width="100%" height="100%">
+    {% endif %}
+    <label class="blog-card-label">{{ article.tags.first }}</label>
+  </div>
+  <div class="blog-dec">
+    {% if article.published_at != blank %}
+      <div class="b-date">{{ article.published_at | date: '%d %b' }}</div>
+    {% endif %}
+    {% if article.excerpt_or_content != blank %}
+      <div class="blog-name">{{ article.excerpt_or_content | truncatewords: 10 }}</div>
+    {% endif %}
+    <a class="border-btn" href="{{ article.url }}">{{ 'layout.article.article' | t }}</a>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "article_hero_section_GV44wL": {
+      "type": "article-hero-section",
+      "name": "Arical Hero Section",
+      "settings": {
+        "text": "",
+        "buttonurl": ""
+      }
+    },
+    "main": {
+      "type": "main-article",
+      "settings": {
+        "text": "Join With Us :",
+        "checkbox": true
+      }
+    },
+    "comments_gHEwXf": {
+      "type": "article-comment",
+      "name": "Comment Section",
+      "settings": {
+        "range": 4
+      }
+    },
+    "show_article_A4Jec8": {
+      "type": "show-article",
+      "name": "Show Article",
+      "settings": {
+        "heading": "VOUS ALLEZ AIMER"
+      }
+    }
+  },
+  "order": [
+    "article_hero_section_GV44wL",
+    "main",
+    "comments_gHEwXf",
+    "show_article_A4Jec8"
+  ]
+}

@@ -1,0 +1,83 @@
+{% if section.blocks.size > 0 %}
+  <section class="informative-section" data-section="service-section">
+    <div class="container">
+      <div class="flex info-row">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'content_box' %}
+              {% if block.settings.serviceimg != blank
+                or block.settings.servicetitle != blank
+                or block.settings.serviceDescription != blank
+              %}
+                <div class="info-col" {{ block.shopify_attributes }}>
+                  {% if block.settings.serviceimg != blank %}
+                    <div class="info-col-ic">
+                      <img
+                        src="{{ block.settings.serviceimg | image_url: width: 200, height: 200 }}"
+                        width=""
+                        height=""
+                      >
+                    </div>
+                  {% endif %}
+                  {% if block.settings.servicetitle != blank or block.settings.serviceDescription != blank %}
+                    <div class="info-col-cotent">
+                      {% if block.settings.servicetitle != blank %}
+                        <h4>{{ block.settings.servicetitle }}</h4>
+                      {% endif %}
+                      {{ block.settings.serviceDescription }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% style %}
+  .informative-section {
+       background-image: url("{{ 'pattern-bg.jpeg' | asset_url }}")
+  }
+  @media screen and (max-width: 767px) {
+        .informative-section {
+            background-image: url("{{ 'pattern-mobile.jpeg' | asset_url }}")
+        }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Service Section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "content_box",
+      "name": "Content Box",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "serviceimg",
+          "label": "Add Image"
+        },
+        {
+          "type": "text",
+          "id": "servicetitle",
+          "label": "Add Text"
+        },
+        {
+          "type": "richtext",
+          "id": "serviceDescription",
+          "label": "Add Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Service Section"
+    }
+  ]
+}
+{% endschema %}

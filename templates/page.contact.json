@@ -1,0 +1,50 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "contact_hero_ERgGt3": {
+      "type": "contact-hero",
+      "name": "Contact Hero",
+      "settings": {
+        "text": "CONTACT",
+        "heading": "GET IN TOUCH",
+        "richtext": "<p>+41 (0) 24 499 01 50<br/>info@ivoryswiss.com</p>",
+        "headingsecond": "VISIT OUR STORE",
+        "richtextsecond": "<p>IVORY – Swiss Premium Cannabis Route de grammond 103c 1844 Villeneuve Switzerland</p>",
+        "herodekstopimg": "shopify://shop_images/canabis-desktop.png",
+        "heromobileimg": "shopify://shop_images/canabis-mobile.png",
+        "backgrounddekstopimg": "shopify://shop_images/map.png",
+        "backgroundmobileimg": "shopify://shop_images/map_1.png"
+      }
+    },
+    "contact_form_jFAtRR": {
+      "type": "contact-form",
+      "name": "Contact Form",
+      "settings": {}
+    },
+    "pdf_yhiUp3": {
+      "type": "pdf",
+      "name": "PDF Section",
+      "settings": {
+        "pdf_file": "https://cdn.shopify.com/s/files/1/0758/7142/0636/files/Sample_PDF_Download_Free_Test_PDF___Smallpdf.pdf?v=1774946916"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "contact_hero_ERgGt3",
+    "contact_form_jFAtRR",
+    "pdf_yhiUp3"
+  ]
+}

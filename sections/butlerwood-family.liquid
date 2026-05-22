@@ -1,0 +1,87 @@
+{% if section.settings.image != blank
+  or section.settings.heading != blank
+%}
+  <div class="container" data-section="butlerwood-family">
+    {% if section.settings.image != blank %}
+      <div class="butlerwood-center-image">
+        <img
+          src="{{ section.settings.image | image_url }}"
+          alt="{{ section.settings.image.alt }}"
+          width="100%"
+          height="100%"
+        >
+      </div>
+    {% endif %}
+
+    {% if section.settings.preheading != blank or section.settings.heading != blank or section.settings.description != blank or section.settings.buttontext %}
+    <div class="butlerwood-family-content">
+      {% if section.settings.preheading != blank %}
+        <h5>{{ section.settings.preheading }}</h5>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.description != blank %}
+        {{ section.settings.description }}
+      {% endif %}
+
+      {% if section.settings.buttontext %}
+        <div class="btn-content">
+          <a href="{% if section.settings.url %} {{ section.settings.url }} {% else %}#{% endif %}">
+            {{- section.settings.buttontext -}}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Butlerwood Family",
+  "tag": "section",
+  "class": "butlerwood-family",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "preheading",
+      "label": "Pre Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description "
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "buttontext",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Butlerwood Family"
+    }
+  ]
+}
+{% endschema %}

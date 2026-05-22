@@ -1,0 +1,150 @@
+<div class="pdp-second-section section___scroll" data-section="pdp-details">
+  <div class="container">
+    {% render 'breadcrumbs' %}
+    <div class="pdp-img">
+      <div class="pdp-img-text">
+        {{ product.title }}
+      </div>
+
+      <div class="mobile_only_slider">
+        {% if product.media.size > 0 %}
+          {% for media in product.media %}
+            <div class="product-media">
+              {% if media.media_type == 'image' %}
+                <img src="{{ media | image_url }}" width="500px" height="">
+
+              {% elsif media.media_type == 'video' %}
+                <video loop muted autoplay width="500px" style="margin: 100px 0;">
+                  <source src="{{ media.sources[1].url }}" type="video/mp4">
+                </video>
+
+              {% elsif media.media_type == 'external_video' %}
+                {{
+                  media
+                  | external_video_url: loop: true, muted: true, autoplay: true, width: 500
+                  | external_video_tag
+                }}
+
+              {% elsif media.media_type == 'model' %}
+                {{ media | media_tag: width: 1000 }}
+              {% endif %}
+            </div>
+          {% endfor %}
+        {% else %}
+          {{ 'image' | placeholder_svg_tag }}
+        {% endif %}
+      </div>
+      <div class="pdp-img-btn" style="margin-top:10px;">
+        <div class="pdp-image-price">
+          {{ product.price | money_without_trailing_zeros -}}
+          {% if product.compare_at_price > product.price %}
+            <del style="padding:0px 5px;">{{ product.compare_at_price | money_without_trailing_zeros -}}</del>
+          {% endif %}
+        </div>
+
+        {% unless product.has_only_default_variant %}
+          <ul class="pdp-switch">
+            {% for variant in product.variants limit: 1 %}
+              <li>
+                <a class="active" style="margin: 0 15px">
+                  {{- variant.weight | weight_with_unit: variant.weight_unit -}}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endunless %}
+
+        {% form 'product', product, id: 'add-to-cart-form' %}
+          <input
+            type="hidden"
+            name="id"
+            value="{{ product.selected_or_first_available_variant.id }}"
+          >
+          <div class="quantity-wrapper" style="padding-left:8px;">
+            <button type="button" class="qty-down btn-space" name="minus">-</button>
+            <input type="number" name="quantity" value="1" min="1" max="100" id="quantity">
+            <button type="button" class="qty-up btn-space" name="plus">+</button>
+          </div>
+          <button
+            type="submit"
+            name="add"
+            class="add-to-cart-button btn-space"
+            style="margin:5px;"
+          >
+            <span>
+              {{- 'products.product.add_to_cart' | t }}
+              {{ product.price | money_without_trailing_zeros -}}
+            </span>
+          </button>
+        {% endform %}
+      </div>
+    </div>
+
+    {%- if section.blocks.size > 0 %}
+      <div class="pdp-second-section-text">
+        {% for block in section.blocks %}
+          {% if block.settings.imgpicker != blank
+            or block.settings.heading != blank
+            or block.settings.richtext != blank
+          %}
+            <div class="pdp-second-item" {{ block.shopify_attributes }}>
+              {% if block.settings.imgpicker != blank or block.settings.heading != blank %}
+                <div class="pdp-second-item-title-wrapper">
+                  {{ block.settings.imgpicker | image_url: width: 60, height: 60 | image_tag }}
+                  {% if block.settings.heading != blank %}
+                    <div class="pdp-second-title" style="margin-left:26px;">{{ block.settings.heading }}</div>
+                  {% endif %}
+                </div>
+              {% endif %}
+              {{ block.settings.richtext }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% style %}
+  .slick-arrow{
+        background-image: url("{{ 'arrow-red-right.svg' | asset_url }}")
+    }
+{% endstyle %}
+
+{% javascript %}
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Product Details",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "pdp_details",
+      "name": "Product Content",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "imgpicker",
+          "label": "Add Icon"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "richtext",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Details"
+    }
+  ]
+}
+{% endschema %}

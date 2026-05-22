@@ -1,0 +1,55 @@
+<div
+  class="variant-option product-select"
+  style="display:flex; flex-wrap: wrap;  position: relative;"
+>
+  {% for value in option.values %}
+    {% liquid
+      assign swatch_value = null
+      if value.swatch.color
+        assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+      endif
+    %}
+    {% if value.variant.store_availabilities %}
+      <label
+        class="box"
+        for="{{ option.name | handleize }}-{{ value | handleize }}"
+        {% if swatch_value %}
+          style=" background-color: {{ swatch_value }}; width: 35px; height: 35px; border-radius: 50%; margin-right: 5px; padding:1px; cursor: pointer; {% if value.selected %} border: 3px solid gray; cursor: pointer;{% endif %}"
+        {% elsif value.selected %}
+          style="background-color:black; color:white; border: 1px solid black; cursor: pointer;"
+        {% else %}
+          style="cursor: pointer; display:flex; justify-content: center;"
+        {% endif %}
+      >
+       
+        {% if value.variant.available %}
+          {% unless swatch_value != blank %}
+            {{- value -}}
+          {% endunless %}
+        {% else %}
+          {% unless swatch_value %}
+            <div style="text-decoration: line-through;">{{- value -}}</div>
+          {% else %}
+            <hr class="del-data-color-variant" {% unless value.selected %} style="position: absolute; top: 13px;"{% endunless %}>
+          {% endunless %}
+        {% endif %}
+      </label>
+
+      <input
+        type="radio"
+        id="{{ option.name | handleize }}-{{ value | handleize }}"
+        class="variant-data"
+        name="{{ option.name }}"
+        value="{{ value | escape }}"
+        data-variant-value="{{ value.variant.id }}"
+        data-product-url="{{ product.selected_or_first_available_variant.url }}"
+        data-option-value-id="{{ value.id }}"
+        {% if value.selected %}
+          checked
+        {% endif %}
+        hidden
+      >
+
+    {% endif %}
+  {% endfor %}
+</div>

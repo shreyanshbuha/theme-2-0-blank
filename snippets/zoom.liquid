@@ -1,0 +1,35 @@
+{% if media %}
+  {% assign zoom = media.preview_image %}
+{% else %}
+  {% assign zoom = variant.featured_media %}
+{% endif %}
+
+{% if section.settings.zoomlayout == 'hover' %}
+  <img
+    src="{{ zoom | image_url }}"
+    class="slider-images image-selector"
+    width="100%"
+    height="100%"
+    alt="{{ media.preview_image.alt | escape }}"
+  >
+
+{% elsif section.settings.zoomlayout == 'lightbox' %}
+  <a
+    href="//shreyansh-cs.myshopify.com/cdn/shop/{{ zoom }}"
+    data-lightbox="{{ product.id }}"
+    data-title="Product Image"
+    style="width: 100%"
+    ><img
+      src="{{ zoom | image_url }}"
+      width="300px"
+      height="300px"
+  ></a>
+  {% elsif section.settings.zoomlayout == 'fancybox' %}
+    <a href="//shreyansh-cs.myshopify.com/cdn/shop/{{ zoom }}" data-fancybox="gallery" style="width: 100%">
+      <img
+          src="{{ zoom | image_url }}"
+          width="300px"
+          height="300px"
+      >
+    </a>
+{% endif %}

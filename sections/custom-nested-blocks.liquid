@@ -1,0 +1,294 @@
+<style>
+  .nested-wrapper {
+    padding: 40px;
+    max-width: 900px;
+    margin: auto;
+    font-family: sans-serif;
+  }
+
+  .tree-item {
+    position: relative;
+    padding: 12px 16px;
+    margin: 6px 0;
+    background: #f8f8f8;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: 1px solid #e5e5e5;
+    display: none;
+  }
+
+  .level-1 {
+    display: block;
+    background:#e2e2e2;
+    font-weight:600;
+  }
+
+  .level-2 { margin-left: 30px; }
+  .level-3 { margin-left: 60px; }
+  .level-4 { margin-left: 90px; }
+  .level-5 { margin-left: 120px; }
+  .level-6 { margin-left: 150px; }
+
+  .tree-item::before {
+    content: "▶";
+    position: absolute;
+    left: -18px;
+    font-size: 11px;
+    transition: transform 0.3s ease;
+  }
+
+  .tree-item.open::before {
+    transform: rotate(90deg);
+  }
+
+  .tree-item.no-child::before {
+    content: "";
+  }
+</style>
+
+<section class="nested-wrapper">
+  {% assign blocks = section.blocks %}
+
+  {% for parent in blocks %}
+    {% if parent.type == 'parent' and parent.settings.parent_key != blank %}
+      <div
+        class="tree-item level-1"
+        data-level="1"
+        data-parent="{{ parent.settings.parent_key }}"
+      >
+        {{ parent.settings.title }}
+      </div>
+
+      {% for child in blocks %}
+        {% if child.type == 'child'
+          and child.settings.parent_key == parent.settings.parent_key
+          and child.settings.child_key != blank
+        %}
+          <div
+            class="tree-item level-2"
+            data-level="2"
+            data-parent="{{ parent.settings.parent_key }}"
+            data-child="{{ child.settings.child_key }}"
+          >
+            {{ child.settings.title }}
+          </div>
+
+          {% for sub in blocks %}
+            {% if sub.type == 'subchild'
+              and sub.settings.parent_key == parent.settings.parent_key
+              and sub.settings.child_key == child.settings.child_key
+              and sub.settings.subchild_key != blank
+            %}
+              <div
+                class="tree-item level-3"
+                data-level="3"
+              >
+                {{ sub.settings.title }}
+              </div>
+
+              {% for level4 in blocks %}
+                {% if level4.type == 'level4'
+                  and level4.settings.parent_key == parent.settings.parent_key
+                  and level4.settings.child_key == child.settings.child_key
+                  and level4.settings.subchild_key == sub.settings.subchild_key
+                  and level4.settings.level4_key != blank
+                %}
+                  <div class="tree-item level-4" data-level="4">
+                    {{ level4.settings.title }}
+                  </div>
+
+                  {% for level5 in blocks %}
+                    {% if level5.type == 'level5'
+                      and level5.settings.parent_key == parent.settings.parent_key
+                      and level5.settings.child_key == child.settings.child_key
+                      and level5.settings.subchild_key == sub.settings.subchild_key
+                      and level5.settings.level4_key == level4.settings.level4_key
+                      and level5.settings.level5_key != blank
+                    %}
+                      <div class="tree-item level-5" data-level="5">
+                        {{ level5.settings.title }}
+                      </div>
+
+                      {% for level6 in blocks %}
+                        {% if level6.type == 'level6'
+                          and level6.settings.parent_key == parent.settings.parent_key
+                          and level6.settings.child_key == child.settings.child_key
+                          and level6.settings.subchild_key == sub.settings.subchild_key
+                          and level6.settings.level4_key == level4.settings.level4_key
+                          and level6.settings.level5_key == level5.settings.level5_key
+                        %}
+                          <div class="tree-item level-6" data-level="6">
+                            {{ level6.settings.title }}
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const items = document.querySelectorAll('.tree-item');
+
+    function closeSiblings(currentItem, currentLevel) {
+      let prev = currentItem.previousElementSibling;
+      while (prev) {
+        if (parseInt(prev.dataset.level) === currentLevel) {
+          closeChildren(prev, currentLevel);
+          prev.classList.remove('open');
+        }
+        prev = prev.previousElementSibling;
+      }
+
+      let next = currentItem.nextElementSibling;
+      while (next) {
+        if (parseInt(next.dataset.level) === currentLevel) {
+          closeChildren(next, currentLevel);
+          next.classList.remove('open');
+        }
+        next = next.nextElementSibling;
+      }
+    }
+
+    function closeChildren(parent, level) {
+      let next = parent.nextElementSibling;
+      while (next) {
+        const nextLevel = parseInt(next.dataset.level);
+        if (nextLevel > level) {
+          next.style.display = 'none';
+          next.classList.remove('open');
+        } else {
+          break;
+        }
+        next = next.nextElementSibling;
+      }
+    }
+
+    items.forEach((item) => {
+      const currentLevel = parseInt(item.dataset.level);
+      let next = item.nextElementSibling;
+
+      if (next && parseInt(next.dataset.level) === currentLevel + 1) {
+        item.dataset.hasChild = 'true';
+      } else {
+        item.classList.add('no-child');
+      }
+
+      item.addEventListener('click', function (e) {
+        e.stopPropagation();
+
+        if (item.dataset.hasChild !== 'true') return;
+
+        const isOpen = item.classList.contains('open');
+
+        if (isOpen) {
+          item.classList.remove('open');
+          closeChildren(item, currentLevel);
+        } else {
+          closeSiblings(item, currentLevel);
+
+          item.classList.add('open');
+
+          let nextEl = item.nextElementSibling;
+
+          while (nextEl) {
+            const nextLevel = parseInt(nextEl.dataset.level);
+
+            if (nextLevel === currentLevel + 1) {
+              nextEl.style.display = 'block';
+            }
+
+            if (nextLevel <= currentLevel) break;
+
+            nextEl = nextEl.nextElementSibling;
+          }
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom Nested Blocks",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "parent",
+      "name": "Parent Slide",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Parent Title" },
+        { "type": "text", "id": "parent_key", "label": "Parent Key (example: slide1)" }
+      ]
+    },
+    {
+      "type": "child",
+      "name": "Child Slide",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Child Title" },
+        { "type": "text", "id": "parent_key", "label": "Match Parent Key" },
+        { "type": "text", "id": "child_key", "label": "Child Key (example: a1)" }
+      ]
+    },
+    {
+      "type": "subchild",
+      "name": "Sub Child Slide",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Sub Child Title" },
+        { "type": "text", "id": "parent_key", "label": "Match Parent Key" },
+        { "type": "text", "id": "child_key", "label": "Match Child Key" },
+        { "type": "text", "id": "subchild_key", "label": "Sub Child Key (example: s1)" }
+      ]
+    },
+    {
+      "type": "level4",
+      "name": "Level 4 Slide",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "parent_key", "label": "Parent Key" },
+        { "type": "text", "id": "child_key", "label": "Child Key" },
+        { "type": "text", "id": "subchild_key", "label": "Sub Child Key" },
+        { "type": "text", "id": "level4_key", "label": "Level 4 Key" }
+      ]
+    },
+    {
+      "type": "level5",
+      "name": "Level 5 Slide",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "parent_key", "label": "Parent Key" },
+        { "type": "text", "id": "child_key", "label": "Child Key" },
+        { "type": "text", "id": "subchild_key", "label": "Sub Child Key" },
+        { "type": "text", "id": "level4_key", "label": "Level 4 Key" },
+        { "type": "text", "id": "level5_key", "label": "Level 5 Key" }
+      ]
+    },
+    {
+      "type": "level6",
+      "name": "Level 6 Slide",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "parent_key", "label": "Parent Key" },
+        { "type": "text", "id": "child_key", "label": "Child Key" },
+        { "type": "text", "id": "subchild_key", "label": "Sub Child Key" },
+        { "type": "text", "id": "level4_key", "label": "Level 4 Key" },
+        { "type": "text", "id": "level5_key", "label": "Level 5 Key" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Nested Blocks"
+    }
+  ]
+}
+{% endschema %}

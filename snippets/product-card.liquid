@@ -1,0 +1,139 @@
+<div
+  class="best-sell-item with-label product-card   recent_prodct "
+  style="text-align:center; margin-bottom:20px; width:270px; "
+  data-product-url="{{ product.url }}"
+  data-product-handel="{{ product.handel }}"
+>
+  <div class="product-card-inner" style="margin:10px;">
+    <div class="product-top">
+      <div class="pro-lable" style="background: #A7C916;">
+        {{ product.tags }}
+      </div>
+
+      <div class="pro-title">
+        <h3>
+          <a
+            class="recently-view-data"
+            data-title="{{ product.title }}"
+            href="{{ product.selected_or_first_available_variant.url }}"
+          >
+            {{- product.title -}}
+          </a>
+        </h3>
+
+        <div style="display:flex; justify-content: center">
+          <div class="price">
+            {{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}
+          </div>
+          <del class="compare-price" style="text-decoration: revert; padding:0 9px">
+            {{- product.selected_or_first_available_variant.compare_at_price | money_without_trailing_zeros -}}
+          </del>
+        </div>
+      </div>
+    </div>
+
+    {% unless product.variants_count > 1 %}
+      <div
+        class="fly-source"
+        style="background-image:url('{{ product.featured_image | image_url: width: 300 }}'); left: 113px; top: 160px;"
+      ></div>
+    {% endunless %}
+
+    {% if product.selected_or_first_available_variant.featured_image != blank %}
+      <div class="product-card-media">
+        <a href="{{ product.selected_or_first_available_variant.url | within: collection}}" class="product-image">
+          <img
+            src="{{ product.selected_or_first_available_variant.featured_image | image_url}}"
+            width="250px"
+            height="250px"
+            class="fly-img"
+          >
+        </a>
+      </div>
+    {% else %}
+      {% for media in product.media %}
+        {% assign mediaimage = media.preview_image %}
+      {% endfor %}
+      <img
+        src="{{ mediaimage | image_url }}"
+        width="250px"
+        height="250px"
+        style="margin: 0 auto;"
+        class="fly-img"
+      >
+    {% endif %}
+
+    {% for option in product.options_with_values %}
+      {% assign opt_index = forloop.index0 %}
+
+      {% if option.name == 'Color' or option.name == 'color' %}
+        <div class="color-swatch-wrapper" data-product-url="{{ product.url }}" style="margin: 11px 0;">
+          {% for value in option.values %}
+            {% assign matched_variant = null %}
+
+            {% for v in product.variants %}
+              {% if v.options[opt_index] == value %}
+                {% assign matched_variant = v %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+
+            {% if matched_variant %}
+              <input
+                type="radio"
+                id="color-{{ value | handleize }}-{{ product.id }}"
+                class="color-swatch-input"
+                name="color-option-{{ product.id }}"
+                value="{{ value | escape }}"
+                data-variant-id="{{ matched_variant.id }}"
+                data-variant-image="{{ matched_variant.featured_image | image_url }}"
+                data-variant-price="{{ matched_variant.price | money_without_trailing_zeros }}"
+                data-variant-compare-price="{{ matched_variant.compare_at_price | money_without_trailing_zeros }}"
+                {% if forloop.first %}
+                  checked
+                {% endif %}
+                hidden
+              >
+
+              <label
+                class="color-swatch-item"
+                for="color-{{ value | handleize }}-{{ product.id }}"
+                {% if value.swatch.color %}
+                  style="background-color: rgb({{ value.swatch.color.rgb }});"
+                {% else %}
+                  style="background-color: {{ value | downcase }};"
+                {% endif %}
+                title="{{ value }}"
+                {% if forloop.first %}
+                {% endif %}
+              ></label>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    <div class="product-bottom">
+      <div class="flex product-select-opt justify-center">
+        <div class="opt">
+          {{
+            product.selected_or_first_available_variant.weight
+            | weight_with_unit: product.selected_or_first_available_variant.weight_unit
+          }}
+          {% comment %}
+            <div class="product-view-opt text-center">
+              <a href="#" class="view-btn desk-only">
+                {{ 'products.product.on_sale' | t }}
+                {% render 'icons', icon: 'show_eye' %}
+              </a>
+            </div>
+          {% endcomment %}
+
+          {% unless template == 'page.bundelproduct' %}
+            {% render 'buy-button', product: product %}
+          {% endunless %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

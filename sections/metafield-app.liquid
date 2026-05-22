@@ -1,0 +1,148 @@
+ {{product.metafields.Title.metafield_title }}
+
+{{product.metafields.zzz.zzz}}
+
+
+{% if  product.metafields["meta image"]["metqaimage"].value != blank %}
+    <img src="{{ product.metafields["meta image"]["metqaimage"].value  | image_url: width: 200 , height: 200}} " width="" height="">
+{% endif %}
+
+{{ product.metafields.global.Title22.value }}
+
+{{ product.metafields["custom_fields"]["imagez"]  }}
+
+{{ product.metafields["custom_fields"]["img_galleryy"] }}
+
+{{ product.metafields["custom_fields"]["description"] }} 
+
+ {{ product.metafields["custom_fields"]["productss"] }} 
+
+ {{ product.metafields["custom_fields"]["logo"] }} 
+
+{{ product.metafields["custom_fields"]["field"] }}
+
+
+
+ {{product.metafields.Demo.Demo}}
+
+{{product.metafields.Demo-ckb.ckb}}
+
+<br><br><br><br><br><br>
+
+{{ product.app.metafields.grouping | json }}
+
+{{ product.metafields.custom.product_details.value | json }}
+
+
+
+{{ product.metafields.grouping | json }}
+
+{{ product.metafields.group_list | json }}
+
+
+
+{% for group in  product.metafields.group_list %}===
+  {{ group.grouping }}
+{% endfor %}
+
+{% for group in product.metafields.grouping.value %}===
+  {{ group | json }}
+  {% endfor %}
+<br><br><br><br><br><br>
+{{ product.metafields.group_field | json }}
+
+  {% for field in product.metafields.custom %}
+       {{ field.Demo | json }} 
+  {% endfor %}
+
+<br>
+<div>{{product.metafields.Demo-Number.Demo-Number}}</div>
+<div>{{product.metafields.Demo-Date.Demo-Date}}</div> 
+
+
+<br>
+<br><br>
+ {% for number in product.metafields.Demo-Number.Demo-Number %}
+  {{ number }}
+{% endfor %}<br>
+{% for date in product.metafields.Demo-Date.Demo-Date %}
+  {{ date }}
+{% endfor %} 
+
+
+ {% for field in product.metafields.shopify.acf.value %}++++
+  {{ field | json }}
+{% endfor %}
+fgsdgsg
+
+{{ product.metafields.acf | json }}
+{{ product.metafields.custom.acf.Demo | json }}
+
+{{ product.metafields.c_f | json }}
+{{ product.metafields.namespace.key | json }}
+
+
+   {% for item in product.metafields.custom_fields %}===
+    <h3>{{ item | json }}</h3>
+    <p>{{ item.description }}</p>
+  {% endfor %} 
+
+
+   {{ product.metafields.Title.metafield_title}} 
+
+  {{ product.metafields.group_list | json }}
+  {{ product.metafields.product.grouping | json }}
+  {{ product.metafields.arena | json }}
+
+  {{  product.metafields.my_app.grouping | json }}
+  {% for field in  product.metafields.my_app.grouping %}
+    {{ field | json }}====
+  {% endfor %}
+ 
+
+
+ {% assign numbers = product.metafields.demo_select.demo_number %}
+{% assign dates = product.metafields.demo_select.demo_date %}
+{% if numbers.size > 0 and dates.size > 0 %}
+  {% assign size = dates.size | minus: 1 %}
+<br><br><br><br>
+  <ul class="js-tabs__header">
+      {% for i in (0..size) %}
+        <li>{{i}}=={{numbers[i]}}<br>{{dates[i]}}<br></li><br>
+      {% endfor %}
+  </ul>
+{% endif %}
+<br><br>  
+ 
+{{product.metafields.demo_testz.demo_text}}<br>
+{{product.metafields.demo_testz.demo_ckb}}<br> 
+
+{% assign text = product.metafields.demo_testz.demo_text %}
+{% assign checkbox = product.metafields.demo_testz.demo_ckb %}
+
+{% assign size = text.size | minus:1 %}
+
+{% for i in (0..size) %}<br>
+  <div> {{ text[i] }}<br>
+  {{ checkbox[i] }}<br></div>
+{% endfor %}
+
+
+
+{% schema %}
+{
+  "name": "Metafield App",
+  "settings": [
+    {
+        "type": "text",
+        "id": "text",
+        "label": "Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Metafield App"
+    }
+  ]
+}
+{% endschema %}

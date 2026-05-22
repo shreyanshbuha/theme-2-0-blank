@@ -1,0 +1,109 @@
+{% for product in collection.products %}
+  {{ product.metafields.custom.date_of_birth.value -}}
+  <BR><BR> {{ product.metafields.custom.spacification -}}
+  <BR><BR> {{ product.metafields.custom.single_line_text -}}
+  <BR><BR> {{ product.metafields.custom.single_line | metafield_tag -}}
+  <BR><BR> {{ product.metafields.custom.multi_line -}}
+  <BR><BR>
+  {{ product.metafields.custom.link | metafield_tag | link_to_type }}
+  <BR><BR>
+  {{ product.metafields.custom.money | metafield_tag }}
+  <BR><BR>
+  {{ product.metafields.custom.variant | metafield_tag }}
+  <BR><BR>{{ product.metafields.custom.richtext | metafield_tag }}
+  <BR><BR> {{ product.metafields.custom.integer }}
+  <BR><BR> {{ product.metafields.custom.decimal }}
+  <BR><BR> {{ product.metafields.custom.file.value | image_url: width: 200, height: 200 | image_tag }}
+  <br>
+  <br>
+  {% for file in product.metafields.custom.mul_file.value %}
+    {{ file | image_url: width: 200, height: 200 | image_tag }}
+  {% endfor %}
+  <BR><BR> {{ product.metafields.custom.dimension | metafield_tag -}}
+  <BR><BR> {{ product.metafields.custom.weight2 | metafield_tag -}}
+  <BR><BR> {{ product.metafields.custom.date }}
+  <BR><BR>{{ product.metafields.custom.date_n_time }}
+  <BR><BR>
+  {{ product.metafields.custom.json.value }}
+  <BR><BR>
+  <a href="{{ product.metafields.custom.url }}">home</a>
+  <BR><BR>
+  {{ product.metafields.custom.volume2.value }}
+  <BR><BR>
+  {% for daimention in product.metafields.custom.daimention2.value %}
+    <div>{{ daimention }}</div>
+  {% endfor %}
+  <BR><BR>
+  {% for date in product.metafields.custom.mul_date.value %}
+    <div>{{ date }}</div>
+  {% endfor %}
+  <BR><BR>
+  {% for int in product.metafields.custom.integer2.value %}
+    <div>{{ int }}</div>
+  {% endfor %}
+  <BR><BR>
+  {% for decimal in product.metafields.custom.decimal2.value %}
+    <div>{{ decimal }}</div>
+  {% endfor %}
+  <BR><BR>
+  {% for file in product.metafields.custom.mul_file.value %}
+    <div>{{ file | media_tag }}</div>
+  {% endfor %}
+  <BR><BR>
+  {% for d_n_t in product.metafields.custom.mul_date_n_time.value %}
+    <div>{{ d_n_t }}</div>
+  {% endfor %}
+  <BR><BR> <BR><BR> <BR><BR>
+
+  <BR><BR> <BR><BR>
+
+  <BR><BR>
+  {{ product.metafields.custom.metafield.value.system.handle }}
+  {% for object in product.metafields.custom.metafield.value.system.handle -%}
+    ===
+    {{ object }}
+  {% endfor %}
+
+  <BR><BR>
+  {{ product.metafields.custom.collections }}
+  <BR><BR>
+  {% for object in product.metafields.custom.metaobject.value -%}
+    ===
+    {{ object.label }}
+  {% endfor %}
+  {{ product.metafields.custom.color.value.red | json }}
+  {% for object in product.metafields.custom.color.value.alpha -%}
+    ===
+    {{ object }}
+  {% endfor %}
+
+  {% comment %}
+    <BR><BR>
+    <BR><BR>
+    {{ product.metafields.custom.variants }}
+    <BR><BR>
+    {{ product.metafields.custom.refrence }}
+    <BR><BR>
+      <BR><BR> {{ product.metafields.custom.product }}
+      <BR><BR> {{ product.metafields.custom.multiple_product }}
+
+      <BR><BR>
+      {{ product.metafields.custom.company }}
+      <BR><BR>{{ product.metafields.custom.customer }}
+      <BR><BR> {{ product.metafields.custom.collection }}
+
+      <BR><BR>
+  {% endcomment %}
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Metafields",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Metafields"
+    }
+  ]
+}
+{% endschema %}

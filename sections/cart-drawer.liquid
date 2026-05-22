@@ -1,0 +1,565 @@
+<div class="cart">
+  <div class="fullPage"></div>
+  <div class="cartDrawer" style="z-index:9;">
+    <div id="cart-drawer-loader" style="display: none;">
+      <span class="spinner"></span>
+    </div>
+    {% if cart != empty %}
+      <div class="cartTop">
+        <div class="cart-progress">
+          {% assign free_shipping_threshold = settings.freeshippingamount | times: 100 %}
+          {% assign free_product_threshold = settings.freeproductamount | times: 100 %}
+          {% assign free_extra_gift_ammount = settings.free_extra_child_product_amount | times: 100 %}
+
+          {% assign cart_total = cart.total_price %}
+          {% assign amount_to_go = free_shipping_threshold | minus: cart_total %}
+
+          {% assign progress_percentage = cart_total | times: 100 | divided_by: free_product_threshold %}
+
+          {% if progress_percentage > 100 %}
+            {% assign progress_percentage = 100 %}
+          {% endif %}
+
+          {% assign shipping_position = free_shipping_threshold | times: 100 | divided_by: free_product_threshold %}
+          {% if shipping_position > 100 %}
+            {% assign shipping_position = 100 %}
+          {% endif %}
+
+          {% assign extra_gift_position = free_extra_gift_ammount | times: 100 | divided_by: free_product_threshold %}
+          {% if extra_gift_position > 100 %}
+            {% assign extra_gift_position = 100 %}
+          {% endif %}
+
+          <div class="free-shipping-bar">
+            <div class="progress-wrapper">
+              <div class="progress-bar-container">
+                <div
+                  class="progress-bar-fill"
+                  style="width: {{ progress_percentage }}%;"
+                ></div>
+              </div>
+
+              <img
+                src="{{ 'free-shipping.png' | asset_url }}"
+                class="progress-icon shipping-icon"
+                style="left: {{ shipping_position }}%;"
+                width=""
+                height=""
+              >
+              <img
+                src="{{ 'Gift-Final.png' | asset_url }}"
+                class="progress-icon gift-icon"
+                style="left:{{ extra_gift_position }}%;"
+                width=""
+                height=""
+              >
+              <img
+                src="{{ 'Gift-Final.png' | asset_url }}"
+                class="progress-icon gift-icon"
+                style="left: 100%;"
+                width=""
+                height=""
+              >
+            </div>
+            <div class="progress-bar-messages">
+              <p>
+                {% if amount_to_go > 0 %}
+                  You are {{ amount_to_go | money }} away from free shipping!
+                {% else %}
+                  Congratulations! You qualify for free shipping!
+                {% endif %}
+              </p>
+
+              {% if cart_total >= free_extra_gift_ammount %}
+                <p>You've got free Extra Product!</p>
+              {% else %}
+                <p>
+                  You're only {{ free_extra_gift_ammount | minus: cart_total | money }} away from free Extra Product.
+                </p>
+              {% endif %}
+
+              {% if cart_total >= free_product_threshold %}
+                <p>You've got free Product!</p>
+              {% elsif cart_total < free_product_threshold %}
+                <p>You're only {{ free_product_threshold | minus: cart_total | money }} away from free Product.</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="closecart icon-left">
+          {% render 'icons', icon: 'close_btn2' %}
+        </a>
+
+        {% render 'cart-reserved-timer' %}
+      </div>
+
+      {% form 'cart', cart %}
+        <div id="crt" class="has-item">
+          <div class="quick-items">
+            {% assign offer_1_item_count = 0 %}
+            {% assign offer_2_item_count = 0 %}
+            {% assign offer_1_prod_key = blank %}
+            {% assign offer_2_prod_key = blank %}
+
+            {% assign total_item_offer_1_count = settings.discount_offer_product_count | plus: 0 %}
+            {% assign total_item_offer_2_count = settings.discount_offer_product_count_1 | plus: 0 %}
+
+            {% for item in cart.items %}
+              {% assign custom_badges = item.product.metafields.custom.badge.value %}
+              {% if custom_badges contains settings.add_offer_badge %}
+                {% assign offer_1_item_count = offer_1_item_count | plus: item.quantity %}
+                {% if offer_1_prod_key == blank %}
+                  {% assign offer_1_prod_key = item.key %}
+                {% endif %}
+              {% elsif custom_badges contains settings.add_offer_badge_1 %}
+                {% assign offer_2_item_count = offer_2_item_count | plus: item.quantity %}
+                {% if offer_2_prod_key == blank %}
+                  {% assign offer_2_prod_key = item.key %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+
+            {% for item in cart.items %}
+              {% comment %}
+                {% for property in item.properties %}
+                  {% if property.first == 'Upload File' %}
+                    Uploaded File: <img src="{{ property.last }}" width="100" height="80">
+                    <a href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
+                  {% endif %}
+                  <li>
+                    {{ property.first }}
+                    : {{ property.last }}
+                  </li>
+                {% endfor %}
+              {% endcomment %}
+
+              <div
+                class="quick-cart-item"
+                id="cart-item"
+                {% if item.title == 'Shipping Protection' %}
+                  style="display: none;"
+                {% endif %}
+                data-line-key="{{ item.key }}"
+                data-variant-id="{{ item.variant_id }}"
+              >
+                <div class="quick-cart-image">
+                  <a href="{{ item.url }}">
+                    {{ item.image | image_url: width: 100, height: 100 | image_tag }}
+                  </a>
+                </div>
+                <div class="quick-cart-details" data-product-title="{{ item.product.title }}">
+                  {% if offer_1_prod_key == item.key %}
+                    <div class="discount-box">
+                      {% if offer_1_item_count >= total_item_offer_1_count %}
+                        {% if settings.discount_success_note != blank %}
+                          <span>{{ settings.discount_success_note }}</span>
+                        {% endif %}
+
+                      {% else %}
+                        {% assign remains_count = total_item_offer_1_count | minus: offer_1_item_count %}
+
+                        {% if settings.add_discount_note != blank %}
+                          <span>{{ settings.add_discount_note | replace: '[X]', remains_count }}</span>
+                        {% endif %}
+                      {% endif %}
+                    </div>
+                  {% endif %}
+
+                  {% if offer_2_prod_key == item.key %}
+                    <div class="discount-box">
+                      {% if offer_2_item_count >= total_item_offer_2_count %}
+                        {% if settings.discount_success_note_1 != blank %}
+                          <span>{{ settings.discount_success_note_1 }}</span>
+                        {% endif %}
+
+                      {% else %}
+                        {% assign remains_count = total_item_offer_2_count | minus: offer_2_item_count %}
+                        {% if settings.add_discount_note_1 != blank %}
+                          <span>{{ settings.add_discount_note_1 | replace: '[X]', remains_count }}</span>
+                        {% endif %}
+                      {% endif %}
+                    </div>
+                  {% endif %}
+
+                  <p class="ptitle">
+                    <a href="{{ item.url }}">{{ item.title }}</a>
+                  </p>
+                  <div>{{ item.product.selected_or_first_available_variant.price | money }}</div>
+
+                  <div class="pvarprice">
+                    <div class="flex product-select-opt justify-flex-start">
+                      <div class="opt">
+                        {{ item.product.variants[0].weight | weight_with_unit: item.product.variants[0].weight_unit }}
+                      </div>
+                    </div>
+
+                    {% assign line_item_index = forloop.index %}
+
+                    <div
+                      class="cart-item"
+                      {% if settings.selectfreeproduct.selected_or_first_available_variant.id == item.id
+                        or settings.select_free_extra_child_product.selected_or_first_available_variant.id == item.id
+                      %}
+                        style="display:none;"
+                      {% endif %}
+                      data-line="{{ forloop.index }}"
+                      data-is-gift="{% if item.properties.parent_id %}true{% else %}false{% endif %}"
+                    >
+                      <div class="quantity-wrapper ">
+                        {% if item.properties.unique_identifier %}
+                          {% assign unique_id = item.properties.unique_identifier %}
+                        {% else %}
+                          {% assign unique_id = item.properties._group %}
+                        {% endif %}
+
+                        <input type="hidden" name="id[]" value="{{ item.variant.id }}">
+                        <button type="button" name="minus" class="qty-down qty-down-gift-pro btn-space">-</button>
+                        <input
+                          type="number"
+                          data-ajax-cart-quantity-input="{{ line_item_index }}"
+                          class="quantity-input btn-input item-quantity item-gift-quantity"
+                          value="{{ item.quantity }}"
+                          min="1"
+                          name="updates[]"
+                          {% if unique_id != blank %}
+                            data-line-item-property="{{ unique_id | default: '' }}"
+                          {% endif %}
+                          data-loop="{{ forloop.index }}"
+                          style="width:60px;"
+                          id="quantity-{{ forloop.index }}"
+                          data-id="{{ item.key }}"
+                          data-product-title="{{ item.product.title }}"
+                          data-parent-key="{{ item.parent_relationship.parent.key }}"
+                          data-line-key="{{ item.key }}"
+                          data-unique-id="{{ unique_id | default: '' }}"
+                          data-line-gift-key="{{ item.key }}"
+                          data-unique-gift-id="{{ unique_id | default: '' }}"
+                          data-index="{{ item.index | plus: 1 }}"
+                        >
+                        <button class="qty-up qty-up-gift-pro btn-space" type="button" name="plus">+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="quick-cart-pqty">
+                  {% unless settings.selectfreeproduct.selected_or_first_available_variant.id == item.id
+                    or settings.select_free_extra_child_product.selected_or_first_available_variant.id == item.id
+                  %}
+                    <div class="justify-end">
+                      <div id="price">{{ item.final_line_price | money }}</div>
+                      <a
+                        class="remove_item remove_gift_item"
+                        data-line="{{ item.key }}"
+                        {% if unique_id != blank %}
+                          data-line-item-property="{{ unique_id | default: '' }}"
+                        {% endif %}
+                        data-product-title="{{ item.product.title }}"
+                        data-parent-key="{{ item.parent_relationship.parent.key }}"
+                        data-line-key="{{ item.key }}"
+                        data-line-gift-key="{{ item.key }}"
+                        data-unique-id="{{ unique_id }}"
+                        data-unique-gift-id="{{ unique_id | default: '' }}"
+                        data-is-gift="{% if item.properties.parent_id %}true{% else %}false{% endif %}"
+                        data-index="{{ item.index | plus: 1 }}"
+                      >
+                        {% render 'icons', icon: 'dust-img' %}
+                      </a>
+                    </div>
+                  {% else %}
+                    <div class="free_product_price">
+                      <div class="price">
+                        {{ settings.selectfreeproduct.price | minus: settings.selectfreeproduct.price | money }}
+                      </div>
+                    </div>
+                  {% endunless %}
+                </div>
+
+                {% unless item.selling_plan_allocation.selling_plan.name %}
+                  {% for allocation in item.variant.selling_plan_allocations offset: 0 limit: 1 %}
+                    {% if allocation.selling_plan.name != blank %}
+                      <button
+                        class="subscription-selector one-time-purches"
+                        data-line-item-key="{{ item.key }}"
+                        data-quantity="{{ item.quantity }}"
+                        name="selling_plan"
+                        value="{{ allocation.selling_plan.id }}"
+                        style="
+                          padding: 10px !important;
+                          border-radius: 10px;
+                          background-color: #57abff;
+                          color: white;
+                          font-weight: 700;
+                          margin-top: 10px;
+                        "
+                      >
+                        {% comment %} {% for allocation in item.variant.selling_plan_allocations offset: 1 limit: 1 %} {% endcomment %}
+                        {{ allocation.selling_plan.name }}
+                        {% comment %} {% endfor %} {% endcomment %}
+                      </button>
+                    {% endif %}
+                  {% endfor %}
+
+                {% else %}
+                  <div class="cart-item" data-line-item-key="{{ item.key }}">
+                    {% if item.variant.selling_plan_allocations.size > 1 %}
+                      <select
+                        class="subscription-selector"
+                        data-line-item-key="{{ item.key }}"
+                        data-quantity="{{ item.quantity }}"
+                        name="selling_plan"
+                        style="padding:10px; border-radius: 10px;"
+                      >
+                        <option
+                          value=""
+                          {% if item.selling_plan_allocation.selling_plan.id %}
+                            selected
+                          {% endif %}
+                        >
+                          One-time purchase
+                        </option>
+                        {% for allocation in item.variant.selling_plan_allocations %}
+                          {% unless allocation.selling_plan.name == 'Full Payment' %}
+                            <option
+                              value="{{ allocation.selling_plan.id }}"
+                              {% if item.selling_plan_allocation.selling_plan.id == allocation.selling_plan.id %}
+                                selected
+                              {% endif %}
+                            >
+                              {{ allocation.selling_plan.name }}
+                            </option>
+                          {% endunless %}
+                        {% endfor %}
+                      </select>
+                    {% endif %}
+                  </div>
+                {% endunless %}
+
+                {% comment %} <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p> {% endcomment %}
+              </div>
+            {% endfor %}
+
+            <div class="free-productprice" data-free-product-price="{{ settings.freeproductamount }}"></div>
+            <div class="total_price" data-total-price="{{ cart.total_price }}"></div>
+
+            <div class="freeproduct"></div>
+            <div class="show-error"></div>
+          </div>
+
+          <div class="quick-btn">
+            <div class="show-recommendation"></div>
+            {% render 'cart-recommendation', heading: section.settings.heading, limit: section.settings.limit %}
+
+            {% assign shiptitle = cart.items
+              | has: 'id', settings.shippingprotection.selected_or_first_available_variant.id
+            %}
+            {% comment %}
+              {% if section.settings.shipcheckbox == true %}
+                <div class="flex " style="margin: 10px 0 0;">
+                  <img src="{{ settings.shippingprotection.featured_image | image_url}}" width="80px" height="70px">
+                  <div class="shipping_protection_data">
+                    <h5 style="font-weight: 700;">{{ settings.shippingprotection.title }}</h5>
+                    {{ settings.shippingprotection.description }}
+                    {{ settings.shippingprotection.price | money }}
+
+                    <label class="switch" for="switch">
+                      <input
+                        type="checkbox"
+                        id="switch"
+                        class="shipping-protection-checkbox"
+                        data-shipping-protection-id="{{ settings.shippingprotection.selected_or_first_available_variant.id }}"
+                        {% if shiptitle %}
+                          checked
+                        {% endif %}
+                      >
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                </div>
+              {% endif %}
+            {% endcomment %}
+
+            {% if settings.freeproduct %}
+              <div class="price" style="text-align: center; margin-bottom: 12px;">
+                Discount:- {{ cart.total_discount | money }}
+              </div>
+            {% endif %}
+
+            <div style="text-align:center;">
+              {% render 'cart-manual-discount' %}
+            </div>
+
+            <a class="checkout-link button quick-chechout-btn" href="{{ routes.cart_url }}" style="margin-top: -8px;">
+              Total Price :- &nbsp;
+              {{- cart.original_total_price | minus: cart.total_discount | money -}}
+            </a>
+
+            <p class="emptyCart text-center" style="display: none;">You have no items in your shopping cart.</p>
+          </div>
+        </div>
+      {% endform %}
+    {% else %}
+      <a href="#" class="closecart icon-left">
+        {% render 'icons', icon: 'close_btn2' %}
+      </a>
+      <div class="cartDrawerempty">
+        <div style="text-align:center; padding:100px; margin: 50% 0;">
+          <h3 style="padding-bottom: 20px;">{{ 'cart.general.empty' | t }}</h3>
+          <button>
+            <a href="{{ routes.collections_url }}">{{ 'cart.general.continue_shopping' | t }}</a>
+          </button>
+          <div style="padding-top:30px;">
+            <h4>{{ 'cart.login.title' | t }}</h4>
+            <u
+              ><a href="{{ routes.account_login_url }}" style="text-decoration: underline;">
+                {{- 'customer.login.title' | t -}}
+              </a></u
+            >
+            {{ 'cart.login.paragraph_html' | t }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% style %}
+  .progress-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  .progress-bar-container {
+    width: 100%;
+    height: 13px;
+    background: #e0e0e0;;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #28a745, #4cd964);
+    width: 0%;
+    transition: width 0.5s ease;
+  }
+
+  .progress-icon {
+    position: absolute;
+    top: -8px;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 28px;
+    border: 2px solid red;
+    border-radius: 50px;
+    padding: 1px;
+    background-color: white;
+  }
+
+  .shipping-icon {
+    z-index: 2;
+  }
+
+  .gift-icon {
+    z-index: 3;
+  }
+    .quick-btn .slick-arrow{
+      background-image: url({{ 'arrow-right-black.svg' | asset_url }});
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 53px;
+      height: 26px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 19px;
+      width: 19px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Product Limit",
+      "min": 1,
+      "max": 10,
+      "default": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "shipcheckbox",
+      "label": "Shipping Protection Anable/Disable"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Cart",
+      "name": "Cart",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "cartlogo",
+          "label": "Cart Logo"
+        },
+        {
+          "type": "text",
+          "id": "cartheading",
+          "label": "Cart Heading"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart Drawer"
+    }
+  ]
+}
+{% endschema %}

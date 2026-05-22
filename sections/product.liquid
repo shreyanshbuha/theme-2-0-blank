@@ -1,0 +1,73 @@
+{% if section.settings.productlist != blank %}
+  {% assign collection_product = section.settings.productlist %}
+{% else %}
+  {% assign collection_product = section.settings.collection.products %}
+{% endif %}
+{% if collection_product != blank %}
+  <section class="best-seller-section overflow-hidden" data-section="product">
+    <div class="best-seller-section-inner offset-left">
+      {% if section.settings.productheading != blank %}
+        <div class="section-title">
+          <h2>{{ section.settings.productheading }}</h2>
+        </div>
+      {% endif %}
+
+      <div class="best-seller-slider desk_only_slider product-row">
+        {% for product in collection_product %}
+            {% render 'product-card', product: product %}
+          {% endfor %}
+      </div>
+    </div>
+    {% if section.settings.btntext != blank and section.settings.btnurl != blank %}
+      <div class="best-sell-btn flex justify-center">
+        <a href="{{ section.settings.btnurl }}" class="btn-primary">{{ section.settings.btntext }}</a>
+      </div>
+    {% endif %}
+   
+  </section>
+{% endif %}
+
+{% style %}
+  .slick-arrow{
+      background-image: url("{{ 'arrow-red-right.svg' | asset_url }}")
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Product Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "productheading",
+      "label": "Product Heading"
+    },
+    {
+      "type": "text",
+      "id": "btntext",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btnurl",
+      "label": "Button URL"
+    },
+    {
+      "type": "product_list",
+      "id": "productlist",
+      "label": "Product List"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+  ],
+
+  "presets": [
+    {
+      "name": "Product Section"
+    }
+  ]
+}
+{% endschema %}

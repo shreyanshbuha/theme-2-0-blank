@@ -1,0 +1,287 @@
+[
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon Image"
+      }
+    ]
+  },
+  {
+    "name": "Fonts",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "heading_font",
+        "label": "Heading Font",
+        "default": "sans-serif"
+      }
+    ]
+  },
+  {
+    "name": "Cart Drawer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Cart Discount Offer 1 Note"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "add_discount_note",
+        "label": "Add discount note",
+        "info": "The [X] is show the remain quantity"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "discount_success_note",
+        "label": "Discount success note"
+      },
+      {
+        "type": "text",
+        "id": "discount_offer_product_count",
+        "label": "Discount offer product count"
+      },
+      {
+        "type": "text",
+        "id": "add_offer_badge",
+        "label": "Add offer badge"
+      },
+      {
+        "type": "header",
+        "content": "Cart Discount Offer 2 Note"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "add_discount_note_1",
+        "label": "Add discount note",
+        "info": "The [X] is show the remain quantity"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "discount_success_note_1",
+        "label": "Discount success note"
+      },
+      {
+        "type": "text",
+        "id": "discount_offer_product_count_1",
+        "label": "Discount offer product count"
+      },
+      {
+        "type": "text",
+        "id": "add_offer_badge_1",
+        "label": "Add offer badge"
+      }
+    ],
+  },
+  //  color_scheme start 
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color_scheme_group",
+        "id": "color_schemes",
+        "definition": [
+          {
+            "type": "color",
+            "id": "background",
+            "label": "Background",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color_background",
+            "id": "background_gradient",
+            "label": "Background gradient",
+            "info": "Background gradient replaces background where possible."
+          },
+          {
+            "type": "color",
+            "id": "text1",
+            "label": "Text",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "button",
+            "label": "Solid button background",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "button_label",
+            "label": "Solid button label",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button_label",
+            "label": "Outline button",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "shadow",
+            "label": "Shadow",
+            "default": "#121212"
+          }
+        ],
+        "role": {
+          "text": "text1",
+          "background": {
+            "solid": "background",
+            "gradient": "background_gradient"
+          },
+          "links": "secondary_button_label",
+          "icons": "text1",
+          "primary_button": "button",
+          "on_primary_button": "button_label",
+          "primary_button_border": "button",
+          "secondary_button": "background",
+          "on_secondary_button": "secondary_button_label",
+          "secondary_button_border": "secondary_button_label"
+        }
+      }
+    ]
+  },
+  //  color_scheme end 
+  {
+    "name": "Cart Timer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Cart Reserve Timer"
+      },
+      {
+        "type": "text",
+        "id": "cart_timer_title",
+        "label": "Cart Reserve Pre-Text"
+      },
+      {
+        "type": "number",
+        "id": "cart_reserved_minutes",
+        "label": "Cart Reserved Time Minutes",
+        // "default": 10
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "default": "scheme_1",
+        "label": "Color scheme"
+      }
+    ]
+  },
+  {
+    "name": "Compare Product",
+    "settings": [
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "URL"
+      }
+    ]
+  },
+  {
+    "name": "Shipping",
+    "settings": [
+      {
+        "type": "product",
+        "id": "shippingprotection",
+        "label": "Shipping Protection Product"
+      }
+    ]
+  },
+  {
+    "name": "Gift Bundel Product",
+    "settings": [
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+      },
+    ]
+  },
+  {
+    "name": "Free Product",
+    "settings": [
+      {
+        "type": "product",
+        "id": "selectfreeproduct",
+        "label": "Select Free Product"
+      },
+      {
+        "type": "product",
+        "id": "select_free_extra_child_product",
+        "label": "Select Free Extra Child Product"
+      },
+      {
+        "type": "checkbox",
+        "id": "freeshipping",
+        "label": "Free Shipping"
+      },
+      {
+        "type": "checkbox",
+        "id": "freeproduct",
+        "label": "Free Product"
+      },
+      {
+        "type": "number",
+        "id": "freeshippingamount",
+        "label": "Free Shipping Amount",
+      },
+      {
+        "type": "number",
+        "id": "freeproductamount",
+        "label": "Free Product Ammount",
+      },
+      {
+        "type": "number",
+        "id": "free_extra_child_product_amount",
+        "label": "Free Extra Child Product Ammount",
+      },
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Share on Social Media"
+      },
+      {
+        "type": "url",
+        "id": "facebook-url",
+        "label": "Facebook",
+        "info": "https:\/\/facebook.com\/shopify"
+      },
+      {
+        "type": "url",
+        "id": "instagram-url",
+        "label": "Instagram",
+        "info": "https:\/\/instagram.com\/shopify"
+      },
+      {
+        "type": "url",
+        "id": "youtube-url",
+        "label": "YouTube",
+        "info": "https:\/\/www.youtube.com\/shopify"
+      },
+      {
+        "type": "url",
+        "id": "tiktok-url",
+        "label": "Tiktok"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter",
+        "info": "https:\/\/twitter.com\/shopify"
+      }
+    ]
+  }
+]

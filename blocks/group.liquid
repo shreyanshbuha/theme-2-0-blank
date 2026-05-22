@@ -1,0 +1,37 @@
+{% if block.settings.text != blank %}
+<div class="group-data">
+  <div style="color:red; margin: 0 10px; padding: 10px 15px;
+    background-color: darkgray;
+    display: inline-block;
+    box-shadow: 3px 2px 3px; ">{{ block.settings.text }}</div>
+  <div>
+    {% content_for 'blocks' %}
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Group",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Group text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "@theme"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Group"
+    }
+  ]
+}
+{% endschema %}

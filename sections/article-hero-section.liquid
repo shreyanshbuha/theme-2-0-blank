@@ -1,0 +1,40 @@
+{% if article.image != blank %}
+  <section class="article-page-banner" data-section="banner artical">
+    <div
+      class="bg-banner desk-only"
+      style="background-image: url({{ article.image | image_url }})"
+    ></div>
+    {% if section.settings.buttonurl != blank or section.settings.text != blank %}
+      <div class="container">
+        <div class="text-center banner-btn">
+          {% if section.settings.text != blank %}
+            <a class="btn-primary" href="{{ section.settings.buttonurl }}">{{ section.settings.text }}</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Arical Hero Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "buttonurl",
+      "label": "Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Arical Hero Section"
+    }
+  ]
+}
+{% endschema %}

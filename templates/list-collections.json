@@ -1,0 +1,75 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_3Ttb9p": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "space-bag"
+          }
+        },
+        "collection_nL4qwW": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "hash-collection"
+          }
+        },
+        "collection_4HFQAE": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "infusticks"
+          }
+        },
+        "collection_kwBjFj": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "huiles-all-items"
+          }
+        },
+        "collection_JfknUz": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "fleurs-flakes"
+          }
+        },
+        "collection_KVHDFn": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "shop"
+          }
+        }
+      },
+      "block_order": [
+        "collection_3Ttb9p",
+        "collection_nL4qwW",
+        "collection_4HFQAE",
+        "collection_kwBjFj",
+        "collection_JfknUz",
+        "collection_KVHDFn"
+      ],
+      "settings": {
+        "heading": "Collection",
+        "range": 10
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

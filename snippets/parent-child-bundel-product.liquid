@@ -1,0 +1,81 @@
+{% if product.metafields.custom.multiple_product.value != blank %}
+  <h3 style="margin-top: 30px;">Parent Child Bundel Products</h3>
+  <div class="metafield_product meta-val" data-product-bundel-ids='[{% for p in product.metafields.custom.multiple_product.value %}{{ p.selected_or_first_available_variant.id }}{% unless forloop.last %},{% endunless %}{% endfor %}]' style="margin: 10px 0; display: flex;">
+    {% for this_product in product.metafields.custom.multiple_product.value %}
+      <div>
+        <a
+          href="{{ this_product.url }}"
+          class="fixed_metafield_product_id"
+          data-bundel-id="{{ this_product.selected_or_first_available_variant.id }}"
+          style="background-color:#e1e1e1; padding: 20px; margin:10px;"
+        >
+          <div>
+            <input
+              name="id[]"
+              type="checkbox"
+              value="{{ this_product.selected_or_first_available_variant.id }}"
+              class="metafield_product_id"
+              checked
+              style="display:none;"
+            >
+          </div>
+          {{ this_product.title }}
+          {{ this_product.featured_image | image_url: width: 100, height: 80 | image_tag }}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+{% comment %} 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const addBundleButton = document.querySelector('.add-to-cart-button');
+
+      addBundleButton.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        let mainVariantId = {{ product.selected_or_first_available_variant.id }};
+        let qty = parseInt(document.querySelector('input[name="quantity"]').value) || 1;
+
+         let uniqueId = Math.floor(Math.random() * 1000000000);
+    //       formData.append('properties[unique_identifier]', uniqueId);
+
+        let itemsToAdd = {
+          items: [
+            {
+              id: mainVariantId,
+              quantity: qty,
+              properties:{unique_identifier: uniqueId}
+            },
+          ]
+        };
+
+        {% for this_product in product.metafields.custom.multiple_product.value %}
+          console.log({{this_product.selected_or_first_available_variant.id  }},"1111111111")
+          itemsToAdd.items.push({
+            id: {{ this_product.selected_or_first_available_variant.id }},
+            parent_id: mainVariantId,
+            quantity: qty,
+            properties:{unique_identifier: uniqueId}
+          });
+        {% endfor %}
+
+        $.ajax({
+          url: "/cart/add.js",
+          type: "POST",
+          data: JSON.stringify({...itemsToAdd, sections: ['cart-drawer', 'main-cart']}),
+          dataType: "json",
+          contentType: "application/json",
+          success: function(response){
+            console.log("Added Successfully", response);
+            getCartData(response);
+          },
+          error: function(err){
+            console.error("Error Adding Bundle:", err);
+          }
+        });
+      });
+    });
+  </script> {% endcomment %}

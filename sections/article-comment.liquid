@@ -1,0 +1,113 @@
+{% if article.comments_enabled? %}
+  <div class="contact-container">
+    <h2>{{ 'comment.form.heading' | t }}</h2>
+    {% form 'new_comment', article %}
+      <div class="column one">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" name="comment[author]" placeholder=" Your name " required>
+        </div>
+        <div class="field Brief" style="margin-top:30px;">
+          <label>Comment</label>
+          <textarea placeholder="Enter Your Comment" name="comment[body]" rows="4"></textarea>
+        </div>
+      </div>
+      <div class="column two">
+        <div class="field">
+          <label>Email</label>
+          <input type="email" name="comment[email]" placeholder=" Your Email" required>
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          class="register"
+          name="submit"
+        >
+          <span class="svg-wrapper">
+            {{- 'comment.form.submit' | t -}}
+          </span>
+        </button>
+      </div>
+      {%- if form.errors -%}
+        <small class="newsletter-form__message form__message" id="ContactFooter-error">
+          <span class="svg-wrapper" style="display:flex; font-size:16px;">
+            <img
+              src="{{- 'not-yet.svg' | asset_url -}}"
+              width="15px"
+              height="15px"
+              style="margin: 3px 8px "
+            >
+            <div style="margin-top:4px;">
+              {{ form.errors.translated_fields.email | camelize }}
+              {{ form.errors.messages.email }}
+            </div>
+          </span>
+        </small>
+      {%- endif -%}
+      {%- if form.posted_successfully? -%}
+        <h3
+          class="newsletter-form__message newsletter-form__message--success form__message"
+          id="ContactFooter-success"
+          tabindex="-1"
+          autofocus
+          style="font-size:16px;"
+        >
+          <span class="svg-wrapper" style="display:flex;">
+            <img
+              src="{{- 'check.svg' | asset_url -}}"
+              width="15px"
+              height="15px"
+              style="margin: 3px 8px "
+            >
+            {{- 'comment.form.responce' | t }}
+          </span>
+        </h3>
+      {%- endif -%}
+    {% endform %}
+
+    <div style="margin: 30px 0;">
+      {% if article.comments_count > 0 %}
+        <h3>
+          {{- 'comment.form.comments' | t: count: article.comments_count }}
+        </h3>
+      {% endif %}
+      {% if article.comments.size > 0 %}
+        {% paginate article.comments by section.settings.range %}
+          {% for comment in article.comments %}
+            <div class="comment">
+              {{ comment.content }}
+              <div>
+                <span class="circle-divider">{{ comment.author }} </span>
+                <span>{{ comment.created_at | date: '%b %d %Y' }}</span>
+              </div>
+            </div>
+          {% endfor %}
+          <div>{% render 'pagination', paginate: paginate %}</div>
+        {% endpaginate %}
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Comment Section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "range",
+      "label": "Show Comments",
+      "min": 1,
+      "max": 100,
+      "default": 5
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comment Section"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,362 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_section_w4DKW4": {
+      "type": "hero-section",
+      "blocks": {
+        "text_hTKJpi": {
+          "type": "text",
+          "settings": {
+            "text": "NOUVEL ARRIVAGE",
+            "description": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.</p>",
+            "btntext": "DÉCOUVRIR",
+            "btnurl": "shopify://collections/shop"
+          }
+        },
+        "image_Fg9npg": {
+          "type": "Image",
+          "settings": {
+            "heroimage": "shopify://shop_images/cover.png"
+          }
+        }
+      },
+      "block_order": [
+        "text_hTKJpi",
+        "image_Fg9npg"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4"
+      }
+    },
+    "image_gallery_JdGCtP": {
+      "type": "image-gallery",
+      "disabled": true,
+      "name": "Gallery Section",
+      "settings": {
+        "heading": "History. Dedication. Family. Quality."
+      }
+    },
+    "butlerwood_family_e8YX9f": {
+      "type": "butlerwood-family",
+      "disabled": true,
+      "name": "Butlerwood Family",
+      "settings": {
+        "image": "shopify://shop_images/c04fc21f71bfd4b2c8fc953dfc6a0dee37d67758.png",
+        "preheading": "GET 30% OFF PALLET SHIPPING",
+        "heading": "Join the Butlerwood Family.",
+        "description": "By purchasing cooking wood from Butlerwood, a restaurant not only ensures high-quality, sustainably sourced wood that enhances the flavor of their dishes, but also joins the Butlerwood family—becoming part of a network that values premium products, reliable service, and a commitment to supporting local communities.",
+        "buttontext": "SHOP NOW",
+        "url": "shopify://collections"
+      }
+    },
+    "marqee_VVKtLJ": {
+      "type": "marqee",
+      "blocks": {
+        "marqee_Ufy9Tw": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "PRODUIT NATUREL SANS TABAC NI ADDIFITS"
+          }
+        },
+        "marqee_PEiNCe": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "SANS PESTICIDES NI FONGICIDES CHIMIQUES"
+          }
+        },
+        "marqee_ff6xcx": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "CULTIVÉ PAR NOS SOINS"
+          }
+        },
+        "marqee_Lp7ajW": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "FLEURS 100% ORGANIQUES"
+          }
+        },
+        "marqee_pwRY3f": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "RÉCOLTÉ À LA MAIN"
+          }
+        },
+        "marqee_arfBDB": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "RÉCOLTÉ À LA MAIN"
+          }
+        },
+        "marqee_bbyLNk": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "EMBALLAGE DE QUALITÉ"
+          }
+        }
+      },
+      "block_order": [
+        "marqee_Ufy9Tw",
+        "marqee_PEiNCe",
+        "marqee_ff6xcx",
+        "marqee_Lp7ajW",
+        "marqee_pwRY3f",
+        "marqee_arfBDB",
+        "marqee_bbyLNk"
+      ],
+      "settings": {}
+    },
+    "premium_swiss_cannabis_6cy9kB": {
+      "type": "PREMIUM-SWISS-CANNABIS",
+      "blocks": {
+        "image_6QUaRg": {
+          "type": "Image",
+          "settings": {
+            "image": "shopify://shop_images/trust-pilot.png"
+          }
+        },
+        "image_NCgJNG": {
+          "type": "Image",
+          "settings": {
+            "image": "shopify://shop_images/stars.svg"
+          }
+        },
+        "contentbox_YL9UUN": {
+          "type": "contentbox",
+          "settings": {
+            "imagebox": "shopify://shop_images/swiss-made.png",
+            "title": "SWISS MADE"
+          }
+        },
+        "contentbox_kbKR8z": {
+          "type": "contentbox",
+          "settings": {
+            "imagebox": "shopify://shop_images/hand-check.png",
+            "title": "HAND CHECKED"
+          }
+        },
+        "contentbox_R7DfF9": {
+          "type": "contentbox",
+          "settings": {
+            "imagebox": "shopify://shop_images/optimal-quality.png",
+            "title": "OPTIMAL QUALITY"
+          }
+        }
+      },
+      "block_order": [
+        "image_6QUaRg",
+        "image_NCgJNG",
+        "contentbox_YL9UUN",
+        "contentbox_kbKR8z",
+        "contentbox_R7DfF9"
+      ],
+      "settings": {
+        "heading": "PREMIUM SWISS CANNABIS",
+        "discription": "<p>IVORY est une marque suisse spécialisée dans la production et la distribution de produits à base de CBD Premium. Nos gammes de produits sont composés de fleurs de cannabis, cultivées et conditionnées de manières optimales. Nous vous garantissons un produit naturel sans tabac ni additifs.<br/></p>",
+        "dekstopbackimg": "shopify://shop_images/swiss-canabis-dc_3f60ff3d-5bb9-48f3-b561-0aaa323be8b3.jpg",
+        "mobilebackimg": "shopify://shop_images/swiss-canabis-mb.jpg"
+      }
+    },
+    "product_AgfTyC": {
+      "type": "product",
+      "settings": {
+        "productheading": "NOS MEILLEURES VENTES",
+        "btntext": "VOIR TOUS LES PRODUITS",
+        "btnurl": "shopify://collections/shop",
+        "productlist": [],
+        "collection": "shop"
+      }
+    },
+    "17622466018b070dc7": {
+      "type": "apps",
+      "blocks": {
+        "klaviyo_reviews_all_reviews_pQLtEU": {
+          "type": "shopify://apps/klaviyo-reviews/blocks/all-reviews/db20e365-d984-4ac4-9655-e1588d951ca9",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "klaviyo_reviews_all_reviews_pQLtEU"
+      ],
+      "settings": {}
+    },
+    "service_A9XkqM": {
+      "type": "service",
+      "blocks": {
+        "content_box_cNCkTG": {
+          "type": "content_box",
+          "settings": {
+            "serviceimg": "shopify://shop_images/ic1.png",
+            "servicetitle": "SWISS MADE",
+            "serviceDescription": "<p>Toutes nos Fleurs de CBD sont certifiées 100 % Suisse et produites avec passion dans nos plantations situées sur la Riviera vaudoise.</p>"
+          }
+        },
+        "content_box_WTEKih": {
+          "type": "content_box",
+          "settings": {
+            "serviceimg": "shopify://shop_images/ic2.png",
+            "servicetitle": "HAND CHECKED",
+            "serviceDescription": "<p>Nos Fleurs sont manucurées à la main afin de les traiter dans le respect et s’assurer de vous offrir la meilleure qualité.</p>"
+          }
+        },
+        "content_box_raTc6L": {
+          "type": "content_box",
+          "settings": {
+            "serviceimg": "shopify://shop_images/ic3.png",
+            "servicetitle": "OPTIMAL QUALITY",
+            "serviceDescription": "<p>Pionnière de l’industrie, notre société soeur Phytocann se charge de la production de toutes nos fleurs de CBD présentes sur ce site.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "content_box_cNCkTG",
+        "content_box_WTEKih",
+        "content_box_raTc6L"
+      ],
+      "settings": {}
+    },
+    "review_xmPxcP": {
+      "type": "review",
+      "blocks": {
+        "review_box_qM4Wda": {
+          "type": "review_box",
+          "settings": {
+            "reviewername": "JÉROME L.",
+            "reviewimg": "shopify://shop_images/staar.png",
+            "reviewerDescription": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore <br/><br/></p>"
+          }
+        },
+        "review_box_QWRbnn": {
+          "type": "review_box",
+          "settings": {
+            "reviewername": "MORGANE E.",
+            "reviewimg": "shopify://shop_images/staar.png",
+            "reviewerDescription": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore <br/><br/></p>"
+          }
+        },
+        "review_box_H8YygN": {
+          "type": "review_box",
+          "settings": {
+            "reviewername": "SYLVAIN M.",
+            "reviewimg": "shopify://shop_images/staar.png",
+            "reviewerDescription": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore <br/><br/></p>"
+          }
+        },
+        "review_box_hk6gBW": {
+          "type": "review_box",
+          "settings": {
+            "reviewername": "GABRIEL P.",
+            "reviewimg": "shopify://shop_images/staar.png",
+            "reviewerDescription": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam<br/></p>"
+          }
+        },
+        "review_box_9pH7JF": {
+          "type": "review_box",
+          "settings": {
+            "reviewername": "JÉROME L.",
+            "reviewimg": "shopify://shop_images/staar.png",
+            "reviewerDescription": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore <br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "review_box_qM4Wda",
+        "review_box_QWRbnn",
+        "review_box_H8YygN",
+        "review_box_hk6gBW",
+        "review_box_9pH7JF"
+      ],
+      "name": "Review Section",
+      "settings": {
+        "reviewheading": "VOS AVIS NOUS SONT PRÉCIEUX"
+      }
+    },
+    "featured_collection_Az6BiN": {
+      "type": "featured-collection",
+      "blocks": {
+        "tab_a9fDG7": {
+          "type": "tab",
+          "settings": {
+            "collection": "shop"
+          }
+        },
+        "tab_Qgzy36": {
+          "type": "tab",
+          "settings": {
+            "collection": "infusticks"
+          }
+        },
+        "tab_dpjt4m": {
+          "type": "tab",
+          "settings": {
+            "collection": "huiles-all-items"
+          }
+        },
+        "tab_drYRDp": {
+          "type": "tab",
+          "settings": {
+            "collection": "space-bag"
+          }
+        },
+        "tab_9Wicxy": {
+          "type": "tab",
+          "settings": {
+            "collection": "fleurs-flakes"
+          }
+        },
+        "tab_qEYKP3": {
+          "type": "tab",
+          "settings": {
+            "collection": "hash-collection"
+          }
+        }
+      },
+      "block_order": [
+        "tab_a9fDG7",
+        "tab_Qgzy36",
+        "tab_dpjt4m",
+        "tab_drYRDp",
+        "tab_9Wicxy",
+        "tab_qEYKP3"
+      ],
+      "name": "Categories Section",
+      "settings": {
+        "categoryheading": "NOS CATÉGORIES",
+        "btntext": "VOIR TOUS LES PRODUITS",
+        "btnurl": "shopify://collections/all"
+      }
+    },
+    "story_nt6Xza": {
+      "type": "story",
+      "settings": {
+        "storyheading": "A STORY OF PASSION",
+        "description": "<p>Pionniers de l’Industrie du CBD européen et convaincu de son impact sur l’avenir, nous avons fondé le groupe IVORY en 2017. Passionnés par le cannabis légal, notre souhait est de faire avancer cette industrie en investissant dans la recherche et le développement des produits à base de CBD.</p>",
+        "dekstopbackimg": "shopify://shop_images/story-pass.png",
+        "mobilebackimg": "shopify://shop_images/story-pass-mobile.png",
+        "btntext": "EN SAVOIR PLUS",
+        "btnurl": "shopify://collections/shop"
+      }
+    }
+  },
+  "order": [
+    "hero_section_w4DKW4",
+    "image_gallery_JdGCtP",
+    "butlerwood_family_e8YX9f",
+    "marqee_VVKtLJ",
+    "premium_swiss_cannabis_6cy9kB",
+    "product_AgfTyC",
+    "17622466018b070dc7",
+    "service_A9XkqM",
+    "review_xmPxcP",
+    "featured_collection_Az6BiN",
+    "story_nt6Xza"
+  ]
+}

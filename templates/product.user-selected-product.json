@@ -1,0 +1,75 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "user_selected_product_Ngd8NF": {
+      "type": "user-selected-product",
+      "blocks": {
+        "title_mhRBww": {
+          "type": "title",
+          "settings": {}
+        },
+        "price_qpWFiE": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_WKGfaB": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "quantity_selector_jktdDH": {
+          "type": "Quantity_selector",
+          "settings": {}
+        },
+        "buy_button_faAck7": {
+          "type": "Buy_Button",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title_mhRBww",
+        "price_qpWFiE",
+        "variant_picker_WKGfaB",
+        "quantity_selector_jktdDH",
+        "buy_button_faAck7"
+      ],
+      "name": "User Selected Product",
+      "settings": {
+        "product_list": [
+          "2nd-bundel-product",
+          "black-hoddie",
+          "blue-hoddie",
+          "bundel-main-product",
+          "cap",
+          "fixed-bundel",
+          "fleurs-flakes",
+          "pants",
+          "goggle",
+          "huiles",
+          "infusticks"
+        ],
+        "zoomlayout": "hover",
+        "product_media": "slider"
+      }
+    },
+    "recommendation_product_67NpCH": {
+      "type": "recommendation-product",
+      "name": "Recommendations Product",
+      "settings": {
+        "heading": "You may also like",
+        "limit": 10
+      }
+    }
+  },
+  "order": [
+    "user_selected_product_Ngd8NF",
+    "recommendation_product_67NpCH"
+  ]
+}

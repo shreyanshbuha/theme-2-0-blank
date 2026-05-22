@@ -1,0 +1,103 @@
+{% capture searcherror %}
+  {% if predictive_search.resources.queries.size == 0
+      and predictive_search.resources.pages.size == 0
+      and predictive_search.resources.collections.size == 0
+      and predictive_search.resources.articles.size == 0
+      and predictive_search.resources.products.size == 0
+    %}
+      <p style="background-color:red;">No result found</p>
+    {% endif %}
+{% endcapture %}
+{% if predictive_search.performed %}
+  <div id="shopify-section-predictive-search" class="shopify-section" bis_skin_checked="1">
+    {%- if predictive_search.resources.products.size > 0 -%}
+      <div class="predictive-search-section">
+        <h4>{{ 'cart.label.product' | t }}</h4>
+        <ul>
+          {%- for product in predictive_search.resources.products -%}
+            <li>
+              <a href="{{ product.url }}">
+                {%- if product.featured_image != blank -%}
+                  <img src="{{ product.featured_image | image_url }}" width="50" height="50">
+                {%- endif -%}
+                <span>{{ product.title }}</span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+    {%- if predictive_search.resources.articles.size > 0 -%}
+      <div class="predictive-search-section">
+        <h4>{{ 'layout.article.heading' | t }}</h4>
+        <ul>
+          {%- for article in predictive_search.resources.articles -%}
+            <li>
+              <a href="{{ article.url }}">
+                {%- if article.image != blank -%}
+                  <img src="{{ article.image | image_url }}" width="70" height="50">
+                {%- endif -%}
+                <span>{{ article.title }}</span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+    {%- if predictive_search.resources.collections.size > 0 -%}
+      <div class="predictive-search-section">
+        <h4>{{ 'products.collection' | t }}</h4>
+        <ul>
+          {%- for collection in predictive_search.resources.collections -%}
+            <li>
+              <a href="{{ collection.url }}">
+                {%- if collection.featured_image != blank -%}
+                  <img src="{{ collection.featured_image | image_url }}" width="70" height="50">
+                {%- endif -%}
+                <span>{{ collection.title }}</span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+    {%- if predictive_search.resources.pages.size > 0 -%}
+      <div class="predictive-search-section">
+        <h4>{{ 'products.page' | t }}</h4>
+        <ul>
+          {%- for page in predictive_search.resources.pages -%}
+            <li>
+              <a href="{{ page.url }}">
+                {%- if page.featured_image != blank -%}
+                  <img src="{{ page.featured_image | image_url }}" width="50" height="50">
+                {%- endif -%}
+                <span>{{ page.title }}</span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+    {%- if predictive_search.resources.queries.size > 0 -%}
+      <div class="predictive-search-section">
+        <h4>SUggestions</h4>
+        <ul>
+          {%- for query in predictive_search.resources.queries -%}
+            <li>
+              <a href="{{ query.url }}">
+                <span>{{ query.styled_text }}</span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+    {{ searcherror }}
+  </div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "predictive-search Section",
+  "settings": [],
+}
+{% endschema %}

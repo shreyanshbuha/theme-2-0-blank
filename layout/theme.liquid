@@ -1,0 +1,205 @@
+<!doctype html>
+<!--[if IE 9]> <html class="ie9 no-js" lang="{{ shop.locale }}"> <![endif]-->
+<!-- [if (gt IE 9)|!(IE)]><! -->
+<html class="no-js" lang="{{ shop.locale }}">
+  <!-- <![endif] -->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+    {% comment %} color_scheme start {% endcomment %}
+    {% style %}
+      {% for scheme in settings.color_schemes -%}
+          {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
+          {% if forloop.index == 1 -%}
+            :root,
+          {%- endif %}
+          .color-{{ scheme.id }} {
+            --color-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+          {% if scheme.settings.background_gradient != empty %}
+            --gradient-background: {{ scheme.settings.background_gradient }};
+          {% else %}
+            --gradient-background: {{ scheme.settings.background }};
+          {% endif %}
+
+          {% liquid
+            assign background_color = scheme.settings.background
+            assign background_color_brightness = background_color | color_brightness
+            if background_color_brightness <= 26
+              assign background_color_contrast = background_color | color_lighten: 50
+            elsif background_color_brightness <= 65
+              assign background_color_contrast = background_color | color_lighten: 5
+            else
+              assign background_color_contrast = background_color | color_darken: 25
+            endif
+          %}
+
+          --color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+          --color-background-contrast: {{ background_color_contrast.red }},{{ background_color_contrast.green }},{{ background_color_contrast.blue }};
+          --color-shadow: {{ scheme.settings.shadow.red }},{{ scheme.settings.shadow.green }},{{ scheme.settings.shadow.blue }};
+          --color-button: {{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }};
+          --color-button-text: {{ scheme.settings.button_label.red }},{{ scheme.settings.button_label.green }},{{ scheme.settings.button_label.blue }};
+          --color-secondary-button: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+          --color-secondary-button-text: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
+          --color-link: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
+          --color-badge-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+          --color-badge-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+          --color-badge-border: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+          --payment-terms-background-color: rgb({{ scheme.settings.background.rgb }});
+        }
+        {% endfor %}
+    {% endstyle %}
+    {% comment %} color_scheme end {% endcomment %}
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url }}">
+    {%- endif -%}
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {%- capture seo_title -%}
+  {%- if current_tags -%}
+  {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+  {%- endif -%}
+  {%- if current_page != 1 -%}
+  &ndash; {{ 'general.meta.page' | t: page: current_page }}
+  {%- endif -%}
+  {%- assign escaped_page_title = page_title | escape -%}
+  {%- unless escaped_page_title contains shop.name -%}
+  &ndash; {{ shop.name }}
+  {%- endunless -%}
+  {%- endcapture -%}
+    <title>{{ seo_title | strip }}</title>
+    {% comment %}
+      <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+          crossorigin="anonymous"
+        >
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+          crossorigin="anonymous"
+          defer
+        ></script>
+    {% endcomment %}
+
+    <script src="{{ 'vendor/qrcode.js' | shopify_asset_url }}" defer></script>
+
+    {% render 'social-meta-tags' %}
+
+    {{ 'style.css' | asset_url | stylesheet_tag }}
+    {% comment %} fancybox {% endcomment %}
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.css"
+    >
+
+    {% comment %} lightbox {% endcomment %}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/css/lightbox.css"
+      integrity="sha512-DKdRaC0QGJ/kjx0U0TtJNCamKnN4l+wsMdION3GG0WVK6hIoJ1UPHRHeXNiGsXdrmq19JJxgIubb/Z7Og2qJww=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    >
+
+    {% comment %} <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> {% endcomment %}
+    <script src="{{ 'jquery.min.js' | asset_url }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.5/js/lightbox.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.umd.js" defer></script>
+    <script src="{{ 'slick.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'custom.js' | asset_url }}" defer></script>
+    {% comment %} <script src="{{ 'demo.js' | asset_url }}" defer></script> {% endcomment %}
+
+    {% comment %} zoom on hover {% endcomment %}
+    {% if template contains 'product' %}
+      <script
+        type="text/javascript"
+        src="https://cdn.shopify.com/s/files/1/0758/7142/0636/files/lightzoom.js?v=1758609712"
+        defer
+      ></script>
+    {% endif %}
+
+    {% style %}
+      body {
+        font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
+      }
+      .slick-arrow{
+          background-image: url("{{ 'arrow-red-right.svg' | asset_url }}")
+      }
+    {% endstyle %}
+
+    {{ content_for_header }}
+  </head>
+
+  <body
+    class="template-{{ template | split: '.' | first }} body"
+    data-shipping-protection-id="{{ settings.shippingprotection.selected_or_first_available_variant.id }}"
+    {% if settings.freeshipping %}
+      data-free-product-price="{{ settings.freeproductamount }}"
+    {% endif %}
+    {% if settings.freeproduct %}
+      data-free-product="{{ settings.selectfreeproduct.selected_or_first_available_variant.id }}"
+    {% endif %}
+
+    data-free-extra-child-product-amount="{{ settings.free_extra_child_product_amount }}"
+    data-free-extra-child-product-id="{{ settings.select_free_extra_child_product.selected_or_first_available_variant.id }}"
+  >
+    <div id="preloader">
+      <div class="loader"></div>
+    </div>
+
+    <div id="QuickViewModal" class="quick-view-modal">
+      <div class="quick-view-content">
+        <button class="quick-view-close-button">&times;</button>
+        <div class="quick-view-product-details" style="display:flex;">
+          <div class="productImg"></div>
+          <div class="productDetails"></div>
+        </div>
+      </div>
+    </div>
+
+    {% sections 'header-group' %}
+    <div class="wrapper">
+      {% if template.name == 'product' %}
+        <div class="pdp-wrapper">
+      {% endif %}
+
+      {% if template.name == 'cart' %}
+        <div class=" container space">
+      {% endif %}
+
+      {{ content_for_layout }}
+
+      {% if template.name == 'cart' %}
+        </div>
+      {% endif %}
+
+      {% if template == 'product' %}
+        <div class="compare-btn">
+          <div
+            class="compare-product-count"
+            style="
+              width:20px;height:20px;background-color: red;
+              color: white; position: absolute; right: -7px;
+              top: -7px; border-radius: 10px;
+            "
+          ></div>
+          <a href="{{ settings.url }}">{{ settings.text }}</a>
+        </div>
+      {% endif %}
+
+      {% if template.name == 'product' %}
+        </div>
+      {% endif %}
+    </div>
+    {% sections 'footer-group' %}
+  </body>
+</html>

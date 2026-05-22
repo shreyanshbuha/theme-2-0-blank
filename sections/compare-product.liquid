@@ -1,0 +1,123 @@
+<div class="container">
+  <h2 class="compare-title">{{ 'pages.compare_product' | t }}</h2>
+  <div class="compare-data">
+    {% if product != blank %}
+      <div class="compare-col" style="margin: 0 5px;">
+        {% if product.selected_or_first_available_variant.featured_image != blank %}
+          {% assign image = product.selected_or_first_available_variant.featured_image %}
+        {% else %}
+          {% assign image = product.featured_image %}
+        {% endif %}
+        {% if image != blank %}
+          <div class="border-bottom" style="display: flex;">
+            <div class="compare-labels">
+              <div class="compare-row">Image</div>
+            </div>
+            <div class="compare-row-data image">
+              {{ image | image_url: width: 200, height: 200 | image_tag }}
+            </div>
+          </div>
+        {% endif %}
+        {% if product.selected_or_first_available_variant.title != blank %}
+          <div class="border-bottom" style="display: flex;">
+            <div class="compare-labels">
+              <div class="compare-row">Title</div>
+            </div>
+            <div class="compare-row-data title">{{ product.selected_or_first_available_variant.title }}</div>
+          </div>
+        {% endif %}
+
+        {% if product.description != blank %}
+          <div class="border-bottom" style="display: flex;">
+            <div class="compare-labels">
+              <div class="compare-row">Description</div>
+            </div>
+            <div class="compare-row-data description">
+              {{ product.description | strip_html | truncate: 150 }}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if product.selected_or_first_available_variant.price != blank %}
+          <div class="border-bottom" style="display: flex;">
+            <div class="compare-labels">
+              <div class="compare-row">Price</div>
+            </div>
+            <div class="compare-row-data price">{{ product.selected_or_first_available_variant.price | money }}</div>
+          </div>
+        {% endif %}
+
+        {% if product.tags != blank %}
+          <div class="border-bottom" style="display: flex;">
+            <div class="compare-labels">
+              <div class="compare-row">Tags</div>
+            </div>
+            <div class="compare-row-data tags">
+              {% for tag in product.tags %}
+                <span class="tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if product.handle != blank %}
+          <div class="border-bottom" style="display: flex;">
+            <div class="compare-labels">
+              <div class="compare-row">Action</div>
+            </div>
+            <div class="compare-row-data cart" style="display: flex; margin: 0 auto;">
+              <button class="remove-compare-product" data-product-id="{{ product.handle }}">Remove</button>
+              {% form 'product', product %}
+                {% assign preorder = false %}
+                {% assign selected_variant = product.selected_or_first_available_variant %}
+                {% if selected_variant.inventory_management and selected_variant.inventory_quantity <= 0 %}
+                  {% assign preorder = true %}
+                {% endif %}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+                <button
+                  type="submit"
+                  name="add"
+                  class="add-to-cart-button fly-btn {% if product.selected_or_first_available_variant.available %} cart-btn {% endif %}"
+                  {% unless product.selected_or_first_available_variant.available %}
+                    style="cursor:not-allowed;"
+                  {% endunless %}
+                >
+                  <span>
+                    {% if product.selected_or_first_available_variant.available %}
+                      {% if preorder == true %}
+                        {{- 'products.product.pre_sale' | t }}
+                      {% else %}
+                        {{- 'products.product.add_to_cart' | t }}
+                      {% endif %}
+                    {% elsif product.selected_or_first_available_variant.available == false %}
+                      {{ 'products.product.sold_out' | t }}
+                    {% endif %}
+                  </span>
+                </button>
+              {% endform %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  {% unless product.selected_or_first_available_variant != blank %}
+    <button id="clear-comparison" style="margin: 15px 0;">Clear All</button>
+  {% endunless %}
+
+  <div class="blankCompareData"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Compare Product",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Compare Product"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,124 @@
+<section class="container" data-section="search">
+  <form action="{{ routes.search_url }}" method="get">
+    <div
+      class="input-container space"
+      style="display: flex; justify-content: center; align-item:center; position: relative;"
+    >
+      {%- if search.terms -%}
+        <input type="hidden" name="q" value="{{ search.terms | escape }}">
+      {%- endif -%}
+      <div style="border: 1px solid black; display: flex;">
+        <input
+          type="search"
+          name="q"
+          class="search"
+          value="{{ search.terms | escape }}"
+          placeholder="Search entire website..."
+        >
+        <button style="background-color:white;">
+          <img src="{{ '99.png' |  asset_img_url }}" width="40px" height="40px">
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="search show-filter-data">
+    {% render 'filters', results: search , filter: section.settings.selcetdfilter %}
+      {% if search.performed %}
+        {% if search.results_count > 0 %}
+          <p>You searched for: {{ search.terms }}</p>
+
+          {% paginate search.results by section.settings.range %}
+            <div class="paginate-load infinite-scroll" style="margin:50px auto; display:flex; flex-wrap:wrap;">
+              {% for item in search.results %}
+                {% case item.object_type %}
+                  {% when 'product' %}
+                    {% render 'product-card', product: item %}
+                  {% when 'article' %}
+                    {% render 'article-card', article: item %}
+                  {% when 'page' %}
+                    <div style="background-color: #80808029; padding:30px; width:400px; height:376px; border-radius:25px;">
+                      <h2>
+                        <a href="{{ item.url }}">{{ item.title }}</a>
+                      </h2>
+                      {{ item.content | truncatewords: 50 }}
+                    </div>
+                {% endcase %}
+              {% endfor %}
+            </div>
+            <div style="text-align:center; margin:20px;">
+              {% if section.settings.paginate == 'loadmore' %}
+                {% if paginate.next %}
+                  <div class="load-more">
+                    <button class="load-more-btn" data-next-url="{{ paginate.next.url }}">Load More</button>
+                  </div>
+                {% endif %}
+              {% elsif section.settings.paginate == 'scroll' %}
+                {% if paginate.next %}
+                  <div id="pagination-next-url" data-next-url="{{ paginate.next.url }}"></div>
+                {% endif %}
+              {% else %}
+                {% render 'pagination', paginate: paginate %}
+              {% endif %}
+            </div>
+          {% endpaginate %}
+        {% else %}
+          <p>No products found for Your Search</p>
+        {% endif %}
+      {% else %}
+        <div style="text-align:center; margin:80px 0;">
+          <h3 style="margin:10px;">{{ 'products.product.not_found' | t }}</h3>
+        </div>
+      {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "main-search",
+  "settings": [
+    {
+      "type": "range",
+      "id": "range",
+      "label": "Show Search Value",
+      "min": 1,
+      "max": 100,
+      "default": 6
+    },
+    {
+      "type": "select",
+      "id": "paginate",
+      "label": "Pagination Type",
+      "options": [
+        {
+          "value": "pagination",
+          "label": "Pagination",
+        },
+        {
+          "value": "loadmore",
+          "label": "Load More",
+        },
+        {
+          "value": "scroll",
+          "label": "Scrolling",
+        },
+      ]
+    },
+    {
+      "type": "select",
+      "id": "selcetdfilter",
+      "label": "Select Filter",
+      "options": [
+        {
+          "label": "Store Front Filter",
+          "value": "stor_front_filter"
+        },
+        {
+          "label": "Tag Filters",
+          "value": "tag_filters"
+        },
+      ]
+    }
+  ]
+}
+{% endschema %}

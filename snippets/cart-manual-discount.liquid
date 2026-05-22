@@ -1,0 +1,51 @@
+{% liquid
+  assign discount_codes = cart.cart_level_discount_applications | where: 'type', 'discount_code' | map: 'title'
+  for item in cart.items
+    for allocation in item.line_level_discount_allocations
+      if allocation.discount_application.type == 'discount_code'
+        assign discount_codes = item.line_level_discount_allocations | slice: forloop.index0 | map: 'discount_application' | map: 'title' | concat: discount_codes
+      endif
+    endfor
+  endfor
+
+  assign discount_codes = discount_codes | uniq
+%}
+
+<div class="discount-form">
+  <input type="text" class="multiple-discount-codes" name="discount_code"  placeholder="Enter discount codes ">
+  <button class="apply-multiple-discounts btn-space">Apply Discounts</button>
+  <div class="discount-error-message" style="color: red; display: none;"></div>
+  <div class="discount-message" style="color:red;"></div>
+</div>
+
+
+<ul class="cart-discount__codes" style="display: flex;margin:10px 0 10px 10px; justify-content: center; ">
+  {% for discount_code in discount_codes %}
+    <li
+      class="cart-discount__pill flex"
+      data-discount-code="{{ discount_code }}"
+      style="
+        justify-content: end; border: 1px dashed gray;
+            padding: 8px 10px;
+            margin: 0 10px;
+        }
+      "
+    >
+      <p class="cart-discount__pill-code" data-disc-title="{{ discount_code }}">
+        {{ discount_code }}
+      </p>
+      <span
+        type="button"
+        class="cart-discount__pill-remove"
+        id="remove-discount-button"
+      >
+        <img
+          src="{{- 'not-yet.svg' | asset_url -}}"
+          width="13px"
+          height="13px"
+          style="margin: 5px 8px "
+        >
+      </span>
+    </li>
+  {% endfor %}
+</ul>

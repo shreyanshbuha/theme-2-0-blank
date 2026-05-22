@@ -1,0 +1,346 @@
+<div
+  class="cart-data section-render"
+  data-section="cart-detail"
+  style="text-align: center; margin-bottom:20px;"
+>
+  {% if cart != empty %}
+    {% render 'cart-reserved-timer' %}
+
+    <div class="flex" style="justify-content: space-between; align-items: center;">
+      <h2>{{ 'cart.general.title' | t }}</h2>
+      <a href="{{ routes.collections_url }}" style="text-decoration: underline;">
+        {{- 'cart.general.continue_shopping' | t -}}
+      </a>
+    </div>
+    <div class="flex" style="justify-content: space-between; align-items: center;">
+      <div>{{ 'cart.label.product' | t }}</div>
+      <div>{{ 'cart.label.quantity' | t }}</div>
+      <div>{{ 'cart.label.total' | t }}</div>
+    </div>
+    <hr>
+    {% form 'cart', cart, id: 'check-out' %}
+      {% if cart.items != blank %}
+        <div class="clear-data">
+          {% assign offer_1_item_count = 0 %}
+          {% assign offer_2_item_count = 0 %}
+          {% assign offer_1_prod_key = blank %}
+          {% assign offer_2_prod_key = blank %}
+
+          {% assign total_item_offer_1_count = settings.discount_offer_product_count | plus: 0 %}
+          {% assign total_item_offer_2_count = settings.discount_offer_product_count_1 | plus: 0 %}
+
+          {% for item in cart.items %}
+            {% assign custom_badges = item.product.metafields.custom.badge.value %}
+            {% if custom_badges contains settings.add_offer_badge %}
+              {% assign offer_1_item_count = offer_1_item_count | plus: item.quantity %}
+              {% if offer_1_prod_key == blank %}
+                {% assign offer_1_prod_key = item.key %}
+              {% endif %}
+            {% elsif custom_badges contains settings.add_offer_badge_1 %}
+              {% assign offer_2_item_count = offer_2_item_count | plus: item.quantity %}
+              {% if offer_2_prod_key == blank %}
+                {% assign offer_2_prod_key = item.key %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
+          {% for item in cart.items %}
+            {% if item.quantity != 0 %}
+              <div
+                class="flex w-6"
+                style="justify-content: space-between; align-items: center; margin: 40px 0; width:auto; {% if item.title == 'Shipping Protection' %} display: none; {% endif %}"
+              >
+                <div class="flex" style="text-align: start;">
+                  {% if item.image != blank %}
+                    <div style="margin-right: 20px;">
+                      {{ item.image | image_url: width: 100, height: 100 | image_tag }}
+                    </div>
+                  {% endif %}
+                  <div>
+                    {% if offer_1_prod_key == item.key %}
+                      <div class="discount-box">
+                        {% if offer_1_item_count >= total_item_offer_1_count %}
+                          {% if settings.discount_success_note != blank %}
+                            <span>{{ settings.discount_success_note }}</span>
+                          {% endif %}
+
+                        {% else %}
+                          {% assign remains_count = total_item_offer_1_count | minus: offer_1_item_count %}
+
+                          {% if settings.add_discount_note != blank %}
+                            <span>{{ settings.add_discount_note | replace: '[X]', remains_count }}</span>
+                          {% endif %}
+                        {% endif %}
+                      </div>
+                    {% endif %}
+
+                    {% if offer_2_prod_key == item.key %}
+                      <div class="discount-box">
+                        {% if offer_2_item_count >= total_item_offer_2_count %}
+                          {% if settings.discount_success_note_1 != blank %}
+                            <span>{{ settings.discount_success_note_1 }}</span>
+                          {% endif %}
+
+                        {% else %}
+                          {% assign remains_count = total_item_offer_2_count | minus: offer_2_item_count %}
+                          {% if settings.add_discount_note_1 != blank %}
+                            <span>{{ settings.add_discount_note_1 | replace: '[X]', remains_count }}</span>
+                          {% endif %}
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                    <h5>{{ item.title }}</h5>
+                    <h6>{{ item.product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</h6>
+                    {%- for option in item.options_with_values -%}
+                      <div class="product-option">
+                        <dt>{{ option.name }}:</dt>
+                        <dd>{{ option.value }}</dd>
+                      </div>
+                    {%- endfor -%}
+
+                    {% for property in item.properties %}
+                      {% if property.first == 'Upload File' %}
+                        <a href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
+                      {% endif %}
+                    {% endfor %}
+
+                    {% comment %}
+                      <div class="cart-item" data-line-item-key="{{ item.key }}">
+                        {% if item.variant.selling_plan_allocations.size > 1 %}
+                          <select
+                            class="subscription-selector"
+                            data-line-item-key="{{ item.key }}"
+                            data-quantity="{{ item.quantity }}"
+                            name="selling_plan"
+                            style="padding:10px; border-radius: 10px;"
+                          >
+                            {% for allocation in item.variant.selling_plan_allocations %}
+                              <option
+                                value="{{ allocation.selling_plan.id }}"
+                                {% if item.selling_plan_allocation.selling_plan.id == allocation.selling_plan.id %}
+                                  selected
+                                {% endif %}
+                              >
+                                {{ allocation.selling_plan.name }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                        {% endif %}
+                      </div>
+                    {% endcomment %}
+
+                    {% comment %} <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p> {% endcomment %}
+                  </div>
+                </div>
+
+                <div
+                  class="quantity-wrapper quick-cart-item"
+                  data-line-key="{{ item.key }}"
+                  {% if settings.selectfreeproduct.selected_or_first_available_variant.id == item.id %}
+                    style="display:none;"
+                  {% endif %}
+                >
+                  {% assign unique_id = item.properties.unique_identifier %}
+                  <input type="hidden" name="id" value="{{ item.variant.id }}">
+                  <button type="button" name="minus" class="qty-down btn-space">-</button>
+                  <input
+                    type="number"
+                    class="quantity-input btn-input"
+                    value="{{ item.quantity }}"
+                    min="1"
+                    name="updates[]"
+                    data-line-item-property="{{ unique_id }}"
+                    data-loop="{{ forloop.index }}"
+                    data-product-title="{{ item.product.title }}"
+                    data-parent-key="{{ item.parent_relationship.parent.key }}"
+                  >
+                  <button class="qty-up btn-space" type="button" name="plus">+</button>
+                  <a
+                    class="remove_item"
+                    data-line="{{ item.key }}"
+                    data-line-item-property="{{ unique_id }}"
+                    data-product-title="{{ item.product.title }}"
+                    data-parent-key="{{ item.parent_relationship.parent.key }}"
+                  >
+                    {% render 'icons', icon: 'dust-img' %}
+                  </a>
+                </div>
+
+                {% unless settings.selectfreeproduct.selected_or_first_available_variant.id == item.id %}
+                  <div class="justify-end">
+                    <div id="price">{{ item.final_line_price | money }}</div>
+                  </div>
+                {% else %}
+                  <div>
+                    <div class="price">
+                      {{ settings.selectfreeproduct.price | minus: settings.selectfreeproduct.price | money }}
+                    </div>
+                  </div>
+                {% endunless %}
+              </div>
+            {% endif %}
+          {% endfor %}
+
+          <div style="display:flex; justify-content: space-between;">
+            <div>
+              {% assign free_shipping_threshold = settings.freeshippingamount | times: 100 %}
+              {% assign free_product_threshold = settings.freeproductamount | times: 100 %}
+              {% assign free_extra_gift_ammount = settings.free_extra_child_product_amount | times: 100 %}
+
+              {% assign cart_total = cart.total_price %}
+              {% assign amount_to_go = free_shipping_threshold | minus: cart_total %}
+
+              {% assign progress_percentage = cart_total | times: 100 | divided_by: free_product_threshold %}
+
+              {% if progress_percentage > 100 %}
+                {% assign progress_percentage = 100 %}
+              {% endif %}
+
+              {% assign shipping_position = free_shipping_threshold | times: 100 | divided_by: free_product_threshold %}
+              {% if shipping_position > 100 %}
+                {% assign shipping_position = 100 %}
+              {% endif %}
+
+              {% assign extra_gift_position = free_extra_gift_ammount
+                | times: 100
+                | divided_by: free_product_threshold
+              %}
+              {% if extra_gift_position > 100 %}
+                {% assign extra_gift_position = 100 %}
+              {% endif %}
+
+              <div class="free-shipping-bar">
+                <div class="progress-wrapper">
+                  <div class="progress-bar-container">
+                    <div
+                      class="progress-bar-fill"
+                      style="width: {{ progress_percentage }}%;"
+                    ></div>
+                  </div>
+
+                  <img
+                    src="{{ 'free-shipping.png' | asset_url }}"
+                    class="progress-icon shipping-icon"
+                    style="left: {{ shipping_position }}%;"
+                    width=""
+                    height=""
+                  >
+                  <img
+                    src="{{ 'Gift-Final.png' | asset_url }}"
+                    class="progress-icon gift-icon"
+                    style="left:{{ extra_gift_position }}%;"
+                    width=""
+                    height=""
+                  >
+                  <img
+                    src="{{ 'Gift-Final.png' | asset_url }}"
+                    class="progress-icon gift-icon"
+                    style="left: 100%;"
+                    width=""
+                    height=""
+                  >
+                </div>
+                <div class="progress-bar-messages">
+                  <p>
+                    {% if amount_to_go > 0 %}
+                      You are {{ amount_to_go | money }} away from free shipping!
+                    {% else %}
+                      Congratulations! You qualify for free shipping!
+                    {% endif %}
+                  </p>
+
+                  {% if cart_total >= free_extra_gift_ammount %}
+                    <p>You've got free Extra Product!</p>
+                  {% else %}
+                    <p>
+                      You're only {{ free_extra_gift_ammount | minus: cart_total | money }} away from free Extra
+                      Product.
+                    </p>
+                  {% endif %}
+
+                  {% if cart_total >= free_product_threshold %}
+                    <p>You've got free Product!</p>
+                  {% elsif cart_total < free_product_threshold %}
+                    <p>You're only {{ free_product_threshold | minus: cart_total | money }} away from free Product.</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div
+                class="clear-cart btn-space"
+                data-clear-cart="{{ routes.cart_clear_url }}"
+                style="text-align:end; background-color: red; color: white; border-radius: 20px; font-weight: 400; cursor: pointer;"
+              >
+                Clear Cart
+              </div>
+            </div>
+          </div>
+
+          <div class="show-error"></div>
+        </div>
+
+        <div
+          class="cart-footer flex justify-end "
+          data-section="cart-footer"
+        >
+          <div class="text-right discount">
+            {% render 'cart-manual-discount' %}
+
+            {% if cart.total_price != blank %}
+              {% if settings.freeproduct %}
+                {% comment %} <div class="price" style="margin: 6px 0;">Discount:- {{ cart.total_discount | money }}</div> {% endcomment %}
+              {% endif %}
+              <div class="flex justify-end">
+                <h5 style="margin-right:20px;" class="Estimated_total">{{ 'sections.cart.estimated_total' | t -}}</h5>
+                <span>
+                  {{- cart.original_total_price | minus: cart.total_discount | money_with_currency -}}
+                </span>
+              </div>
+            {% endif %}
+            <div style="padding:10px 0;">{{ 'cart.general.taxes_and_shipping_at_checkout' | t }}</div>
+            <div>
+              <button type="submit" name="checkout" form="check-out">{{ 'cart.general.checkout' | t }}</button>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endform %}
+  {% else %}
+    <div class="cart-data-remove">
+      <div style="text-align:center; padding: 167px;">
+        <h3 style="padding-bottom: 20px;">{{ 'cart.general.empty' | t }}</h3>
+        <button>
+          <a href="{{ routes.collections_url }}">{{ 'cart.general.continue_shopping' | t }}</a>
+        </button>
+        <div style="padding-top:30px;">
+          <h4>{{ 'cart.login.title' | t }}</h4>
+          <u
+            ><a href="{{ routes.account_login_url }}" style="text-decoration: underline;">
+              {{- 'customer.login.title' | t -}}
+            </a></u
+          >
+          {{ 'cart.login.paragraph_html' | t }}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Main Cart",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main Cart"
+    }
+  ]
+}
+{% endschema %}
+dec - 0
+jan- 2
+1
+1.5
+3.5

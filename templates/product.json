@@ -1,0 +1,661 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "product_hero_section_tU9Kit": {
+      "type": "product-hero-section",
+      "blocks": {
+        "cart_8t4p6k": {
+          "type": "Cart",
+          "settings": {
+            "cartlogo": "shopify://shop_images/cart-logo4.svg",
+            "cartheading": "LIVRAISON OFFERTE"
+          }
+        },
+        "cart_63iJ6R": {
+          "type": "Cart",
+          "settings": {
+            "cartlogo": "shopify://shop_images/cart-logo1.svg",
+            "cartheading": "LIVRÉ EN 72H"
+          }
+        },
+        "cart_4GrWLd": {
+          "type": "Cart",
+          "settings": {
+            "cartlogo": "shopify://shop_images/cart-logo2.svg",
+            "cartheading": "PAIEMENT SÉCURISÉ"
+          }
+        },
+        "cart_zR739T": {
+          "type": "Cart",
+          "settings": {
+            "cartlogo": "shopify://shop_images/cart-logo3.svg",
+            "cartheading": "CULTIVÉ EN SUISSEINFUSTICKS"
+          }
+        }
+      },
+      "block_order": [
+        "cart_8t4p6k",
+        "cart_63iJ6R",
+        "cart_4GrWLd",
+        "cart_zR739T"
+      ],
+      "disabled": true,
+      "name": "Product-Hero-Section",
+      "settings": {}
+    },
+    "shop_marquee_qMNczG": {
+      "type": "shop-marquee",
+      "blocks": {
+        "marqee_HKnNDf": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "SANS PESTICIDES NI FONGICIDES CHIMIQUES"
+          }
+        },
+        "marqee_YwFCnP": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "FLEURS 100% ORGANIQUES"
+          }
+        },
+        "marqee_AiVBAn": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "CULTIVÉ PAR NOS SOINS"
+          }
+        },
+        "marqee_WtJkQq": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "RÉCOLTÉ À LA MAIN"
+          }
+        },
+        "marqee_XN8Xjd": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "EMBALLAGE DE QUALITÉ"
+          }
+        },
+        "marqee_HaBFGR": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "PRODUIT NATUREL SANS TABAC NI ADDIFITS"
+          }
+        }
+      },
+      "block_order": [
+        "marqee_HKnNDf",
+        "marqee_YwFCnP",
+        "marqee_AiVBAn",
+        "marqee_WtJkQq",
+        "marqee_XN8Xjd",
+        "marqee_HaBFGR"
+      ],
+      "disabled": true,
+      "name": "Shop Marqee Section",
+      "settings": {}
+    },
+    "pdp_details_rJQyFy": {
+      "type": "pdp-details",
+      "blocks": {
+        "pdp_details_Dr3XeW": {
+          "type": "pdp_details",
+          "settings": {
+            "imgpicker": "shopify://shop_images/pluss.svg",
+            "heading": "SWISS MADE",
+            "richtext": "<p>Toutes nos Fleurs de CBD sont certifiées 100 % Suisse et produites avec passion dans nos plantations situées sur la Riviera vaudoise.</p>"
+          }
+        },
+        "pdp_details_i37aD6": {
+          "type": "pdp_details",
+          "settings": {
+            "imgpicker": "shopify://shop_images/10.svg",
+            "heading": "HAND CHECKED",
+            "richtext": "<p>Nos Fleurs sont manucurées à la main afin de les traiter dans le respect et s’assurer de vous offrir la meilleure qualité.</p>"
+          }
+        },
+        "pdp_details_CyhmGQ": {
+          "type": "pdp_details",
+          "settings": {
+            "imgpicker": "shopify://shop_images/9.svg",
+            "heading": "OPTIMAL QUALITY",
+            "richtext": "<p>Pionnière de l’industrie, notre société soeur Phytocann se charge de la production de toutes nos fleurs de CBD présentes sur ce site.</p>"
+          }
+        },
+        "pdp_details_aFUH8h": {
+          "type": "pdp_details",
+          "settings": {
+            "imgpicker": "shopify://shop_images/8.svg",
+            "heading": "NO PESTICIDES",
+            "richtext": "<p>Nos plants de cannabis grandissent dans des serres type Green-house afin de garantir un suivi exceptionnel et de les faire grandir dans un environnement optimal.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "pdp_details_Dr3XeW",
+        "pdp_details_i37aD6",
+        "pdp_details_CyhmGQ",
+        "pdp_details_aFUH8h"
+      ],
+      "disabled": true,
+      "name": "Product Details",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title_jFRFHy": {
+          "type": "title",
+          "settings": {}
+        },
+        "price_jEGtWb": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_bq4Ldz": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "bundel_products_UDy6Bj": {
+          "type": "bundel_products",
+          "settings": {}
+        },
+        "parent_child_bundelpro_VRWcmt": {
+          "type": "parent-child-bundelpro",
+          "settings": {}
+        },
+        "static_bundel_products_D76BHH": {
+          "type": "static_bundel_products",
+          "settings": {}
+        },
+        "compare_product_rbgGyn": {
+          "type": "compare_product",
+          "settings": {}
+        },
+        "giftcard_form_dKcTkz": {
+          "type": "giftcard_form",
+          "settings": {}
+        },
+        "quantity_selector_HnUQWy": {
+          "type": "Quantity_selector",
+          "settings": {}
+        },
+        "subscription_LhaNjT": {
+          "type": "subscription",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_button_bUa76V": {
+          "type": "Buy_Button",
+          "settings": {}
+        },
+        "swish_formerly_wishlist_king_wishlist_button_block_rm9GfB": {
+          "type": "shopify://apps/swish-wishlist-king/blocks/wishlist-button-block/194f5011-a43c-4b22-b12e-eaf20dc4506a",
+          "settings": {
+            "button_style": "plain_accent_1",
+            "button_alignment": "center",
+            "button_content_alignment": "center",
+            "button_margin_top": 0,
+            "button_margin_bottom": 0,
+            "button_max_width": 0,
+            "button_padding_horizontal": 15,
+            "button_full_width": true,
+            "button_show_text": true,
+            "button_show_icon": true,
+            "icon_size": 18,
+            "icon_stroke_width": 1,
+            "icon_offset_vertical": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_jFRFHy",
+        "price_jEGtWb",
+        "variant_picker_bq4Ldz",
+        "bundel_products_UDy6Bj",
+        "parent_child_bundelpro_VRWcmt",
+        "static_bundel_products_D76BHH",
+        "compare_product_rbgGyn",
+        "giftcard_form_dKcTkz",
+        "quantity_selector_HnUQWy",
+        "subscription_LhaNjT",
+        "buy_button_bUa76V",
+        "swish_formerly_wishlist_king_wishlist_button_block_rm9GfB"
+      ],
+      "settings": {
+        "zoomlayout": "lightbox",
+        "product_media": "slider",
+        "image": "shopify://shop_images/pluss.svg",
+        "my_material_list_setting": [
+          "logo",
+          "gift-images-and-titles-pk1sw9n3"
+        ]
+      }
+    },
+    "font_KP3fWE": {
+      "type": "font",
+      "name": "Fonts",
+      "settings": {
+        "heading_font": "system_ui_n4"
+      }
+    },
+    "custom_section_qmi6Th": {
+      "type": "custom-section",
+      "blocks": {
+        "nested_parent_KMfr7X": {
+          "type": "nested-parent",
+          "settings": {
+            "title": "Parent Slide",
+            "parent_key": "slide1"
+          },
+          "blocks": {
+            "nested_child_9ngWDU": {
+              "type": "nested-child",
+              "name": "Child Slide",
+              "settings": {
+                "title": "Child Slide 1",
+                "parent_key": "slide1",
+                "child_key": "q1"
+              },
+              "blocks": {
+                "nested_subchild_aHgawd": {
+                  "type": "nested-subchild",
+                  "name": "Sub Child Slide",
+                  "settings": {
+                    "title": "Sub Child Slide 1",
+                    "parent_key": "slider1",
+                    "child_key": "q1",
+                    "subchild_key": "d1"
+                  },
+                  "blocks": {
+                    "nested_level4_Lrxt6Q": {
+                      "type": "nested-level4",
+                      "name": "Level 4 slide",
+                      "settings": {
+                        "title": "Level 4 slide 1",
+                        "parent_key": "slider1",
+                        "child_key": "q1",
+                        "subchild_key": "d1",
+                        "level4_key": "w1"
+                      },
+                      "blocks": {
+                        "nested_level5_THFWRi": {
+                          "type": "nested-level5",
+                          "name": "Level 5 slide",
+                          "settings": {
+                            "title": "Level 5 slide 1",
+                            "parent_key": "slider1",
+                            "child_key": "q1",
+                            "subchild_key": "d1",
+                            "level4_key": "w1",
+                            "level5_key": "r1"
+                          },
+                          "blocks": {
+                            "nested_level6_dkTdNx": {
+                              "type": "nested-level6",
+                              "name": "Level 6 slide",
+                              "settings": {
+                                "title": "Level 6 slide 1",
+                                "parent_key": "slider1",
+                                "child_key": "q1",
+                                "subchild_key": "d1",
+                                "level4_key": "w1",
+                                "level5_key": "r1"
+                              },
+                              "blocks": {}
+                            }
+                          },
+                          "block_order": [
+                            "nested_level6_dkTdNx"
+                          ]
+                        }
+                      },
+                      "block_order": [
+                        "nested_level5_THFWRi"
+                      ]
+                    },
+                    "nested_level4_caXDWX": {
+                      "type": "nested-level4",
+                      "name": "Level 4 slide",
+                      "settings": {
+                        "title": "Level 4 slide 222",
+                        "parent_key": "slider1",
+                        "child_key": "q1",
+                        "subchild_key": "d1",
+                        "level4_key": "11"
+                      },
+                      "blocks": {
+                        "nested_level5_WNgJpk": {
+                          "type": "nested-level5",
+                          "name": "Level 5 slide",
+                          "settings": {
+                            "title": "Level 5 slide 22",
+                            "parent_key": "slider1",
+                            "child_key": "q1",
+                            "subchild_key": "d1",
+                            "level4_key": "11",
+                            "level5_key": "yyy"
+                          },
+                          "blocks": {}
+                        }
+                      },
+                      "block_order": [
+                        "nested_level5_WNgJpk"
+                      ]
+                    }
+                  },
+                  "block_order": [
+                    "nested_level4_Lrxt6Q",
+                    "nested_level4_caXDWX"
+                  ]
+                }
+              },
+              "block_order": [
+                "nested_subchild_aHgawd"
+              ]
+            }
+          },
+          "block_order": [
+            "nested_child_9ngWDU"
+          ]
+        }
+      },
+      "block_order": [
+        "nested_parent_KMfr7X"
+      ],
+      "disabled": true,
+      "name": "Nested Menu",
+      "settings": {}
+    },
+    "recently_view_product_bLYHef": {
+      "type": "recently-view-product",
+      "disabled": true,
+      "name": "Recently Viewed Products",
+      "settings": {
+        "heading": "recently viewed"
+      }
+    },
+    "compare_product_hVqHjL": {
+      "type": "compare-product",
+      "disabled": true,
+      "name": "Compare Product",
+      "settings": {}
+    },
+    "metafield_app_EhB8qL": {
+      "type": "metafield-app",
+      "disabled": true,
+      "name": "Metafield App",
+      "settings": {
+        "text": "SDFsfS"
+      }
+    },
+    "1757306498c25d27d2": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_cw7U4J": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        },
+        "loox_reviews_loox_gallery_carousel_section_fRAxbF": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-gallery-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "disabled": true,
+          "settings": {
+            "maxWidth": 1100,
+            "borderRadius": 60,
+            "itemsPerView": 5,
+            "mobileItemsPerView": 1,
+            "imageRatio": "1",
+            "reviewerNameColor": "#ffffff",
+            "starsColor": "#ffffff",
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
+            "shadow": "none",
+            "border_active": false,
+            "border_width": 2,
+            "border_color": "#000000",
+            "productIds": ""
+          }
+        },
+        "loox_reviews_loox_dynamic_section_LNHtz9": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "disabled": true,
+          "settings": {
+            "reviews_to_display": "",
+            "default_tab": "automatic",
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1080,
+            "is_sample": true
+          }
+        },
+        "okendo_questions_widget_pgVBC7": {
+          "type": "shopify://apps/okendo/blocks/questions-widget/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "disabled": true,
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "okendo_reviews_widget_fchcX7": {
+          "type": "shopify://apps/okendo/blocks/reviews-widget/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "disabled": true,
+          "settings": {
+            "product": "{{product}}",
+            "widget_type": "reviews_widget"
+          }
+        },
+        "yotpo_product_reviews_reviews_h8w9Ti": {
+          "type": "shopify://apps/yotpo-product-reviews/blocks/reviews/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+          "disabled": true,
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "wishlist_plus_wishlist_pdp_button_9Hj34m": {
+          "type": "shopify://apps/wishlist-plus/blocks/wishlist-pdp-button/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+          "settings": {
+            "swym_atw_button_icon": "heart",
+            "swym_atw_icon_thickness": 1.7,
+            "swym_atw_display_btn_text": true,
+            "swym_button_position": "default",
+            "swym_atw_button_vertical_offset": 0,
+            "swym_atw_full_width": true,
+            "swym_atw_button_alignment": "center",
+            "swym_add_to_wishlist_color": "#000000",
+            "swym_added_to_wishlist_color": "#222222",
+            "swym_button_text_color": "#ffffff",
+            "swym_atw_border_color": "#000000",
+            "swym_atw_border_thickness": 0,
+            "swym_atw_button_border_radius": 0,
+            "swym_enable_hover_customization": false,
+            "swym_hover_add_to_wishlist_color": "#000000",
+            "swym_hover_added_to_wishlist_color": "#222222",
+            "swym_hover_button_text_color": "#ffffff",
+            "swym_hover_atw_border_color": "#000000",
+            "swym_hover_atw_border_thickness": 0,
+            "swym_hover_atw_button_border_radius": 0,
+            "swym_custom_css": ""
+          }
+        },
+        "wishlist_plus_wishlist_page_section_hpiezp": {
+          "type": "shopify://apps/wishlist-plus/blocks/wishlist-page-section/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_cw7U4J",
+        "loox_reviews_loox_gallery_carousel_section_fRAxbF",
+        "loox_reviews_loox_dynamic_section_LNHtz9",
+        "okendo_questions_widget_pgVBC7",
+        "okendo_reviews_widget_fchcX7",
+        "yotpo_product_reviews_reviews_h8w9Ti",
+        "wishlist_plus_wishlist_pdp_button_9Hj34m",
+        "wishlist_plus_wishlist_page_section_hpiezp"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "pdp_show_all_product_HaexYm": {
+      "type": "pdp-show-all-product",
+      "disabled": true,
+      "name": "Pdp Show All Product",
+      "settings": {
+        "Heading": "VOUS ALLEZ AIMER",
+        "productlist": [
+          "fleurs-flakes",
+          "huiles",
+          "infusticks",
+          "space-bag",
+          "infusticks-1"
+        ]
+      }
+    },
+    "insta_feed_EnFJPd": {
+      "type": "insta-feed",
+      "name": "Social Media Gallery",
+      "settings": {
+        "title": "Instagram feed",
+        "gallery-code": "<covet-pics-widget gallery-embed-id=\"246350\"></covet-pics-widget>"
+      }
+    },
+    "17567196052341dacc": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_VjH7R6": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        },
+        "loox_reviews_loox_gallery_carousel_section_Epmx9W": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-gallery-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "disabled": true,
+          "settings": {
+            "maxWidth": 1100,
+            "borderRadius": 60,
+            "itemsPerView": 5,
+            "mobileItemsPerView": 1,
+            "imageRatio": "1",
+            "reviewerNameColor": "#ffffff",
+            "starsColor": "#ffffff",
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
+            "shadow": "none",
+            "border_active": false,
+            "border_width": 2,
+            "border_color": "#000000",
+            "productIds": ""
+          }
+        },
+        "loox_reviews_loox_dynamic_section_Wx4R9p": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "disabled": true,
+          "settings": {
+            "reviews_to_display": "",
+            "default_tab": "automatic",
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1080,
+            "is_sample": true
+          }
+        },
+        "okendo_questions_widget_9zBaaL": {
+          "type": "shopify://apps/okendo/blocks/questions-widget/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "disabled": true,
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "okendo_reviews_carousel_pD3X6i": {
+          "type": "shopify://apps/okendo/blocks/reviews-carousel/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "disabled": true,
+          "settings": {
+            "show_heading": false,
+            "heading": "",
+            "badge_link": "",
+            "product": "{{product}}"
+          }
+        },
+        "okendo_reviews_widget_mNYxwB": {
+          "type": "shopify://apps/okendo/blocks/reviews-widget/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "disabled": true,
+          "settings": {
+            "product": "{{product}}",
+            "widget_type": "reviews_widget"
+          }
+        },
+        "yotpo_product_reviews_star_rating_Y3r4YB": {
+          "type": "shopify://apps/yotpo-product-reviews/blocks/star-rating/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+          "disabled": true,
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "yotpo_product_reviews_reviews_mewbEy": {
+          "type": "shopify://apps/yotpo-product-reviews/blocks/reviews/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+          "disabled": true,
+          "settings": {
+            "product": "{{product}}"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_VjH7R6",
+        "loox_reviews_loox_gallery_carousel_section_Epmx9W",
+        "loox_reviews_loox_dynamic_section_Wx4R9p",
+        "okendo_questions_widget_9zBaaL",
+        "okendo_reviews_carousel_pD3X6i",
+        "okendo_reviews_widget_mNYxwB",
+        "yotpo_product_reviews_star_rating_Y3r4YB",
+        "yotpo_product_reviews_reviews_mewbEy"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "recommendation_product_67NpCH": {
+      "type": "recommendation-product",
+      "name": "Recommendations Product",
+      "settings": {
+        "heading": "You may also like",
+        "limit": 10
+      }
+    }
+  },
+  "order": [
+    "product_hero_section_tU9Kit",
+    "shop_marquee_qMNczG",
+    "pdp_details_rJQyFy",
+    "main",
+    "font_KP3fWE",
+    "custom_section_qmi6Th",
+    "recently_view_product_bLYHef",
+    "compare_product_hVqHjL",
+    "metafield_app_EhB8qL",
+    "1757306498c25d27d2",
+    "pdp_show_all_product_HaexYm",
+    "insta_feed_EnFJPd",
+    "17567196052341dacc",
+    "recommendation_product_67NpCH"
+  ]
+}

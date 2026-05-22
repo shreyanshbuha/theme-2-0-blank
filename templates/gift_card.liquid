@@ -1,0 +1,64 @@
+<div class="space gift-card" style="text-align:center; font-size:18px; margin-bottom: 50px;">
+  <h3 style="font-size:40px; font-weight:500;">{{ gift_card.balance | money_with_currency }}</h3>
+  <p>
+    {% if gift_card.expires_on %}
+      {%- assign gift_card_expiration_date = gift_card.expires_on | date: '%B %e, %Y' -%}
+      <p class="gift-card__text">
+        {{ 'gift_cards.issued.expiration_date' | t: expires_on: gift_card_expiration_date }}
+      </p>
+    {% endif %}
+  </p>
+
+  <img src="{{ 'giftcard2.jpg' | asset_url }}" width="300" height="" style="margin:30px auto;">
+
+  <h4 style="font-weight:700;">{{ shop.name }}</h4>
+  <p style="width: 330px; margin: 20px auto;">{{ 'gift_cards.issued.how_to_use_gift_card' | t }}</p>
+
+  <div id="gift-card-code" style="letter-spacing:2px; margin: 0 auto;">
+    {{ gift_card.code | format_code }}
+  </div>
+
+  <div class="gift-card__qr-code" data-identifier="{{ gift_card.qr_identifier }}"></div>
+
+  <span
+    class="gift-card__copy-success form__message"
+    role="status"
+    style=" display: flex; margin: 0 820px;"></span>
+  <div class="gift-card__buttons no-print">
+    <template>
+      <img 
+        src="{{- 'check.svg' | asset_url -}}"
+        width="15px"
+        height="15px"
+        style="margin: 5px 8px;"
+      >
+      {{ 'gift_cards.issued.copy_code_success' | t }}
+    </template>
+    <button class="button gift-card__copy-button">{{ 'gift_cards.issued.copy_code' | t }}</button>
+  </div>
+
+  <div>
+    <a href="{{ shop.url }}">{{ 'gift_cards.issued.shop_link' | t }}</a>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new QRCode(document.querySelector('.gift-card__qr-code'), {
+      text: document.querySelector('.gift-card__qr-code').dataset.identifier,
+      width: 72,
+      height: 72,
+    });
+  });
+  var template = document.getElementsByTagName('template')[0];
+  var clonedTemplate = template.content.cloneNode(true);
+  var isMessageDisplayed = false;
+  document.querySelector('.gift-card__copy-button').addEventListener('click', () => {
+    navigator.clipboard.writeText(document.getElementById('gift-card-code').innerText).then(function () {
+      if (!isMessageDisplayed) {
+        document.querySelector('.gift-card__copy-success').appendChild(clonedTemplate);
+        isMessageDisplayed = true;
+      }
+    });
+  });
+</script>

@@ -1,0 +1,38 @@
+{% if blog.articles != blank %}
+  <div class="wrapper inner-wrapper">
+    <section class="journal-first-section" style="margin-top: 63px;" data-section="blog banner">
+      <h1>{{ blog.title }}</h1>
+      <div class="j-section-slider">
+        {% for article in blog.articles limit: 2 %}
+          <div class="j-slider-block">
+            <div class="j-slider-content">
+              <div class="j-slider-title">{{ article.published_at | date: '%d %b' }}</div>
+              <h3>{{ article.excerpt_or_content | truncatewords: 8 }}</h3>
+              <a class="border-btn" href="{{ article.url }}">{{ 'layout.article.article' | t }}</a>
+            </div>
+            {% if article.image != blank %}
+              <div class="j-slider-img">
+                <img src="{{ article.image | image_url }}" width="100%" height="100%">
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+{% else %}
+  <h2>There are no article in blog.</h2>
+{% endif %}
+
+{% style %}
+  .slick-arrow{
+        background-image: url("{{ 'arrow-red-right.svg' | asset_url }}")
+    }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Blog Hero Section",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,48 @@
+{% if section.settings.storyimg.size > 0 %}
+  <section class="mission-second-section">
+    {% if section.settings.storyimg != blank %}
+      <div class="mission-second-section-img">
+        <img src="{{ section.settings.storyimg | image_url }}" width="" height="" alt="" loading="lazy">
+      </div>
+    {% endif %}
+
+    {% if section.settings.storyheading != blank or section.settings.storydescription != blank %}
+      <div class="mission-second-content">
+        {% if section.settings.storyheading != blank %}
+          <h2>{{ section.settings.storyheading }}</h2>
+        {% endif %}
+        {% if section.settings.storydescription != blank %}
+          <p>{{ section.settings.storydescription }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Mission Story",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "storyimg",
+      "label": "Add Story Image"
+    },
+    {
+      "type": "text",
+      "id": "storyheading",
+      "label": "Story Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "storydescription",
+      "label": "Story Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mission Story"
+    }
+  ]
+}
+{% endschema %}

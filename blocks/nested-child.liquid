@@ -1,0 +1,28 @@
+<div class="tree-item level-2">
+  {{ block.settings.title }}
+</div>
+ {% content_for 'blocks' %}
+
+{% schema %}
+{
+  "name": "Child Slide",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title" },
+    { "type": "text", "id": "parent_key", "label": "Match Parent Key" },
+    { "type": "text", "id": "child_key", "label": "Child Key" }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "@theme"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Child Slide"
+    }
+  ]
+}
+{% endschema %}

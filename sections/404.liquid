@@ -1,0 +1,20 @@
+<div style="text-align:center; padding:217px;">
+  <div>{{ 'pages.404' | t }}</div>
+  <div style="margin: 40px 0 40px 0; font-size:36px; font-weight:500">{{ 'pages.not_found' | t }}</div>
+
+  <button>
+    <a href="{{ routes.collections_url }}">{{ 'cart.general.continue_shopping' | t }}</a>
+  </button>
+</div>
+
+{% schema %}
+{
+  "name": "404",
+  "settings": [],
+  "presets": [
+    {
+      "name": "404 Page"
+    }
+  ]
+}
+{% endschema %}

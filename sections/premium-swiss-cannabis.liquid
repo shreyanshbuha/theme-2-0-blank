@@ -1,0 +1,134 @@
+{% if section.blocks.size > 0 %}
+  <section class="premium-swiss-canabis" data-section="premium-swiss-section">
+    {% if section.settings.dekstopbackimg != blank or section.settings.mobilebackimg != blank %}
+      <div class="premium-swiss-cover-img">
+        <picture>
+          {% if section.settings.dekstopbackimg != blank %}
+            <source media="(min-width: 767px)" srcset="{{ section.settings.dekstopbackimg | image_url }}">
+          {% endif %}
+          {% if section.settings.mobilebackimg != blank %}
+            <img src="{{ section.settings.mobilebackimg | image_url }}" alt="" width="" height="">
+          {% endif %}
+        </picture>
+      </div>
+    {% endif %}
+    <div class="container">
+      <div class="flex psc-row">
+        <div class="psc-left-col">
+          <div class="psc-left-inner">
+            {% if section.settings.heading != blank %}
+              <div class="section-title">
+                <h2>{{ section.settings.heading }}</h2>
+              </div>
+            {% endif %}
+            <div class="flex star-logo">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'Image' %}
+                    {% if block.settings.image != blank %}
+                      <div class="star-log-col" {{ block.shopify_attributes }}>
+                        <a href="#">
+                          <img src="{{ block.settings.image | image_url }}" width="" height="">
+                        </a>
+                      </div>
+                    {% endif %}
+                {% endcase %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="psc-right-col">
+          <div class="psc-right-inner">
+            {{ section.settings.discription }}
+
+            <div class="psc-right-logo flex align-cente">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'contentbox' %}
+                    {% if block.settings.imagebox != blank or block.settings.title != blank %}
+                      <div class="plc-right-logo-col flex align-center" {{ block.shopify_attributes }}>
+                        {% if block.settings.imagebox != blank %}
+                          <div class="plc-right-ic">
+                            <img src="{{ block.settings.imagebox | image_url }}" width="" height="">
+                          </div>
+                        {% endif %}
+                        {% if block.settings.title != blank %}
+                          <div class="plc-right-cont">
+                            <h6>{{ block.settings.title }}</h6>
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                {% endcase %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Premium Swiss Cannabis",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "discription",
+      "label": "Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "dekstopbackimg",
+      "label": "Dekstop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobilebackimg",
+      "label": "Mobile Background Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Image",
+      "name": "Image",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Add Image Rate"
+        }
+      ]
+    },
+    {
+      "type": "contentbox",
+      "name": "Content Box",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "imagebox",
+          "label": "Add Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium Swiss Cannabis"
+    }
+  ]
+}
+{% endschema %}

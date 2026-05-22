@@ -1,0 +1,227 @@
+<header class="ivory-header header-style-one {% unless template == 'index' %}inner-header{% endunless %}">
+  {% if section.settings.richtext != blank %}
+    <div class="ivory-announcebar">
+      <div class="container text-center">
+        {{ section.settings.richtext }}
+      </div>
+    </div>
+  {% endif %}
+  <div class="ivory-logobar">
+    <div class="container">
+      <div class="ivory-logobar-row flex align-center">
+        <div class="ivory-header-left">
+          <div class="mobile-toggle mobile-only">
+            {% render 'icons', icon: 'menu' %}
+          </div>
+          <ul class="nav-list-left nav-list flex align-center desk-only" role="list">
+            {% if section.settings.linklist.links != blank %}
+              <li class="menu-has-item menu-item">
+                {% for link in section.settings.linklist.links limit: 1 %}
+                  <a href="{{ link.url }}" class="border-btn shop-btn space-li">
+                    {{ link.title }}
+                  </a>
+                  {% if section.settings.linklist.links != blank %}
+                    {% for link in section.settings.linklist.links limit: 2 offset: 1 %}
+                      <a href="{{ link.url }}" style="padding: 0 10px;"> {{ link.title }}</a>
+                    {% endfor %}
+                  {% endif %}
+                  <div class="mega-menu">
+                    <div class="mega-menu-inner flex">
+                      {% for childlink in link.links %}
+                        <div class="mega-col">
+                          <div class="mega-col-inner">
+                            <div class="mega-title">
+                              <a href="{{ childlink.url }}">{{ childlink.title }}</a>
+                            </div>
+                            {% if childlink.object.featured_image != blank %}
+                              <div class="mega-media">
+                                <a href="{{ childlink.url }}"
+                                  ><img
+                                    src="{{ childlink.object.featured_image | image_url  }}"
+                                    width=""
+                                    height=""
+                                ></a>
+                              </div>
+                            {% endif %}
+                          </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% endfor %}
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+
+        <div class="ivory-header-center text-center">
+          {% if section.settings.imagepicker != blank %}
+            <div class="ivory-logo">
+              <a href="{{ routes.root_url }}">
+                <img src="{{ section.settings.imagepicker | image_url: width: 100, height: 100 }}" height="" width="">
+              </a>
+            </div>
+          {% else %}
+            <a href="{{ routes.root_url }}"> {{ shop.name }}</a>
+          {% endif %}
+        </div>
+
+        <div class="ivory-header-right flex align-center justify-end">
+          {% if section.settings.linklist.links != blank %}
+            <ul class="nav-list flex align-center desk-only" role="list" >
+              {% for link in section.settings.linklist.links limit: 2 offset: 3 %}
+                <li class="menu-item">
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          <ul class="social-list flex align-center" role="list">
+            <li>
+              <form action="{{ routes.search_url }}" method="get">
+                <div class="search-container" style="position: relative;">
+                  <input
+                    type="search"
+                    name="q"
+                    placeholder="Search..."
+                    class="search-input"
+                    value="{{ search.terms | escape }}"
+                    data-search-path="{{ request.origin }}{{ request.path }}"
+                  >
+                  <button>
+                    <img src="{{ '99.png' |  asset_url }}" width="21px" height="21px">
+                  </button>
+                </div>
+              </form>
+              <div id="searchResults" class="search-card"></div>
+            </li>
+            {% if section.settings.profileicon != blank %}
+              {% if section.settings.profileicon == true %}
+                <li>
+                  <a href="{%- if customer -%}{{ routes.account_register_url }}{%- else -%}{{ routes.account_url }}{%- endif -%}">
+                    {% render 'icons', icon: 'profile' %}
+                  </a>
+                </li>
+              {% endif %}
+            {% endif %}
+            <li>
+              <a href="javascript:;" class="cart-btn fly-cart">
+                {% render 'icons', icon: 'cart' %}
+
+                {% comment %}
+                  {% if cart.item_count > 0 %}
+                  {% endif %}
+                {% endcomment %}
+                <span class="count" aria-hidden="true"> {{ cart.item_count }} </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-nav">
+    <div class="close-menu">
+      {% render 'icons', icon: 'close_btn' %}
+    </div>
+    <div class="mobile-inner">
+      {% if section.settings.linklist.links != blank %}
+        <ul class="accordion">
+          {% for link in section.settings.linklist.links limit: 1 %}
+            {% for childlink in link.links %}
+              <li class="mobile-list">
+                <a href="{{ childlink.url }}" class="mobile-link">{{ childlink.title }}</a>
+              </li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <div class="seperator flex justify-center">
+        {% render 'icons', icon: 'tilde' %}
+      </div>
+      {% if section.settings.linklist.links != blank %}
+        <ul class="mobile-bottom">
+          {% for link in section.settings.linklist.links limit: 3 offset: 1 %}
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if settings['facebook-url'] != blank or settings['instagram-url'] or settings['tiktok-url'] %}
+        <ul class="mobile-social flex justify-center align-center">
+          {% if settings['facebook-url'] != blank %}
+            <li>
+              <a href="{{ settings.facebook-url }}">
+                {% render 'icons', icon: 'facebook' %}
+              </a>
+            </li>
+          {% endif %}
+          {% if settings['instagram-url'] != blank %}
+            <li>
+              <a href="{{ settings.instagram-url }}">
+                {% render 'icons', icon: 'instagram' %}
+              </a>
+            </li>
+          {% endif %}
+          {% if settings['tiktok-url'] != blank %}
+            <li>
+              <a href="{{ settings.tiktok-url }}">
+                {% render 'icons', icon: 'tiktok' %}
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+</header>
+<!-- header end here -->
+
+{% style %}
+  {% comment %}
+    .umay-lik-slider-wrp .slick-arrow{
+      background-image: url("{{ 'arrow-right-black.svg' | asset_url }}")
+    }
+  {% endcomment %}
+{% endstyle %}
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "richtext",
+      "label": "Announcement"
+    },
+    {
+      "type": "link_list",
+      "id": "linklist",
+      "label": "Link List"
+    },
+    {
+      "type": "image_picker",
+      "id": "imagepicker",
+      "label": "Logo Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "profileicon",
+      "label": "Profile Icon On/Off"
+
+    },
+    {
+      "type": "text",
+      "id": "cartannouncement",
+      "label": "Cart Announcement Heading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header"
+    }
+  ]
+}
+{% endschema %}

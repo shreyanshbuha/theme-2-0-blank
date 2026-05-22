@@ -1,0 +1,112 @@
+{% if section.settings.backgrounddekstopimg != blank %}
+  <div class="wrapper ">
+    <section class="contact-page-section">
+      <div class="title-contact-page">{{ section.settings.text }}</div>
+      <div class="c-map-grid">
+        {% if section.settings.herodekstopimg != blank or section.settings.heromobileimg %}
+          <div class="middle-img">
+            <picture>
+              {% if section.settings.herodekstopimg != blank %}
+                <source media="(min-width: 767px)" srcset="{{ section.settings.herodekstopimg | image_url }}">
+              {% endif %}
+              {% if section.settings.heromobileimg != blank %}
+                <img src="{{ section.settings.heromobileimg | image_url }}" width="" height="" alt="" loading="lazy">
+              {% endif %}
+            </picture>
+          </div>
+        {% endif %}
+        {% if section.settings.heading != blank or section.settings.richtext != blank %}
+          <div class="c-address-block">
+            <div class="c-add-content">
+              {% if section.settings.heading != blank %}
+                <div class="c-add-title">{{ section.settings.heading }}</div>
+              {% endif %}
+              {{ section.settings.richtext }}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if section.settings.backgrounddekstopimg != blank
+          or section.settings.backgroundmobileimg != blank
+          or section.settings.headingsecond != blank
+          or section.settings.richtextsecond
+        %}
+          <div
+            class="c-address-block"
+            {% if section.settings.backgrounddekstopimg != blank %}
+              style="background-image: url({{ section.settings.backgrounddekstopimg | image_url }})"
+            {% endif %}
+          >
+            {% if section.settings.backgroundmobileimg != blank %}
+              <img src="{{ section.settings.backgroundmobileimg | image_url }}" width="" height="">
+            {% endif %}
+            <div class="c-add-content">
+              {% if section.settings.headingsecond != blank %}
+                <div class="c-add-title">{{ section.settings.headingsecond }}</div>
+              {% endif %}
+              {{ section.settings.richtextsecond }}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </section>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Contact Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Page Main Heading"
+    },
+     {
+       "type": "text",
+       "id": "heading",
+       "label": "Heading"
+     },
+     {
+      "type": "richtext",
+      "id": "richtext",
+       "label": "Contact Information"
+     },
+     {
+       "type": "text",
+       "id": "headingsecond",
+       "label": "second Heading"
+     },
+     {
+      "type": "richtext",
+      "id": "richtextsecond",
+       "label": "Second Contact Information"
+     },
+    {
+      "type": "image_picker",
+      "id": "herodekstopimg",
+      "label": "Hero Dekstop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "heromobileimg",
+      "label": "Hero Mobile Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "backgrounddekstopimg",
+      "label": "Background Dekstop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "backgroundmobileimg",
+      "label": "Background Mobile Image"
+    },
+ ],
+  "presets": [
+    {
+      "name": "Contact Hero"
+    }
+  ]
+}
+{% endschema %}

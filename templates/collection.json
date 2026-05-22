@@ -1,0 +1,116 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "shop_hero_section_gkptWN": {
+      "type": "shop-hero-section",
+      "name": "Shop Hero Section",
+      "settings": {}
+    },
+    "shop_marquee_6B9V3J": {
+      "type": "shop-marquee",
+      "blocks": {
+        "marqee_GhgEAB": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "PRODUIT NATUREL SANS TABAC NI ADDIFITS"
+          }
+        },
+        "marqee_6wL4LG": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "SANS PESTICIDES NI FONGICIDES CHIMIQUES"
+          }
+        },
+        "marqee_Ef6Hpw": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": " CULTIVÉ PAR NOS SOINS"
+          }
+        },
+        "marqee_deMjQj": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "FLEURS 100% ORGANIQUES"
+          }
+        },
+        "marqee_HcMBTi": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "RÉCOLTÉ À LA MAIN"
+          }
+        },
+        "marqee_WtMh3w": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "RÉCOLTÉ À LA MAIN"
+          }
+        },
+        "marqee_BzBnAf": {
+          "type": "marqee",
+          "settings": {
+            "marqeeitem": "EMBALLAGE DE QUALITÉ"
+          }
+        }
+      },
+      "block_order": [
+        "marqee_GhgEAB",
+        "marqee_6wL4LG",
+        "marqee_Ef6Hpw",
+        "marqee_deMjQj",
+        "marqee_HcMBTi",
+        "marqee_WtMh3w",
+        "marqee_BzBnAf"
+      ],
+      "name": "Shop Marqee Section",
+      "settings": {}
+    },
+    "shop_all_products_nbaA4x": {
+      "type": "shop-all-products",
+      "name": "Shop All Products",
+      "settings": {
+        "collectionlist": [
+          "huiles-all-items",
+          "infusticks",
+          "shop",
+          "space-bag",
+          "fleurs-flakes"
+        ],
+        "selcetdfilter": "stor_front_filter"
+      }
+    },
+    "1756703859b4ae4815": {
+      "type": "apps",
+      "blocks": {
+        "wishlist_plus_wishlist_page_section_DFFFKn": {
+          "type": "shopify://apps/wishlist-plus/blocks/wishlist-page-section/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "wishlist_plus_wishlist_page_section_DFFFKn"
+      ],
+      "settings": {}
+    },
+    "metafields_aF8Bre": {
+      "type": "metafields",
+      "disabled": true,
+      "name": "Metafields",
+      "settings": {}
+    }
+  },
+  "order": [
+    "shop_hero_section_gkptWN",
+    "shop_marquee_6B9V3J",
+    "shop_all_products_nbaA4x",
+    "1756703859b4ae4815",
+    "metafields_aF8Bre"
+  ]
+}

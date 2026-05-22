@@ -1,0 +1,43 @@
+{% if section.settings.inlinetext.size > 0 %}
+  <section
+    class="mission-first-section space"
+    style="background-image: url({{ section.settings.bannerimg | image_url}});"
+  >
+    <div class="mission-page-content-wrapper">
+      {% if section.settings.inlinetext != blank %}
+        <div class="mission-title">{{ section.settings.inlinetext }}</div>
+      {% endif %}
+      {% if section.settings.discription != blank %}
+        <p>{{ section.settings.discription }}</p>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Mission Hero Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bannerimg",
+      "label": "Banner Image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "inlinetext",
+      "label": "Banner Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "discription",
+      "label": "Banner Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mission Hero Section"
+    }
+  ]
+}
+{% endschema %}

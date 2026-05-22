@@ -1,0 +1,28 @@
+<h2>Theme Blocks</h2>
+
+{% content_for 'blocks' %}
+
+{% schema %}
+{
+  "name": "Page Content",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page Sections"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+   "presets": [
+    {
+      "name": "Theme Blocks2"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,53 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "bundel_gift_kM4rQT": {
+      "type": "bundel-gift",
+      "blocks": {
+        "title_6WHC6X": {
+          "type": "title",
+          "settings": {}
+        },
+        "price_YMABcN": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_QEcCfG": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "quantity_selector_bQHH4w": {
+          "type": "Quantity_selector",
+          "settings": {}
+        },
+        "buy_button_nDkeAc": {
+          "type": "Buy_Button",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title_6WHC6X",
+        "price_YMABcN",
+        "variant_picker_QEcCfG",
+        "quantity_selector_bQHH4w",
+        "buy_button_nDkeAc"
+      ],
+      "name": "Bundel Gift",
+      "settings": {
+        "zoomlayout": "lightbox",
+        "product_media": "thumbcarousel"
+      }
+    }
+  },
+  "order": [
+    "bundel_gift_kM4rQT"
+  ]
+}

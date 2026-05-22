@@ -1,0 +1,38 @@
+{% if section.blocks.size > 0 %}
+  <section class="marqee-list black-bg" data-section="shop-marquee">
+    <div class="marqee-slider">
+      {% for block in section.blocks %}
+        {% if block.settings.marqeeitem != blank %}
+          <div class="marqee-item" {{ block.shopify_attributes }}>
+            <p>{{ block.settings.marqeeitem }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+  {
+  "name": "Add text in Shop Marqee",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "marqee",
+      "name": "marqee",
+      "settings": [
+        {
+          "type": "text",
+          "id": "marqeeitem",
+          "label": "Marqee Item"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop Marqee Section"
+    }
+  ]
+}
+{% endschema %}

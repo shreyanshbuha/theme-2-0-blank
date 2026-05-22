@@ -1,0 +1,16 @@
+{% for block in section.blocks %}
+  {% if block.settings.cartlogo != blank and block.settings.cartheading != blank %}
+    <div class="reassure-block" {{ block.shopify_attributes }}>
+      {% if block.settings.cartlogo != blank %}
+        <div class="reass-icon" style="margin-left: 30px;">
+          <img src="{{ block.settings.cartlogo | image_url }}" class="" width="" height="">
+        </div>
+      {% endif %}
+      {% if block.settings.cartheading != blank %}
+        <div class="reass-dec">
+          <div class="reassure-title">{{ block.settings.cartheading }}</div>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endfor %}

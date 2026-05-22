@@ -1,0 +1,114 @@
+<div style="">
+  <p class="line-item-property__field" style="margin:10px;">
+    <label for="text">Text</label>
+    <input id="text" type="text" name="properties[Text]">
+  </p>
+
+  <p class="line-item-property__field" style="margin:10px;">
+    <label for="textarea">Textarea</label>
+    <textarea id="textarea" name="properties[Textarea]"></textarea>
+  </p>
+
+  <p class="line-item-property__field" style="margin:10px;">
+    <label>Hobby</label><br>
+    <input type="radio" name="properties[Hobby]" value="Draiving"> <span>Draiving</span><br>
+    <input type="radio" name="properties[Hobby]" value="Swimming"> <span>Swimming</span><br>
+    <input type="radio" name="properties[Hobby]" value="Playing"> <span>Playing</span><br>
+  </p>
+
+  <p class="line-item-property__field" style="margin:10px;">
+    <label>Select</label><br>
+    <select id="select" name="properties[Select]">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </p>
+
+  <p class="line-item-property__field" style="margin:10px;">
+    <input type="hidden" name="properties[Add Discount]" value="No">
+    <input id="add-discount" type="checkbox" name="properties[Add Discount]" value="Yes">
+    <label for="add-discount">Add Discount </label>
+  </p>
+
+  <p class="line-item-property__field" style="margin:10px; display:flex;">
+    <label style="margin-right:10px;">Select Number</label><br>
+    <input
+      type="checkbox"
+      id="1"
+      hidden-data="Select-Number "
+      onchange="fillHidden('Select-Number ')"
+      value="1"
+
+    ><label for="1" style="margin-right:10px;">1</label><br>
+    <input
+      type="checkbox"
+      id="2"
+      hidden-data="Select-Number "
+      onchange="fillHidden('Select-Number ')"
+      value="2"
+
+    ><label for="2" style="margin-right:10px;">2</label><br>
+    <input
+      type="checkbox"
+      id="3"
+      hidden-data="Select-Number "
+      onchange="fillHidden('Select-Number ')"
+      value="3"
+
+    ><label for="3" style="margin-right:10px;">3</label><br>
+    <input
+      type="checkbox"
+      id="4"
+      hidden-data="Select-Number "
+      onchange="fillHidden('Select-Number ')"
+      value="4"
+
+    ><label for="4" style="margin-right:10px;">4</label><br>
+    <input
+      type="checkbox"
+      id="5"
+      hidden-data="Select-Number "
+      onchange="fillHidden('Select-Number ')"
+      value="5"
+
+    ><label for="5" style="margin-right:10px;">5</label><br>
+    <input type="hidden" id="Select-Number " name="properties[Number]">
+  </p>
+
+  <div class="product-form__input">
+    <label for="file-upload-file">Upload File</label>
+    <div class="file-upload-container">
+      <input
+        id="file-upload-file"
+        name="properties[Upload File]"
+        type="file"
+      >
+    </div>
+    <p id="errorMessage" class="error-message" style="display: none;margin-top:0;color:red">
+      Please upload your file(s).
+    </p>
+  </div>
+</div>
+
+
+<script>
+  function fillHidden(hiddenname) {
+    var checkboxes = document.querySelectorAll('[hidden-data="' + hiddenname + '"]');
+    var hiddenfield = document.getElementById(hiddenname);
+    hiddenfield.value = '';
+    var i;
+    for (i = 0; i < checkboxes.length; i++) {
+      var x = checkboxes[i];
+      if (x.checked) {
+        if (hiddenfield.value == '') {
+          hiddenfield.value = x.value;
+        } else {
+          hiddenfield.value = hiddenfield.value + ', ' + x.value;
+        }
+      }
+    }
+  }
+</script>

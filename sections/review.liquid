@@ -1,0 +1,75 @@
+{% if section.blocks.size > 0 %}
+  <section class="review-section" data-section="review-section">
+    {% if section.settings.reviewheading != blank %}
+      <div class="section-title text-center">
+        <h2>{{ section.settings.reviewheading }}</h2>
+      </div>
+    {% endif %}
+    <div class="review-slider">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'review_box' %}
+            <div class="review-item" {{ block.shopify_attributes }}>
+              {% if block.settings.reviewername != blank
+                or block.settings.reviewimg != blank
+                or block.settings.reviewerDescription != blank
+              %}
+                <div class="review-item-inner">
+                  {% if block.settings.reviewername != blank %}
+                    <h5>{{ block.settings.reviewername }}</h5>
+                  {% endif %}
+                  {% if block.settings.reviewimg != blank %}
+                    <div class="review-star">
+                      <img src="{{ block.settings.reviewimg | image_url: width: 200, height: 200 }}" width="" height="">
+                    </div>
+                  {% endif %}
+                  {{ block.settings.reviewerDescription }}
+                </div>
+              {% endif %}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Review Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "reviewheading",
+      "label": "Review heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review_box",
+      "name": "Review Box",
+      "settings": [
+        {
+          "type": "text",
+          "id": "reviewername",
+          "label": "Reviewer Name"
+        },
+        {
+          "type": "image_picker",
+          "id": "reviewimg",
+          "label": "Review Image"
+        },
+        {
+          "type": "richtext",
+          "id": "reviewerDescription",
+          "label": "Reviewer Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Review Section"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,76 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "Footer",
+  "type": "header",
+  "sections": {
+    "footer_AwBLim": {
+      "type": "footer",
+      "blocks": {
+        "social_media_QY9Cia": {
+          "type": "social_media",
+          "settings": {
+            "socialmediabox": true
+          }
+        },
+        "text_t8fFPr": {
+          "type": "text",
+          "settings": {
+            "newstitle": "GARDONS CONTACT",
+            "textarea": "Inscrivez-vous pour être informé des sorties produit et promos exclusives"
+          }
+        },
+        "linklist_d3YXNE": {
+          "type": "linklist",
+          "settings": {
+            "linkheading": "SHOP",
+            "linklist": "main-menu"
+          }
+        },
+        "linklist_iYaW7B": {
+          "type": "linklist",
+          "settings": {
+            "linkheading": "AIDE",
+            "linklist": "footer"
+          }
+        },
+        "linklist_mkYRXx": {
+          "type": "linklist",
+          "settings": {
+            "linkheading": "À PROPOS",
+            "linklist": "customer-account-main-menu"
+          }
+        }
+      },
+      "block_order": [
+        "social_media_QY9Cia",
+        "text_t8fFPr",
+        "linklist_d3YXNE",
+        "linklist_iYaW7B",
+        "linklist_mkYRXx"
+      ],
+      "name": "Footer",
+      "settings": {}
+    },
+    "cart_drawer_8gBEXY": {
+      "type": "cart-drawer",
+      "name": "Cart Drawer",
+      "settings": {
+        "heading": "You may also like",
+        "limit": 8,
+        "shipcheckbox": false
+      }
+    }
+  },
+  "order": [
+    "footer_AwBLim",
+    "cart_drawer_8gBEXY"
+  ]
+}

@@ -1,0 +1,41 @@
+<div class="pagination" style="display:flex;">
+  {% if paginate.previous != blank %}
+    <a href="{{ paginate.previous.url }}" class="prev">
+      <img
+        src="{{ 'less-than.jfif' | asset_url }}"
+        width="20px"
+        height="20px"
+        style="margin:20px 15px;"
+    ></a>
+  {% endif %}
+
+  {% if paginate.parts != blank %}
+    {% for part in paginate.parts %}
+      {% if part.is_link %}
+        <div style="padding:10px 20px; margin:10px;  background-color:bisque;">
+          <a href="{{ part.url }}" title="">{{ part.title }}</a>
+        </div>
+      {% else %}
+        {% if part.title == paginate.current_page %}
+          <div class="active" style="background-color:cornsilk; padding:10px 20px; margin:10px;">
+            {{ part.title }}
+          </div>
+        {% else %}
+          <div style="padding:10px 20px; margin:10px;  background-color:bisque;">
+            {{ part.title }}
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if paginate.next != blank %}
+    <a href="{{ paginate.next.url }}" class="next"
+      ><img
+        src="{{ 'greter-than.png' | asset_url }}"
+        width="20px"
+        height="20px"
+        style="margin:20px 15px;"
+    ></a>
+  {% endif %}
+</div>

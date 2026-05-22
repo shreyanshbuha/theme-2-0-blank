@@ -1,0 +1,13 @@
+<button
+  class="compare-product-button"
+  data-product-id="{{ product.id }}"
+  data-product-title="{{ product.title | escape }}"
+  data-product-price="{{ product.price | money_without_currency }}"
+  data-product-vendor="{{ product.vendor | escape }}"
+  data-product-image="{{ product.selected_or_first_available_variant.image }}"
+  data-product-url="{{ product.url }}"
+  data-product-handle="{{ product.handle }}"
+  style="padding: 5px 15px;"
+>
+  Add to Compare
+</button>

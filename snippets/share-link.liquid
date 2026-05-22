@@ -1,0 +1,27 @@
+{% if article %}
+  <div class="flex justify-center align-center">
+    <div class="social-ic">
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url | append: article.url }}">
+        {% render 'icons', icon: 'facebook-lite' %}
+      </a>
+    </div>
+    <div class="social-ic">
+      <a href="https://twitter.com/intent/tweet?text={{ article.title | url_encode }}&url={{ shop.url | append: article.url }}">
+        {% render 'icons', icon: 'twitter' %}
+      </a>
+    </div>
+  </div>
+{% else %}
+  <div class="flex justify-center align-center">
+    <div class="social-ic">
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url | append: product.url }}">
+        {% render 'icons', icon: 'facebook-lite' %}
+      </a>
+    </div>
+    <div class="social-ic">
+      <a href="https://twitter.com/intent/tweet?text={{ product.title | url_encode }}&url={{ shop.url | append: product.url }}">
+        {% render 'icons', icon: 'twitter' %}
+      </a>
+    </div>
+  </div>
+{% endif %}

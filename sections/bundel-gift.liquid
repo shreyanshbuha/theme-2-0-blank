@@ -1,0 +1,592 @@
+<script src="{{ 'bundel-gift.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign product_variant_media = product.selected_or_first_available_variant.featured_media.preview_image | image_url: width: 100
+  if product.selected_or_first_available_variant.featured_media.preview_image == blank
+    assign product_variant_media = product.featured_media.preview_image | image_url: width: 100
+  endif
+-%}
+
+{% assign variant = product.selected_or_first_available_variant %}
+{% unless product.title == 'HASH' and settings.shippingprotection.title == 'Shipping Protection' %}
+  <div
+    class="container space main-product-section variant {% if template.name == 'product.lock-bundel-gift' %} locked-bundel-gift {% endif %}"
+    data-variant-id="{{ product.id }}"
+    data-product-variant-media="{{ product_variant_media }}"
+    data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
+  >
+    {% if section.settings.product_media == 'thumbcarousel' %}
+      <div class="product-media">
+        <div
+          class="thumb-click-img"
+          style="display:flex; flex-wrap: wrap; width:60%; margin: 0 auto;"
+        >
+          {%- if variant.featured_media != null -%}
+            <div
+              class="imageloop product-image"
+              data-variant-id="{{ variant.id }}"
+              data-slick-index="{{ variant.featured_image.position }}"
+              style="cursor:zoom-in; margin:0 auto;"
+            >
+              {% render 'zoom', variant: variant %}
+            </div>
+          {% endif %}
+        </div>
+        <div class="product-thumbnails js-thumb-slider">
+          {% for media in product.media %}
+            <div class="thumb-item {% if media.id == variant.featured_media.id %}active{% endif %}">
+              <img
+                src="{{ media | image_url: width: 150 }}"
+                data-full-image="{{ media | image_url: width: 1000 }}"
+                data-media-id="{{ media.id }}"
+                width=""
+                height=""
+              >
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    {% elsif section.settings.product_media == 'slider' %}
+      <div class="product-media">
+        <div
+          class="mobile_only_slider"
+          style="display:flex; flex-wrap: wrap; width:60%; margin: 0 auto;"
+        >
+          {%- if variant.featured_media != null -%}
+            <div
+              class="imageloop product-image"
+              data-variant-id="{{ variant.id }}"
+              data-slick-index="{{ variant.featured_image.position }}"
+              style="cursor:zoom-in; margin:0 auto;"
+            >
+              {% render 'zoom', variant: variant %}
+            </div>
+          {% endif %}
+          {% for media in product.media %}
+            {%- unless media.id == variant.featured_media.id -%}
+              {% if media.alt == variant.image.alt or product.metafields.custom.bundelproductimage.value %}
+                <div
+                  class="imageloop"
+                  data-variant-id="{{ variant.id }}"
+                  data-slick-index="{{ variant.featured_image.position }}"
+                  style="margin:0 auto;"
+                >
+                  {% if media.media_type == 'image' %}
+                    <div style="cursor:zoom-in;">
+                      {% render 'zoom', media: media %}
+                    </div>
+
+                  {% elsif media.media_type == 'video' %}
+                    <video loop muted autoplay width="500px" style="margin: 100px 0;" class="image-selector">
+                      <source src="{{ media.sources[1].url }}" type="video/mp4">
+                    </video>
+
+                  {% elsif media.media_type == 'external_video' %}
+                    {{
+                      media
+                      | external_video_url: loop: true, muted: true, autoplay: true, width: 500
+                      | external_video_tag: class: 'image-selector'
+                    }}
+
+                  {% elsif media.media_type == 'model' %}
+                    {{ media | media_tag: width: 1000 }}
+                  {% endif %}
+                </div>
+              {% else %}
+                {% if media.preview_image.alt == blank %}
+                  {{ media.preview_image | image_url: width: 100, height: 100 | image_tag }}
+                {% endif %}
+              {% endif %}
+            {% endunless %}
+          {% endfor %}
+        </div>
+        0
+      </div>
+    {% endif %}
+
+    {% form 'product', product, id: 'myForm', style: "width:40%"; %}
+      <div class="product-content">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'title' %}
+              <h3
+                class="product-title"
+                style="font-size:40px; font-weight:500; margin-bottom:30px;"
+                {{ block.shopify_attributes }}
+              >
+                {{ product.title }}
+              </h3>
+            {% when 'price' %}
+              <div style="display:flex;" {{ block.shopify_attributes }}>
+                <div class="product-price">
+                  {{ variant.price | money_with_currency -}}
+                </div>
+                {% if variant.compare_at_price > variant.price %}
+                  <del class="comapre-price" style="padding:0px 5px; margin:0 10px;">
+                    {{- variant.compare_at_price | money_with_currency -}}
+                  </del>
+                {% endif %}
+              </div>
+            {% when 'variant_picker' %}
+              <div class="variant-grid">
+                {% for variant in product.variants %}
+                  <label class="variant-card">
+                    <input
+                      type="radio"
+                      name="variant_id"
+                      value="{{ variant.id }}"
+                      {% if forloop.first %}
+                        checked
+                      {% endif %}
+                    >
+
+                    {% if forloop.index == 2 %}
+                      <p class="variant-title">
+                        <h3 style="font-size: 27px;">{{ variant.title | split: ' ' | first }}</h3>
+                        <span>{{ variant.title | split: ' ' | last }}</span> + 2 Gifts
+                      </p>
+                    {% elsif forloop.index == 3 %}
+                      <p class="variant-title">
+                        <h3 style="font-size: 27px;">{{ variant.title | split: ' ' | first }}</h3>
+                        <span>{{ variant.title | split: ' ' | last }}</span> + 4 Gifts
+                      </p>
+                    {% else %}
+                      <p class="variant-title">
+                        <h3 style="font-size: 27px;">{{ variant.title | split: ' ' | first }}</h3>
+                        <span>{{ variant.title | split: ' ' | last }}</span>
+                      </p>
+                    {% endif %}
+
+                    <p class="price">
+                      {{ variant.price | money }}
+                      {% if variant.compare_at_price %}
+                        <del>{{ variant.compare_at_price | money }}</del>
+                      {% endif %}
+                    </p>
+
+                    {% if variant.featured_image %}
+                      <img
+                        src="{{ variant.featured_image | image_url: width: 400 }}"
+                        alt="{{ variant.title }}"
+                        width=""
+                        height=""
+                      >
+                    {% endif %}
+                  </label>
+                {% endfor %}
+              </div>
+
+              <div class="gift-wrapper">
+                {% for gift in settings.product.variants %}
+                  <div class="gift-item" data-gift-id="{{ gift.id }}">
+                    <div class="gift-image">
+                      {% if gift.featured_image %}
+                        <img
+                          src="{{ gift.featured_image | image_url: width: 400 }}"
+                          alt="{{ gift.title }}"
+                          width=""
+                          height=""
+                        >
+                      {% endif %}
+
+                      <div class="lock-overlay">
+                        <img
+                          src="https://cdn.shopify.com/s/files/1/0758/7142/0636/files/black-lock-icon-14.png?v=1774602875"
+                          alt="locked"
+                          width=""
+                          height=""
+                        >
+                      </div>
+                    </div>
+
+                    <p class="gift-title">{{ gift.title }}</p>
+                  </div>
+                {% endfor %}
+              </div>
+
+            {% when 'Quantity_selector' %}
+              <div class="quantity-wrapper" {{ block.shopify_attributes }}>
+                <input
+                  type="hidden"
+                  name="id[]"
+                  value="{{ product.selected_or_first_available_variant.id }}"
+                  class="metafield_product_id"
+                  checked
+                >
+
+                <button type="button" class="qty-down btn-space" name="minus">-</button>
+                <input type="number" name="quantity" value="1" min="1" max="100" id="quantity">
+                <button type="button" class="qty-up btn-space" name="plus">+</button>
+              </div>
+
+            {% when 'Buy_Button' %}
+              <div class="main-product">
+                <div
+                  class="fly-source"
+                  style="background-image:url('{{ product.featured_image | image_url }}'); width: 30px; height: 30px; right: 38.5%;"
+                ></div>
+
+                <button
+                  type="submit"
+                  {% if variant.available %}
+                    name="add"
+                  {% endif %}
+                  class="
+                    btn-space fly-btn{% if product.selected_or_first_available_variant.available %} cart-btn {% endif %}
+                    bundel-gift-add-to-cart-btn
+                  "
+                  {% if variant.available %}
+                    style="margin:10px 25px;"
+                  {% else %}
+                    style="cursor: not-allowed; margin:10px 40px;"
+                  {% endif %}
+                  {% unless variant.available %}
+                    disabled
+                  {% endunless %}
+                  {{ block.shopify_attributes }}
+                >
+                  {% assign preorder = false %}
+                  {% assign selected_variant = product.selected_or_first_available_variant %}
+                  {% if selected_variant.inventory_management and selected_variant.inventory_quantity <= 0 %}
+                    {% assign preorder = true %}
+                  {% endif %}
+
+                  {% if variant.available %}
+                    {% if preorder == true %}
+                      {{- 'products.product.pre_sale' | t }}
+                    {% else %}
+                      {{- 'products.product.add_to_cart' | t }}
+                    {% endif %}
+                  {% elsif variant.available == false %}
+                    {{ 'products.product.sold_out' | t }}
+                  {% else %}
+                    {{ 'products.product.unavailable' | t }}
+                  {% endif %}
+                </button>
+              </div>
+
+              <div class="error"></div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    {% endform %}
+  </div>
+{% endunless %}
+
+{% if section.settings.product_media == 'thumbcarousel' %}
+  <style>
+    .main-product-section {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .product-media {
+      width: 50%;
+    }
+
+    .product-content {
+      width: 50%;
+    }
+
+    .mobile_only_slider {
+      width: 100%;
+    }
+
+    .imageloop {
+      width: 100%;
+    }
+
+    .imageloop img {
+      width: 100%;
+      display: block;
+    }
+
+    .product-thumbnails {
+      width: 100%;
+      margin-top: 15px;
+      overflow: hidden;
+    }
+
+    .product-thumbnails .slick-list {
+      overflow: hidden !important;
+    }
+
+    .product-thumbnails .slick-track {
+      display: flex;
+      align-items: center;
+    }
+
+    .product-thumbnails .thumb-item {
+      padding: 4px;
+      box-sizing: border-box;
+    }
+
+    .product-thumbnails img {
+      width: 100%;
+      height: auto;
+      display: block;
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 6px;
+    }
+
+    .product-thumbnails .thumb-item.active img {
+      border-color: #000;
+    }
+
+    .product-thumbnails .slick-prev,
+    .product-thumbnails .slick-next {
+      z-index: 5;
+    }
+
+    @media (max-width: 768px) {
+      .main-product-section {
+        flex-direction: column;
+      }
+
+      .product-media,
+      .product-content {
+        width: 100%;
+      }
+    }
+  </style>
+{% endif %}
+
+<style>
+  .variant-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .variant-card {
+   border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      width: 200px;
+      background: #bbbbbb;
+      padding: 12px;
+      transition: 0.3s ease;
+  }
+
+  .variant-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .variant-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .variant-title {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    .variant-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns mobile */
+    }
+  }
+
+  .gift-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .gift-item {
+    background: #f7f7f7;
+    border-radius: 10px;
+    width: 125px;
+    text-align: center;
+    transition: 0.3s ease;
+  }
+
+  .gift-item:hover {
+    transform: translateY(-4px);
+  }
+
+  .gift-item img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+     transition: 0.3s ease;
+  }
+
+  .gift-title {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    .gift-wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .gift-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .gift-item {
+    text-align: center;
+  }
+
+  /* IMAGE WRAPPER */
+  .gift-image {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  /* NORMAL IMAGE */
+  .gift-image img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  /* 🔥 LOCKED STATE */
+  .gift-item.locked .gift-image img {
+    filter: grayscale(100%) opacity(0.4);
+  }
+
+  /* 🔒 LOCK ICON CENTER */
+  .lock-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .lock-overlay img {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* TITLE */
+  .gift-title {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .locked .lock-overlay {
+    display: block;
+  }
+
+  .gift-item:not(.locked) .lock-overlay {
+    display: none;
+  }
+
+  .locked .gift-image img {
+    filter: grayscale(100%) opacity(0.4);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Bundel Gift",
+  "settings": [
+    {
+      "type": "select",
+      "id": "zoomlayout",
+      "label": "Zoom",
+      "options": [
+        {
+          "value": "hover",
+          "label": "Click and Hover"
+        },
+        {
+          "value": "lightbox",
+          "label": "Light Box"
+        },
+        {
+          "value": "fancybox",
+          "label": "Fancy Box"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "product_media",
+      "label": "Product Media",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "thumbcarousel",
+          "label": "Thumbnail Carousel"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title"
+    },
+    {
+      "type": "price",
+      "name": "Price"
+    },
+    {
+      "type": "variant_picker",
+      "name": "Variant Picker"
+    },
+    {
+      "type": "parent-child-bundelpro",
+      "name": "Parent Child Bundel Prod"
+    },
+    {
+      "type": "static_bundel_products",
+      "name": "Static Bundel Products"
+    },
+    {
+      "type": "bundel_products",
+      "name": "Bundel Products"
+    },
+    {
+      "type": "compare_product",
+      "name": "Compare Product"
+    },
+    {
+      "type": "giftcard_form",
+      "name": "Gift Card Form"
+    },
+    {
+      "type": "subscription",
+      "name": "Subscription"
+    },
+    {
+      "type": "Quantity_selector",
+      "name": "Quantity selector"
+    },
+    {
+      "type": "Buy_Button",
+      "name": "Buy Button"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundel Gift"
+    }
+  ]
+}
+{% endschema %}

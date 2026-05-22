@@ -1,0 +1,93 @@
+{% content_for 'blocks' %}
+<div class="wrapper inner-wrapper">
+  <section class="faq-page-wrapper">
+    <div class="flex faq-row ">
+      <div class="faq-left-col" id="scroll">
+        <div class="faq-left-inner">
+          <h1>FAQ</h1>
+          <ul class="faq-scrolspy">
+            <li class="faq-scrollist">
+              <a href="#page1" class="dot active">NOS PRODUITS</a>
+            </li>
+            <li class="faq-scrollist">
+              <a href="#page2" class="dot">MON COMPTE</a>
+            </li>
+            <li class="faq-scrollist">
+              <a href="#page3" class="dot">LIVRAISON</a>
+            </li>
+            <li class="faq-scrollist">
+              <a href="#page4" class="dot">AUTRE</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="faq-right-col">
+        <div class="faq-right-col-inner">
+          <div class="faq-right-scrolbody">
+            {% for i in (1..5) %}
+              <div class="faq-scrolling-section" id="page{{ i }}">
+                <h2>NOS PRODUITS</h2>
+                <div class="faq-accordian">
+                  <div class="set">
+                    <a href="javascript:;" class="active">
+                      <span>Lorem ipsum dolor sit amet, consectetur?</span>
+                    </a>
+                    <div class="content" style="display: block;">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt ipsum hendrerit lorem lorem
+                        quis ullamcorper. Nibh in tincidunt pharetra elementum vitae.
+                      </p>
+                    </div>
+                  </div>
+
+                  {% for i in (1..7) %}
+                    <div class="set">
+                      <a href="javascript:;" class="">
+                        <span>Lorem ipsum dolor sit amet, consectetur?</span>
+                      </a>
+                      <div class="content" style="display: none;">
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt ipsum hendrerit lorem lorem
+                          quis ullamcorper. Nibh in tincidunt pharetra elementum vitae.
+                        </p>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{{ page.title }}
+
+{% schema %}
+{
+  "name": "Faq setion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Faq setion",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

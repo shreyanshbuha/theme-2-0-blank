@@ -1,0 +1,10 @@
+{% if settings.cart_reserved_minutes != blank %}
+<div
+  class="cart-reserved-timer"
+  data-minutes="{{ settings.cart_reserved_minutes }}"
+  style="padding:10px; background:#fff3cd; margin-bottom:10px; border-radius:6px;"
+>
+  {{ settings.cart_timer_title }}
+  <strong><span class="cart-timer-countdown"></span></strong>
+</div>
+{% endif %}

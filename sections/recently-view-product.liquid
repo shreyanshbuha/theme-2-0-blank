@@ -1,0 +1,29 @@
+<div class="container recent-content">
+  <h2 id="recently-viewed-heading" style="display: none;">{{ section.settings.heading }}</h2>
+  <div
+    class="recent-view"
+    data-product-url="{{ product.url }}"
+    data-product-handle="{{ product.handle }}"
+    style="margin:10px;"
+  >
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Recently Viewed Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+  ],
+  "presets": [
+    {
+      "name": "Recently Viewed Products"
+    }
+  ]
+}
+{% endschema %}

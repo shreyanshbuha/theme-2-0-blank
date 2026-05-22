@@ -1,0 +1,79 @@
+<div class="contact-container">
+  {% form 'contact' %}
+    <div class="column one">
+      <div class="field">
+        <label>Name</label>
+        <input type="text" name="contact[name]" placeholder=" Your name " required>
+      </div>
+      <div class="field">
+        <label>Phone Number</label>
+        <input type="number" name="contact[number]" placeholder="Your Phone Number" required style="margin-top:30px;">
+      </div>
+    </div>
+    <div class="column two">
+      <div class="field">
+        <label>Email</label>
+        <input type="email" name="contact[email]" placeholder=" Your Email" required>
+      </div>
+      <div class="field Brief">
+        <label>Details</label>
+        <textarea placeholder="Enter Details" name="contact[textarea]"></textarea>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="register"
+      name="submit"
+    >
+      <span class="svg-wrapper">
+        {{- 'contact.form.submit' | t -}}
+      </span>
+    </button>
+    {%- if form.errors -%}
+      <small class="newsletter-form__message form__message" id="ContactFooter-error">
+        <span class="svg-wrapper" style="display:flex;">
+          <img
+            src="{{- 'not-yet.svg' | asset_url -}}"
+            width="15px"
+            height="15px"
+            style="margin: 5px 8px "
+          >
+          <div style="margin-top:4px;">
+            {{ form.errors.translated_fields.email | camelize }}
+            {{ form.errors.messages.email }}
+          </div>
+        </span>
+      </small>
+    {%- endif -%}
+    {%- if form.posted_successfully? -%}
+      <h3
+        class="newsletter-form__message newsletter-form__message--success form__message"
+        id="ContactFooter-success"
+        tabindex="-1"
+        autofocus
+      >
+        <span class="svg-wrapper" style="display:flex;">
+          <img
+            src="{{- 'check.svg' | asset_url -}}"
+            width="15px"
+            height="15px"
+            style="margin: 5px 8px "
+          >
+          {{- 'contact.form.responce' | t }}
+        </span>
+      </h3>
+    {%- endif -%}
+  {% endform %}
+</div>
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Contact Form"
+    }
+  ]
+}
+{% endschema %}

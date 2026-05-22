@@ -1,0 +1,37 @@
+
+{% comment %} <div data-section-id="{{ section.id }}" data-section-type="covet-pics-feed"> {% endcomment %}
+  {%- assign section_heading = section.settings.title -%}
+  {%- assign gallery_code = section.settings.gallery-code -%}
+  <section class="home-section content-area {% if section_heading != blank %}has-heading{% endif %}">
+    {% if section_heading != blank %}
+      <h2 class="section-title" style="text-align:center">{{ section_heading }}</h2>
+    {% endif %}
+    <div class="covet-pics-wrap">
+      {{ gallery_code }}
+    </div>
+  </section>
+{% comment %} </div> {% endcomment %}
+{% schema %}
+{
+  "name": "Social Media Gallery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Instagram feed"
+    },
+    {
+      "type": "textarea",
+      "id": "gallery-code",
+      "label": "Gallery Embed Code"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Social Media Gallery"
+    }
+  ]
+}
+{% endschema %}

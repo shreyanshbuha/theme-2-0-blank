@@ -1,0 +1,31 @@
+{% if collection.title != blank or collection.description != blank or collection.featured_image != blank %}
+  <section class="ivory-home-banner shop-banner space" data-section="pdp-hero-section">
+    <div class="home-banner-content">
+      <div class="home-banner-inner" style="opacity:1;">
+        {% if collection.title != blank %}
+          <h2>{{ collection.title }}</h2>
+        {% endif %}
+        {% if collection.description != blank %}
+          <p>{{ collection.description }}</p>
+        {% endif %}
+      </div>
+    </div>
+    {% if collection.featured_image != blank %}
+      <div class="home-banner-img" style="padding-bottom:40px">
+        {{ collection.featured_image | image_url: width: 900, height: 550 | image_tag }}
+      </div>
+    {% endif %}
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Shop Hero Section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Shop Hero Section"
+    }
+  ]
+}
+{% endschema %}

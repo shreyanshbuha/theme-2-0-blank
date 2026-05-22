@@ -1,0 +1,64 @@
+<section class="journal-grid-section" data-section="blog of artical collection">
+  <div class="shop-grid-section">
+    <div class="container">
+      {% assign current_blog = blog.handle %}
+      {% if section.blocks.size > 0 %}
+        <ul class="cat-tab tabs justify-center">
+          {% for block in section.blocks %}
+            <li
+              class="tab-link {% if block.settings.blog.handle == current_blog %}active{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              <a href="{{ block.settings.blog.url }}">{{ block.settings.blog.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if blog.articles != blank %}
+        {% paginate blog.articles by section.settings.range %}
+          <div class="blog-grid flex">
+            {% for article in blog.articles %}
+              {% render 'article-card', article: article %}
+            {% endfor %}
+          </div>
+          <div>{% render 'pagination', paginate: paginate %}</div>
+        {% endpaginate %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Article Grid",
+  "settings": [
+    {
+      "type": "range",
+      "id": "range",
+      "label": "Show Articles",
+      "min": 1,
+      "max": 100,
+      "default": 2
+    }
+  ],
+  "blocks": [
+    {
+      "type": "article",
+      "name": "Article",
+      "settings": [
+        {
+          "type": "blog",
+          "id": "blog",
+          "label": "Add Blog"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Article Grid"
+    }
+  ]
+}
+{% endschema %}

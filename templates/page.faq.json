@@ -1,0 +1,156 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "faq_section_ejCpEj": {
+      "type": "faq-section",
+      "name": "Faq setion",
+      "settings": {
+        "text": ""
+      }
+    },
+    "custom_section_qmi6Th": {
+      "type": "custom-section",
+      "blocks": {
+        "nested_parent_KMfr7X": {
+          "type": "nested-parent",
+          "settings": {
+            "title": "Parent Slide",
+            "parent_key": "slide1"
+          },
+          "blocks": {
+            "nested_child_9ngWDU": {
+              "type": "nested-child",
+              "name": "Child Slide",
+              "settings": {
+                "title": "Child Slide 1",
+                "parent_key": "slide1",
+                "child_key": "q1"
+              },
+              "blocks": {
+                "nested_subchild_aHgawd": {
+                  "type": "nested-subchild",
+                  "name": "Sub Child Slide",
+                  "settings": {
+                    "title": "Sub Child Slide 1",
+                    "parent_key": "slider1",
+                    "child_key": "q1",
+                    "subchild_key": "d1"
+                  },
+                  "blocks": {
+                    "nested_level4_Lrxt6Q": {
+                      "type": "nested-level4",
+                      "name": "Level 4 slide",
+                      "settings": {
+                        "title": "Level 4 slide 1",
+                        "parent_key": "slider1",
+                        "child_key": "q1",
+                        "subchild_key": "d1",
+                        "level4_key": "w1"
+                      },
+                      "blocks": {
+                        "nested_level5_THFWRi": {
+                          "type": "nested-level5",
+                          "name": "Level 5 slide",
+                          "settings": {
+                            "title": "Level 5 slide 1",
+                            "parent_key": "slider1",
+                            "child_key": "q1",
+                            "subchild_key": "d1",
+                            "level4_key": "w1",
+                            "level5_key": "r1"
+                          },
+                          "blocks": {
+                            "nested_level6_dkTdNx": {
+                              "type": "nested-level6",
+                              "name": "Level 6 slide",
+                              "settings": {
+                                "title": "Level 6 slide 1",
+                                "parent_key": "slider1",
+                                "child_key": "q1",
+                                "subchild_key": "d1",
+                                "level4_key": "w1",
+                                "level5_key": "r1"
+                              },
+                              "blocks": {}
+                            }
+                          },
+                          "block_order": [
+                            "nested_level6_dkTdNx"
+                          ]
+                        }
+                      },
+                      "block_order": [
+                        "nested_level5_THFWRi"
+                      ]
+                    },
+                    "nested_level4_caXDWX": {
+                      "type": "nested-level4",
+                      "name": "Level 4 slide",
+                      "settings": {
+                        "title": "Level 4 slide 222",
+                        "parent_key": "slider1",
+                        "child_key": "q1",
+                        "subchild_key": "d1",
+                        "level4_key": "11"
+                      },
+                      "blocks": {
+                        "nested_level5_WNgJpk": {
+                          "type": "nested-level5",
+                          "name": "Level 5 slide",
+                          "settings": {
+                            "title": "Level 5 slide 22",
+                            "parent_key": "slider1",
+                            "child_key": "q1",
+                            "subchild_key": "d1",
+                            "level4_key": "11",
+                            "level5_key": "yyy"
+                          },
+                          "blocks": {}
+                        }
+                      },
+                      "block_order": [
+                        "nested_level5_WNgJpk"
+                      ]
+                    }
+                  },
+                  "block_order": [
+                    "nested_level4_Lrxt6Q",
+                    "nested_level4_caXDWX"
+                  ]
+                }
+              },
+              "block_order": [
+                "nested_subchild_aHgawd"
+              ]
+            }
+          },
+          "block_order": [
+            "nested_child_9ngWDU"
+          ]
+        }
+      },
+      "block_order": [
+        "nested_parent_KMfr7X"
+      ],
+      "name": "Nested Menu",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "faq_section_ejCpEj",
+    "custom_section_qmi6Th"
+  ]
+}

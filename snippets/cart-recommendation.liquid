@@ -1,0 +1,74 @@
+<div class="umay-lik-slider-wrp">
+  {% if heading != blank %}
+    <div class="text-center center-title">{{ heading }}</div>
+  {% endif %}
+  <div
+    class="cartdrawer-product-recommendations"
+    data-url="{{ routes.product_recommendations_url }}?product_id={{ cart.items.first.product.id }}&limit={{ limit }}&section_id=cart-recommendation"
+  >
+    {% if recommendations.performed? and recommendations.products_count > 0 %}
+      {% comment %} {% if settings.selectfreeproduct contains 'hash' %} {% endcomment %}
+      <div class="custom-cart-slider" style="display:flex;">
+        {% for product in recommendations.products %}
+          <div class="u-may-like-itm" style="width:80px; margin: 0 auto;">
+            <div class=" u-may-like-inner flex align-center">
+              <a href="{{ product.url }}" class="u-may-img">
+                <img
+                  src="{{ product.featured_image | image_url }}"
+                  width="95%"
+                  height=""
+                >
+              </a>
+              <div class="u-may-like-content" style="margin:0 auto;">
+                <p class="ptitle">
+                  <a href="{{ product.url }}">{{ product.title }}</a>
+                </p>
+                {{ product.price | money_without_trailing_zeros }}
+                {% form 'product', product %}
+                  {% unless product.variants_count > 1 %}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                    <button
+                      type="submit"
+                      name="add"
+                      class="add-to-cart-button 
+                      {% comment %} cart-btn {% endcomment %}
+                      "
+                      style="
+                        width: 110px;
+                        height: 26px;
+                        font-size: 11px;
+                        padding: 0;
+                      "
+                    >
+                      {{ 'products.product.add_to_cart' | t }}
+                    </button>
+                  {% else %}
+                    <div class="quick-btn">
+                      <button
+                        class="btn btn-primary quick-view"
+                        data-product-url="{{ product.url }}"
+                        type="button"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasTop"
+                        aria-controls="offcanvasTop"
+                        style="
+                          width: 117px;
+                          height: 26px;
+                          font-size: 11px;
+                          padding: 0;
+                        "
+                      >
+                        Choose options
+                      </button>
+                    </div>
+                  {% endunless %}
+                {% endform %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% comment %} {% endif %} {% endcomment %}
+    {% endif %}
+  </div>
+</div>
