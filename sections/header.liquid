@@ -154,21 +154,21 @@
         <ul class="mobile-social flex justify-center align-center">
           {% if settings['facebook-url'] != blank %}
             <li>
-              <a href="{{ settings.facebook-url }}">
+              <a href="{{ settings.facebook-url }}" aria-label="Facebook page">
                 {% render 'icons', icon: 'facebook' %}
               </a>
             </li>
           {% endif %}
           {% if settings['instagram-url'] != blank %}
             <li>
-              <a href="{{ settings.instagram-url }}">
+              <a href="{{ settings.instagram-url }}" aria-label="Instagram page">
                 {% render 'icons', icon: 'instagram' %}
               </a>
             </li>
           {% endif %}
           {% if settings['tiktok-url'] != blank %}
             <li>
-              <a href="{{ settings.tiktok-url }}">
+              <a href="{{ settings.tiktok-url }}" aria-label="Tiktok page">
                 {% render 'icons', icon: 'tiktok' %}
               </a>
             </li>
