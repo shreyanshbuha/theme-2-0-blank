@@ -36,11 +36,9 @@
                             {% if childlink.object.featured_image != blank %}
                               <div class="mega-media">
                                 <a href="{{ childlink.url }}"
-                                  ><img
-                                    src="{{ childlink.object.featured_image | image_url  }}"
-                                    width=""
-                                    height=""
-                                ></a>
+                                  >
+                                  {{ childlink.object.featured_image | image_url : width: 200 | image_tag: widths: '100, 150, 200'}}
+                                </a>
                               </div>
                             {% endif %}
                           </div>
