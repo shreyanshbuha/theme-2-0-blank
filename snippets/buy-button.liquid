@@ -1,42 +1,48 @@
-{% if settings.selectfreeproduct  %}
-  
-{% unless product.variants_count > 1 %}
-      {% form 'product', product %}
-       
-        {% assign preorder = false %}
-        {% assign selected_variant = product.selected_or_first_available_variant %}
-        {% if selected_variant.inventory_management and selected_variant.inventory_quantity <= 0  %}
-            {% assign preorder = true %}
-        {% endif %}
-              
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-   
-        <button type="submit" name="add" class="add-to-cart-button fly-btn {% if product.selected_or_first_available_variant.available %} cart-btn {% endif %}" {% unless product.selected_or_first_available_variant.available %} style="cursor:not-allowed;"{% endunless %}>
-          <span>
-            {% if product.selected_or_first_available_variant.available %}
-              {% if preorder == true %}
-                  {{- 'products.product.pre_sale' | t }}
-                {% else %}
-                  {{- 'products.product.add_to_cart' | t }}
-                {% endif %}
-            {% elsif product.selected_or_first_available_variant.available == false %}
-              {{ 'products.product.sold_out' | t }}
+{% if settings.selectfreeproduct %}
+  {% unless product.variants_count > 1 %}
+    {% form 'product', product %}
+      {% assign preorder = false %}
+      {% assign selected_variant = product.selected_or_first_available_variant %}
+      {% if selected_variant.inventory_management and selected_variant.inventory_quantity <= 0 %}
+        {% assign preorder = true %}
+      {% endif %}
+
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+      <button
+        type="submit"
+        name="add"
+        class="add-to-cart-button fly-btn {% if product.selected_or_first_available_variant.available %} cart-btn {% endif %}"
+        {% unless product.selected_or_first_available_variant.available %}
+          style="cursor:not-allowed;"
+        {% endunless %}
+      >
+        <span>
+          {% if product.selected_or_first_available_variant.available %}
+            {% if preorder == true %}
+              {{- 'products.product.pre_sale' | t }}
+            {% else %}
+              {{- 'products.product.add_to_cart' | t }}
             {% endif %}
-          </span>
-        </button>
-      {% endform %}
-    {% else %}
-      <div class="quick-btn">
-        <button
-          class="btn btn-primary quick-view fly-btn"
-          data-product-url="{{ product.url }}"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasTop"
-          aria-controls="offcanvasTop"
-        >
-          Choose options
-        </button>
-      </div>
-    {% endunless %}
-    {% endif %}
+          {% elsif product.selected_or_first_available_variant.available == false %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
+        </span>
+      </button>
+    {% endform %}
+  {% else %}
+    <div class="quick-btn">
+      <button
+        class="btn btn-primary quick-view fly-btn"
+        data-product-url="{{ product.url }}"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasTop"
+        aria-controls="offcanvasTop"
+        aria-expanded="false"
+      >
+        Choose options
+      </button>
+    </div>
+  {% endunless %}
+{% endif %}
