@@ -71,7 +71,7 @@
             and 'customers/order'
           %}
             {% form 'localization', style: 'position:relative;' %}
-              <div><label for="country_code">Select country :-</label></div>
+              <div><label for="country_code" class="footer-hed-title">Select country :-</label></div>
               <select name="country_code" id="country_code" style="padding: 5px 28px 5px 15px; margin: 5px 0;">
                 {% for country in localization.available_countries %}
                   <option
