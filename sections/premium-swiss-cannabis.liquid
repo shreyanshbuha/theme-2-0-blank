@@ -55,12 +55,7 @@
                       <div class="plc-right-logo-col flex align-center" {{ block.shopify_attributes }}>
                         {% if block.settings.imagebox != blank %}
                           <div class="plc-right-ic">
-                            <img
-                              src="{{ block.settings.imagebox | image_url }}"
-                              alt="{{ block.settings.imagebox.alt }}"
-                              width=""
-                              height=""
-                            >
+                              {{ block.settings.imagebox | image_url: width: 50 | image_tag: widths: '50' , alt: block.settings.imagebox.alt }}
                           </div>
                         {% endif %}
                         {% if block.settings.title != blank %}
