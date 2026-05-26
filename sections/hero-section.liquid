@@ -23,7 +23,7 @@
         {% case block.type %}
           {% when 'Image' %}
             {% if block.settings.heroimage != blank %}
-              <img src="{{ block.settings.heroimage | image_url }}" width="" height="" {{ block.shopify_attributes }}>
+              <img src="{{ block.settings.heroimage | image_url }}" alt="{{ block.settings.heroimage.alt }}" width="" height="" {{ block.shopify_attributes }}>
             {% endif %}
         {% endcase %}
       {% endfor %}
