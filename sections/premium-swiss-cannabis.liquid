@@ -35,8 +35,8 @@
                         {{
                           block.settings.image
                           | image_url: width: 110
-                          | image_tag: alt: 'Trustpilot Reviews'
-                          , widths: '50, 110'
+                          | image_tag: alt: block.settings.image.alt
+                          | default: 'Trustpilot Reviews', widths: '50, 110'
                         }}
                       </div>
                     {% endif %}
