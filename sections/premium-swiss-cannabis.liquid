@@ -7,7 +7,7 @@
             <source media="(min-width: 767px)" srcset="{{ section.settings.dekstopbackimg | image_url }}">
           {% endif %}
           {% if section.settings.mobilebackimg != blank %}
-            <img src="{{ section.settings.mobilebackimg | image_url }}" alt="" width="" height="">
+            <img src="{{ section.settings.mobilebackimg | image_url }}" alt="{{ section.settings.mobilebackimg.alt }}" width="" height="">
           {% endif %}
         </picture>
       </div>
