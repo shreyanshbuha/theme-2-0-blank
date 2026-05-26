@@ -62,19 +62,7 @@
       <meta name="description" content="{{ page_description | escape }}">
     {%- endif -%}
 
-    {%- capture seo_title -%}
-  {%- if current_tags -%}
-  {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
-  {%- endif -%}
-  {%- if current_page != 1 -%}
-  &ndash; {{ 'general.meta.page' | t: page: current_page }}
-  {%- endif -%}
-  {%- assign escaped_page_title = page_title | escape -%}
-  {%- unless escaped_page_title contains shop.name -%}
-  &ndash; {{ shop.name }}
-  {%- endunless -%}
-  {%- endcapture -%}
-    <title>{{ seo_title | strip }}</title>
+    <title>{{ page_title }} - {{ shop.name }}</title>
     {% comment %}
       <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
