@@ -159,41 +159,41 @@
     </div>
 
     {% sections 'header-group' %}
-    <div class="wrapper">
-      {% if template.name == 'product' %}
-        <div class="pdp-wrapper">
-      {% endif %}
+    <main id="MainContent" role="main">
+      <div class="wrapper">
+        {% if template.name == 'product' %}
+          <div class="pdp-wrapper">
+        {% endif %}
 
-      {% if template.name == 'cart' %}
-        <div class=" container space">
-      {% endif %}
+        {% if template.name == 'cart' %}
+          <div class=" container space">
+        {% endif %}
 
-      <main id="MainContent" class="content-for-layout" role="main">
         {{ content_for_layout }}
-      </main>
 
-      {% if template.name == 'cart' %}
-        </div>
-      {% endif %}
+        {% if template.name == 'cart' %}
+          </div>
+        {% endif %}
 
-      {% if template == 'product' %}
-        <div class="compare-btn">
-          <div
-            class="compare-product-count"
-            style="
-              width:20px;height:20px;background-color: red;
-              color: white; position: absolute; right: -7px;
-              top: -7px; border-radius: 10px;
-            "
-          ></div>
-          <a href="{{ settings.url }}">{{ settings.text }}</a>
-        </div>
-      {% endif %}
+        {% if template == 'product' %}
+          <div class="compare-btn">
+            <div
+              class="compare-product-count"
+              style="
+                width:20px;height:20px;background-color: red;
+                color: white; position: absolute; right: -7px;
+                top: -7px; border-radius: 10px;
+              "
+            ></div>
+            <a href="{{ settings.url }}">{{ settings.text }}</a>
+          </div>
+        {% endif %}
 
-      {% if template.name == 'product' %}
-        </div>
-      {% endif %}
-    </div>
+        {% if template.name == 'product' %}
+          </div>
+        {% endif %}
+      </div>
+    </main>
     {% sections 'footer-group' %}
   </body>
 </html>
