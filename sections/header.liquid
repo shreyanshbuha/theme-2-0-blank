@@ -58,7 +58,12 @@
           {% if section.settings.imagepicker != blank %}
             <div class="ivory-logo">
               <a href="{{ routes.root_url }}">
-                <img src="{{ section.settings.imagepicker | image_url: width: 100, height: 100 }}" alt="{{ section.settings.imagepicker.alt }}" height="" width="">
+                <img 
+  src="{{ section.settings.imagepicker | image_url: width: 100, height: 100 }}" 
+  alt="{{ section.settings.imagepicker.alt }}" 
+  width="100" 
+  height="100"
+/>
               </a>
             </div>
           {% else %}
