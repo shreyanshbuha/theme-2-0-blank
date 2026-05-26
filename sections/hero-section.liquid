@@ -23,7 +23,7 @@
         {% case block.type %}
           {% when 'Image' %}
             {% if block.settings.heroimage != blank %}
-              {{ block.settings.heroimage | image_url: width: 800 , height: 600 | image_tag: widths: '600 , 800', alt: 'Hero Image' }}
+              {{ block.settings.heroimage | image_url: width: 800 , height: 200 | image_tag: widths: '600 , 800', alt: 'Hero Image' }}
             {% endif %}
         {% endcase %}
       {% endfor %}
