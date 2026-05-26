@@ -5596,3 +5596,41 @@ body.quick-view-open {
     font-family: "Poppins";
     margin-bottom: 15px;
 }
+
+
+
+----------------------------------
+/* Mobile touch target fix */
+@media screen and (max-width: 768px) {
+
+  /* Header menu links */
+  .header a,
+  .header button,
+  .shop-btn,
+  .border-btn,
+  .fly-cart,
+  .social-list a,
+  .header-icons a,
+  .header-icons button {
+
+    min-width: 48px;
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+    margin: 4px;
+  }
+
+  /* Search input */
+  .search-input {
+    min-height: 48px;
+  }
+
+  /* Icon spacing */
+  .social-list li {
+    margin-right: 8px;
+  }
+}
