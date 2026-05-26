@@ -29,6 +29,8 @@
     </div>
     {% if section.settings.dekstopbackimg != blank %}
       <img src="{{ section.settings.dekstopbackimg | image_url }}" alt="{{ section.settings.dekstopbackimg.alt }}" class="sop-bottom desk-only" loading="lazy" width="" height="">
+      {{ section.settings.dekstopbackimg | image_url: width: 1000 | image_tag: widths: '600 ,800 , 1000' , alt: section.settings.dekstopbackimg.alt }}
+
     {% endif %}
     {% if section.settings.mobilebackimg != blank %}
       <img src="{{ section.settings.mobilebackimg | image_url }}" alt="{{ section.settings.mobilebackimg.alt }}" class="sop-bottom mobile-only" loading="lazy" width="" height="">
