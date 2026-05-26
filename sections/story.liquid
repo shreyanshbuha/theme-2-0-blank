@@ -28,10 +28,10 @@
       {% endif %}
     </div>
     {% if section.settings.dekstopbackimg != blank %}
-      <img src="{{ section.settings.dekstopbackimg | image_url }}" class="sop-bottom desk-only" width="" height="">
+      <img src="{{ section.settings.dekstopbackimg | image_url }}" alt="{{ section.settings.dekstopbackimg.alt }}" class="sop-bottom desk-only" width="" height="">
     {% endif %}
     {% if section.settings.mobilebackimg != blank %}
-      <img src="{{ section.settings.mobilebackimg | image_url }}" class="sop-bottom mobile-only" width="" height="">
+      <img src="{{ section.settings.mobilebackimg | image_url }}" alt="{{ section.settings.mobilebackimg.alt }}" class="sop-bottom mobile-only" width="" height="">
     {% endif %}
   </section>
 {% endif %}
