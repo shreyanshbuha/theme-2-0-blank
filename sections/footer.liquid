@@ -46,7 +46,7 @@
                   {% elsif block.settings.linklist.links != blank %}
                     <div class="footer-hed-title">{{ block.settings.linklist.title }}</div>
                   {% endif %}
-                  
+
                   {% if block.settings.linklist.links != blank %}
                     <ul>
                       {% for link in block.settings.linklist.links -%}
@@ -216,9 +216,9 @@
       <div class="footer-payment flex justify-center">
         <ul class="flex justify-center align-center">
           <li>
-            <a href="Javascript:void(0);"
-              ><img src="{{ section.settings.paymentimage | image_url: width: 200, height: 200 }}" height="" width=""
-            ></a>
+            <a href="Javascript:void(0);">
+              {{ section.settings.paymentimage | image_url: width: 200, height: 200 }}
+            </a>
           </li>
         </ul>
       </div>
