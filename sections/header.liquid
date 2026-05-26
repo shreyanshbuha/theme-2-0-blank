@@ -84,7 +84,7 @@
                     placeholder="Search..."
                     class="search-input"
                     value="{{ search.terms | escape }}"
-                    data-search-path="{{ request.origin }}{{ request.path }}"
+                    data-search-path="{{ request.origin }}/{{ localization.language.iso_code | downcase }}-{{ localization.country.iso_code | downcase }}"
                   >
                   <button>
                     <img src="{{ '99.png' |  asset_url }}" alt="search" width="21px" height="21px">
