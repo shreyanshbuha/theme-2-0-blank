@@ -7,12 +7,11 @@
             <source media="(min-width: 767px)" srcset="{{ section.settings.dekstopbackimg | image_url }}">
           {% endif %}
           {% if section.settings.mobilebackimg != blank %}
-            <img
-              src="{{ section.settings.mobilebackimg | image_url }}"
-              alt="{{ section.settings.mobilebackimg.alt }}"
-              width=""
-              height=""
-            >
+            {{
+              section.settings.mobilebackimg
+              | image_url: width: 400
+              | image_tag: widths: '200 , 400', alt: section.settings.mobilebackimg
+            }}
           {% endif %}
         </picture>
       </div>
@@ -35,8 +34,7 @@
                         {{
                           block.settings.image
                           | image_url: width: 110
-                          | image_tag: alt: 'Trustpilot Reviews'
-                          , widths: '50, 110'
+                          | image_tag: alt: 'Trustpilot Reviews', widths: '50, 110'
                         }}
                       </div>
                     {% endif %}
