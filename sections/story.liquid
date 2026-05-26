@@ -27,7 +27,6 @@
         </div>
       {% endif %}
     </div>
-    {{ section.settings.dekstopbackimg.alt | json }}
     {% if section.settings.dekstopbackimg != blank %}
       {{ section.settings.dekstopbackimg | image_url: width: 1000 | image_tag: widths: '600 ,800 , 1000' , alt: section.settings.dekstopbackimg.alt, class: "sop-bottom desk-only" , loading: "lazy"  }}
 
