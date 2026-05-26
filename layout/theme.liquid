@@ -62,7 +62,11 @@
       <meta name="description" content="{{ page_description | escape }}">
     {%- endif -%}
 
-    <title>{{ page_title }} - {{ shop.name }}</title>
+    <title>
+      {{ page_title }}
+      -
+      {{ shop.name }}
+    </title>
     {% comment %}
       <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
@@ -164,7 +168,9 @@
         <div class=" container space">
       {% endif %}
 
-      {{ content_for_layout }}
+      <main id="MainContent" class="content-for-layout" role="main">
+        {{ content_for_layout }}
+      </main>
 
       {% if template.name == 'cart' %}
         </div>
