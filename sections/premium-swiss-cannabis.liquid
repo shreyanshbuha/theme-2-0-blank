@@ -49,7 +49,7 @@
                       <div class="plc-right-logo-col flex align-center" {{ block.shopify_attributes }}>
                         {% if block.settings.imagebox != blank %}
                           <div class="plc-right-ic">
-                            <img src="{{ block.settings.imagebox | image_url }}" width="" height="">
+                            <img src="{{ block.settings.imagebox | image_url }}" alt="{{ block.settings.imagebox.alt }}" width="" height="">
                           </div>
                         {% endif %}
                         {% if block.settings.title != blank %}
