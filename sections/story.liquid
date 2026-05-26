@@ -28,7 +28,7 @@
       {% endif %}
     </div>
     {% if section.settings.dekstopbackimg != blank %}
-      {{ section.settings.dekstopbackimg | image_url: width: 1000 | image_tag: widths: '600 ,800 , 1000' , alt: section.settings.dekstopbackimg.alt, class: "sop-bottom desk-only" , loading: "lazy"  }}
+      {{ section.settings.dekstopbackimg | image_url: width: 800 , height: 250 | image_tag: widths: '600 ,800 ' , alt: section.settings.dekstopbackimg.alt, class: "sop-bottom desk-only" , loading: "lazy"  }}
 
     {% endif %}
     {% if section.settings.mobilebackimg != blank %}
