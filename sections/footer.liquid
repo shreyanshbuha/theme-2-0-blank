@@ -42,9 +42,9 @@
               <div class="footer-col footer-aide-widget" {{ block.shopify_attributes }}>
                 <div class="footer-widget">
                   {% if block.settings.linkheading != blank %}
-                    <div class="footer-hed-title">{{ block.settings.linkheading }}</div>
+                    <h4 class="footer-hed-title">{{ block.settings.linkheading }}</h4>
                   {% elsif block.settings.linklist.links != blank %}
-                    <div class="footer-hed-title">{{ block.settings.linklist.title }}</div>
+                    <h4 class="footer-hed-title">{{ block.settings.linklist.title }}</h4>
                   {% endif %}
                   
                   {% if block.settings.linklist.links != blank %}
@@ -141,7 +141,7 @@
                 <div class="footer-col footer-contact-widget">
                   <div class="footer-widget">
                     {% if block.settings.newstitle != blank %}
-                      <div class="footer-hed-title">{{ block.settings.newstitle }}</div>
+                      <h4 class="footer-hed-title">{{ block.settings.newstitle }}</h4>
                     {% endif %}
                     {% if block.settings.textarea != blank %}
                       <p>{{ block.settings.textarea }}</p>
