@@ -7,7 +7,12 @@
             <source media="(min-width: 767px)" srcset="{{ section.settings.dekstopbackimg | image_url }}">
           {% endif %}
           {% if section.settings.mobilebackimg != blank %}
-            <img src="{{ section.settings.mobilebackimg | image_url }}" alt="{{ section.settings.mobilebackimg.alt }}" width="" height="">
+            <img
+              src="{{ section.settings.mobilebackimg | image_url }}"
+              alt="{{ section.settings.mobilebackimg.alt }}"
+              width=""
+              height=""
+            >
           {% endif %}
         </picture>
       </div>
@@ -27,8 +32,12 @@
                   {% when 'Image' %}
                     {% if block.settings.image != blank %}
                       <div class="star-log-col" {{ block.shopify_attributes }}>
-                                                  {{ block.settings.image | image_url: width: 110 | image_tag: alt: block.settings.image.alt , widths: '50, 110'}}
-
+                        {{
+                          block.settings.image
+                          | image_url: width: 110
+                          | image_tag: alt: 'Trustpilot Reviews'
+                          , widths: '50, 110'
+                        }}
                       </div>
                     {% endif %}
                 {% endcase %}
@@ -48,7 +57,12 @@
                       <div class="plc-right-logo-col flex align-center" {{ block.shopify_attributes }}>
                         {% if block.settings.imagebox != blank %}
                           <div class="plc-right-ic">
-                            <img src="{{ block.settings.imagebox | image_url }}" alt="{{ block.settings.imagebox.alt }}" width="" height="">
+                            <img
+                              src="{{ block.settings.imagebox | image_url }}"
+                              alt="{{ block.settings.imagebox.alt }}"
+                              width=""
+                              height=""
+                            >
                           </div>
                         {% endif %}
                         {% if block.settings.title != blank %}
