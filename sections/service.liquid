@@ -12,13 +12,7 @@
                 <div class="info-col" {{ block.shopify_attributes }}>
                   {% if block.settings.serviceimg != blank %}
                     <div class="info-col-ic">
-                      <img
-                        src="{{ block.settings.serviceimg | image_url: width: 200, height: 200 }}"
-                        width=""
-                        height=""
-                        alt="{{ block.settings.serviceimg.alt }}"
-                        loading="lazy"
-                      >
+                      {{ block.settings.serviceimg | image_url: width: 200, height: 200 | image_tag: widths: '100, 200' , alt: block.settings.serviceimg.alt , loading: 'lazy' }}
                     </div>
                   {% endif %}
                   {% if block.settings.servicetitle != blank or block.settings.serviceDescription != blank %}
