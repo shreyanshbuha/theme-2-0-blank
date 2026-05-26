@@ -32,8 +32,7 @@
 
     {% endif %}
     {% if section.settings.mobilebackimg != blank %}
-      <img src="{{ section.settings.mobilebackimg | image_url }}" alt="{{ section.settings.mobilebackimg.alt }}" class="sop-bottom mobile-only" loading="lazy" width="" height="">
-      {% comment %} {{ section.settings.mobilebackimg | image_url: width: 400 , height: 200| image_tag: widths: '200, 400' , alt: section.settings.mobilebackimg.alt, class: "sop-bottom mobile-only" , loading: "lazy"  }} {% endcomment %}
+      {{ section.settings.mobilebackimg | image_url: width: 400 , height: 200| image_tag: widths: '200, 400' , alt: section.settings.mobilebackimg.alt, class: "sop-bottom mobile-only" , loading: "lazy"  }}
 
     {% endif %}
   </section>
