@@ -98,7 +98,7 @@
             {% if section.settings.profileicon != blank %}
               {% if section.settings.profileicon == true %}
                 <li>
-                  <a href="{%- if customer -%}{{ routes.account_register_url }}{%- else -%}{{ routes.account_url }}{%- endif -%}">
+                  <a href="{%- if customer -%}{{ routes.account_register_url }}{%- else -%}{{ routes.account_url }}{%- endif -%}" aria-label="My account">
                     {% render 'icons', icon: 'profile' %}
                   </a>
                 </li>
