@@ -42,13 +42,9 @@
     {% if product.selected_or_first_available_variant.featured_image != blank %}
       <div class="product-card-media">
         <a href="{{ product.selected_or_first_available_variant.url | within: collection}}" class="product-image">
-          <img
-            src="{{ product.selected_or_first_available_variant.featured_image | image_url}}"
-            width="500px"
-            class="fly-img"
-            alt="{{ product.selected_or_first_available_variant.featured_image.alt }}"
-            loading="lazy"
-          >
+       
+
+            <img src="{{ product.selected_or_first_available_variant.featured_image | image_url: width: 500 }}" class="fly-img" width="250" height="250" loading="lazy">
         </a>
       </div>
     {% else %}
@@ -57,7 +53,8 @@
       {% endfor %}
       <img
         src="{{ mediaimage | image_url }}"
-        width="500px"
+        width="250px"
+        height="250px"
         style="margin: 0 auto;"
         class="fly-img"
       >
