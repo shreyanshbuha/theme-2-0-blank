@@ -27,9 +27,7 @@
                   {% when 'Image' %}
                     {% if block.settings.image != blank %}
                       <div class="star-log-col" {{ block.shopify_attributes }}>
-                        <a href="#">
-                          <img src="{{ block.settings.image | image_url }}" alt="{{ block.settings.image.alt }}" width="" height="">
-                        </a>
+                          {{ block.settings.image | image_url: width: 200 | image_tag: alt: block.settings.image.alt , widths: '100, 150 ,200'}}
                       </div>
                     {% endif %}
                 {% endcase %}
