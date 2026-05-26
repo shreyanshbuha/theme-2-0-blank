@@ -9,7 +9,6 @@
           {% if section.settings.mobilebackimg != blank %}
             <img src="{{ section.settings.mobilebackimg | image_url }}" alt="{{ section.settings.mobilebackimg.alt }}" width="" height="">
           {% endif %}
-          {{ section.settings.mobilebackimg | json }}
         </picture>
       </div>
     {% endif %}
