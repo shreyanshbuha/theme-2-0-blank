@@ -20,7 +20,7 @@
                   {% endif %}
                   {% if block.settings.reviewimg != blank %}
                     <div class="review-star">
-                      <img src="{{ block.settings.reviewimg | image_url: width: 200, height: 200 }}" alt="{{ block.settings.reviewimg.alt }}" width="" height="">
+                      <img src="{{ block.settings.reviewimg | image_url: width: 200, height: 200 }}" alt="{{ block.settings.reviewimg.alt }}" loading="lazy" width="" height="">
                     </div>
                   {% endif %}
                   {{ block.settings.reviewerDescription }}
