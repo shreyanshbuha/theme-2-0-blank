@@ -5589,3 +5589,10 @@ body.quick-view-open {
     pointer-events: none;
     opacity: 0.6;
   }
+
+.footer-hed-title{
+  font-size: 20px;
+    font-weight: 700;
+    font-family: ;
+    margin-bottom: 15px;
+}
