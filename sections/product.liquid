@@ -12,9 +12,7 @@
         </div>
       {% endif %}
 
-      <div class="best-seller-slider desk_only_slider  {% if request.device_type == 'mobile' %}
-    custom-cart-slider
-  {% endif %} product-row">
+      <div class="best-seller-slider desk_only_slider  product-row">
         {% for product in collection_product %}
             {% render 'product-card', product: product %}
           {% endfor %}
