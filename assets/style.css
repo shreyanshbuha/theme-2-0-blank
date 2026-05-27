@@ -3642,7 +3642,7 @@ body.filterOpen {
     max-width: 30%;
   }
   .header-style-one .ivory-logobar .ivory-header-right .social-list {
-    margin-left: 0;
+    margin-left: -13px;
   }
   .desk-only {
     display: none;
@@ -5616,5 +5616,16 @@ body.quick-view-open {
 }
 @media screen and (max-width: 749px){
 
+  .review-slider .slick-arrow{
+    top: 100px;
+  } 
+
+  .home-banner-img img {
+    height: 300px;
+  }
+
+  .search-container{
+    display: none;
+  }
 
 }
