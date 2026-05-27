@@ -4937,13 +4937,13 @@ del {
   z-index: -1 !important;
 }
 .best-sell-item .wk-button ,.best-sell-item wishlist-button-collection .wk-button:hover{
-    top: -75px;
+    /* top: -75px; */
     left: 50px !important;
 }
 
 .product-row-collection .wk-button ,.best-sell-item wishlist-button-collection .wk-button:hover{
-    top: -75px;
-    left: 3px !important;
+    /* top: -75px;
+    left: 3px !important; */
 }
 
 .pdp-third-section  .wk-button , .pdp-third-section  wishlist-button-collection .wk-button:hover{
