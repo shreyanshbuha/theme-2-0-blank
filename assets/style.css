@@ -5582,6 +5582,9 @@ body.quick-view-open {
   .best-sell-item {
     width: 100%;
   }
+  .country_selection{
+      right: 50px;
+  }
 }
 
 
