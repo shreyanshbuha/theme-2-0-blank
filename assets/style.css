@@ -5582,9 +5582,7 @@ body.quick-view-open {
   .best-sell-item {
     width: 100%;
   }
-  .country_selection{
-      right: 50px;
-  }
+ 
 }
 
 
@@ -5609,4 +5607,12 @@ body.quick-view-open {
   position: absolute;
   right: 50px;
   top: 35px;
+}
+@media screen and (max-width: 749px){
+
+  .country_selection{
+    right: 15px;
+    top: 20px;
+  }
+
 }
