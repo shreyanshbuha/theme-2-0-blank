@@ -5600,3 +5600,10 @@ body.quick-view-open {
 .star-log-col{
   margin-right: 15px;
 }
+
+.country_selection{
+  margin: 5px 10px;
+  position: absolute;
+  right: 50px;
+  top: 35px;
+}
