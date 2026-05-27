@@ -12,7 +12,7 @@
     "main": {
       "type": "main-search",
       "settings": {
-        "range": 4,
+        "range": 100,
         "paginate": "loadmore",
         "selcetdfilter": "stor_front_filter"
       }
