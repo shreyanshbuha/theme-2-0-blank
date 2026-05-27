@@ -5624,4 +5624,8 @@ body.quick-view-open {
     height: 300px;
   }
 
+  .search-container{
+    display: none;
+  }
+
 }
