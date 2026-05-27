@@ -5620,4 +5620,8 @@ body.quick-view-open {
     top: 100px;
   } 
 
+  .home-banner-img img {
+    height: 300px;
+  }
+
 }
