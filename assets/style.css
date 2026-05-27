@@ -5611,8 +5611,7 @@ body.quick-view-open {
 @media screen and (max-width: 749px){
 
   .country_selection{
-    right: 15px;
-    top: 20px;
+    right: 60px;
   }
 
 }
