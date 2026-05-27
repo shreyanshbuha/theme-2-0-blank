@@ -5605,23 +5605,16 @@ body.quick-view-open {
 .country_selection{
   margin: 5px 10px;
   position: absolute;
-  right: 50px;
+  right: 60px;
   top: 35px;
 }
 .language_selection{
   margin: 5px 10px;
   position: absolute;
-  right: 85px;
+  right: 95px;
   bottom: 6px;
 }
 @media screen and (max-width: 749px){
 
-  .country_selection{
-    right: 60px;
-  }
-
-  .language_selection{
-    right: 95px;
-  }
 
 }
