@@ -2321,8 +2321,8 @@ document.addEventListener("click", function (e) {
     .then(res => res.json())
     .then(data => {
       console.log('Cart updated', data);
-      mobileslider()
       getCartData(data);
+      mobileslider();
     });
   });
 
