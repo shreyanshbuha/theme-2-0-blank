@@ -59,7 +59,7 @@
       >
     {% endif %}
 
-    {% for option in product.options_with_values %}
+    {% for option in product.options_with_values %}+++++
       {% assign opt_index = forloop.index0 %}
 
       {% if option.name == 'Color' or option.name == 'color' %}
