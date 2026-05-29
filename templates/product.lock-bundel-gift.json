@@ -43,7 +43,7 @@
       "name": "Bundel Gift",
       "settings": {
         "zoomlayout": "lightbox",
-        "product_media": "thumbcarousel"
+        "product_media": "slider"
       }
     }
   },
