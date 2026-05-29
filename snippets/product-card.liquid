@@ -60,7 +60,7 @@
     {% endif %}
 
     {% for option in product.options_with_values %}
-      {% assign opt_index = forloop.index0 %}
+      {% assign opt_index = forloop.index0 %}+++++
       {% if option.name == 'Color' or option.name == 'color' %}
         -----
         <div class="color-swatch-wrapper" data-product-url="{{ product.url }}" style="margin: 11px 0;">
