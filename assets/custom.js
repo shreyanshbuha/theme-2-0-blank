@@ -2322,7 +2322,6 @@ document.addEventListener("click", function (e) {
     .then(data => {
       console.log('Cart updated', data);
       getCartData(data);
-      mobileslider();
     });
   });
 
