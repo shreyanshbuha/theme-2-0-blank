@@ -42,12 +42,7 @@
     {% if product.selected_or_first_available_variant.featured_image != blank %}
       <div class="product-card-media">
         <a href="{{ product.selected_or_first_available_variant.url | within: collection}}" class="product-image">
-          <img
-            src="{{ product.selected_or_first_available_variant.featured_image | image_url}}"
-            width="250px"
-            height="250px"
-            class="fly-img"
-          >
+            <img src="{{ product.selected_or_first_available_variant.featured_image | image_url: width: 500 }}" class="fly-img"  alt="{{ product.selected_or_first_available_variant.featured_image.alt }}" width="250" height="250" loading="lazy">
         </a>
       </div>
     {% else %}
@@ -55,11 +50,12 @@
         {% assign mediaimage = media.preview_image %}
       {% endfor %}
       <img
-        src="{{ mediaimage | image_url }}"
+        src="{{ mediaimage | image_url: width: 500 }}"
         width="250px"
         height="250px"
         style="margin: 0 auto;"
-        class="fly-img"
+        class="fly-img" loading="lazy"
+         alt="{{ mediaimage.alt }}"
       >
     {% endif %}
 
@@ -79,38 +75,34 @@
             {% endfor %}
 
             {% if matched_variant %}
-              <product-card-color-variant>
-                <product-swatch>
-                  <input
-                    type="radio"
-                    id="color-{{ value | handleize }}-{{ product.id }}"
-                    class="color-swatch-input"
-                    name="color-option-{{ product.id }}"
-                    value="{{ value | escape }}"
-                    data-variant-id="{{ matched_variant.id }}"
-                    data-variant-image="{{ matched_variant.featured_image | image_url }}"
-                    data-variant-price="{{ matched_variant.price | money_without_trailing_zeros }}"
-                    data-variant-compare-price="{{ matched_variant.compare_at_price | money_without_trailing_zeros }}"
-                    {% if forloop.first %}
-                      checked
-                    {% endif %}
-                    hidden
-                  >
+              <input
+                type="radio"
+                id="color-{{ value | handleize }}-{{ product.id }}"
+                class="color-swatch-input"
+                name="color-option-{{ product.id }}"
+                value="{{ value | escape }}"
+                data-variant-id="{{ matched_variant.id }}"
+                data-variant-image="{{ matched_variant.featured_image | image_url }}"
+                data-variant-price="{{ matched_variant.price | money_without_trailing_zeros }}"
+                data-variant-compare-price="{{ matched_variant.compare_at_price | money_without_trailing_zeros }}"
+                {% if forloop.first %}
+                  checked
+                {% endif %}
+                hidden
+              >
 
-                  <label
-                    class="color-swatch-item"
-                    for="color-{{ value | handleize }}-{{ product.id }}"
-                    {% if value.swatch.color %}
-                      style="background-color: rgb({{ value.swatch.color.rgb }});"
-                    {% else %}
-                      style="background-color: {{ value | downcase }};"
-                    {% endif %}
-                    title="{{ value }}"
-                    {% if forloop.first %}
-                    {% endif %}
-                  ></label>
-                </product-swatch>
-              </product-card-color-variant>
+              <label
+                class="color-swatch-item"
+                for="color-{{ value | handleize }}-{{ product.id }}"
+                {% if value.swatch.color %}
+                  style="background-color: rgb({{ value.swatch.color.rgb }});"
+                {% else %}
+                  style="background-color: {{ value | downcase }};"
+                {% endif %}
+                title="{{ value }}"
+                {% if forloop.first %}
+                {% endif %}
+              ></label>
             {% endif %}
           {% endfor %}
         </div>
