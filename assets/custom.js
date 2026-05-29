@@ -2422,17 +2422,17 @@ document.addEventListener("click", function (e) {
     });
   });
 
-  // $(document).ready(function () {
-  //   function applyActiveSwatch() {
-  //     $(".color-swatch-item").removeClass("active");
-  //     $(".color-swatch-input:checked").each(function () {
-  //       var id = $(this).attr("id");
-  //       $('label[for="' + id + '"]').addClass("active");
-  //     });
-  //   }
+  $(document).ready(function () {
+    function applyActiveSwatch() {
+      $(".color-swatch-item").removeClass("active");
+      $(".color-swatch-input:checked").each(function () {
+        var id = $(this).attr("id");
+        $('label[for="' + id + '"]').addClass("active");
+      });
+    }
 
-  //   applyActiveSwatch();
-  //   $(document).on("change", ".color-swatch-input", function () {
-  //     applyActiveSwatch();
-  //   });
-  // });
+    applyActiveSwatch();
+    $(document).on("change", ".color-swatch-input", function () {
+      applyActiveSwatch();
+    });
+  });
