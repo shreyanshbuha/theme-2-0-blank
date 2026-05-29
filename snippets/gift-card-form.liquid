@@ -1,40 +1,62 @@
 {% if product.gift_card? %}
-    <div class="gift-card-form-container" {{ block.shopify_attributes }}>
+  <div class="gift-card-form-container" {{ block.shopify_attributes }}>
     <div
-        class="recipient-form" 
-        data-section-id="{{ section.id }}"
-        data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
+      class="recipient-form"
+      data-section-id="{{ section.id }}"
+      data-product-variant-id="{{ product.selected_or_first_available_variant.id }}"
     >
-        <div class="gift-card-form-group gift-card-checkbox-group">
-            <input type="checkbox" id="gift-card-checkbox" class="gift-card-send-checkbox" name="properties[__shopify_send_gift_card_to_recipient]">
-            <label for="gift-card-checkbox">Send the gift card to a friend</label>
+      <div class="gift-card-form-group gift-card-checkbox-group">
+        <input
+          type="checkbox"
+          id="gift-card-checkbox"
+          class="gift-card-send-checkbox"
+          name="properties[__shopify_send_gift_card_to_recipient]"
+        >
+        <label for="gift-card-checkbox">Send the gift card to a friend</label>
+      </div>
+
+      <div id="gift-card-fields" class="gift-card-hidden">
+        <div class="gift-card-form-group">
+          <label for="gift-card-recipient-name">Recipient Name:</label>
+          <div class="gift-card-instruction">Optional</div>
+          <input
+            type="text"
+            id="gift-card-recipient-name"
+            name="properties[Recipient name]"
+            placeholder="Enter recipient's name"
+          >
         </div>
 
-            <div id="gift-card-fields" class="gift-card-hidden">
-
-                <div class="gift-card-form-group">
-                    <label for="gift-card-recipient-name">Recipient Name:</label>
-                    <div class="gift-card-instruction">Optional</div>
-                    <input type="text" id="gift-card-recipient-name" name="properties[Recipient name]" placeholder="Enter recipient's name">
-                </div>
-
-                <div class="gift-card-form-group">
-                    <label for="gift-card-recipient-email">Recipient Email:</label>
-                    <input type="email" id="gift-card-recipient-email" name="properties[Recipient email]" placeholder="Enter recipient's email" required>
-                </div>
-
-                <div class="gift-card-form-group">
-                    <label for="gift-card-recipient-message">Recipient Message:</label>
-                    <div class="gift-card-instruction">Optional</div>
-                    <textarea id="gift-card-recipient-message" name="properties[Message]" placeholder="Write a message (max 200 characters)" rows="4" maxlength="200"></textarea>
-                </div>
-        
-                <div class="gift-card-form-group">
-                    <label for="gift-card-send-date">Date to send on:</label>
-                    <div class="gift-card-instruction">Optional. If blank, will be sent immediately</div>
-                    <input type="date" id="gift-card-send-date" name="properties[Send on]">
-                </div>
-            </div>
+        <div class="gift-card-form-group">
+          <label for="gift-card-recipient-email">Recipient Email:</label>
+          <input
+            type="email"
+            id="gift-card-recipient-email"
+            name="properties[Recipient email]"
+            placeholder="Enter recipient's email"
+            required
+          >
         </div>
+
+        <div class="gift-card-form-group">
+          <label for="gift-card-recipient-message">Recipient Message:</label>
+          <div class="gift-card-instruction">Optional</div>
+          <textarea
+            id="gift-card-recipient-message"
+            name="properties[Message]"
+            placeholder="Write a message (max 200 characters)"
+            rows="4"
+            maxlength="200"
+          ></textarea>
+        </div>
+
+        <div class="gift-card-form-group">
+          <label for="gift-card-send-date">Date to send on:</label>
+          <div class="gift-card-instruction">Optional. If blank, will be sent immediately</div>
+          <input type="date" id="gift-card-send-date" name="properties[Send on]">
+          <div id="gift-card-date-error"></div>
+        </div>
+      </div>
     </div>
+  </div>
 {% endif %}
