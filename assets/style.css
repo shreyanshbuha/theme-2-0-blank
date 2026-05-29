@@ -5628,4 +5628,9 @@ body.quick-view-open {
     display: none;
   }
 
+  .gift-wrapper .gift-image{
+    width: 50px;
+    height: 50px;
+  }
+
 }
