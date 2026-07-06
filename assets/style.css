@@ -3667,7 +3667,7 @@ body.filterOpen {
   .footer-col.footer-propos-widget {
     max-width: 50%;
     width: 100%;
-    padding: 0;
+    padding: 20px 0;
   }
   .footer-col.footer-social-widget {
     padding-right: 0;
