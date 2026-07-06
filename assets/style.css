@@ -5669,22 +5669,22 @@ body.quick-view-open {
 }
 @media (min-width: 768px) {
   .product-card-inner .wk-button{
-    top: -58px !important;
-    left: -42px !important;
+    top: -70px !important;
+    left: -11px !important;
     position: absolute !important;
   }
 }
 @media (min-width: 992px) {
   .product-card-inner .wk-button{
-    top: -58px !important;
-    left: -42px !important;
+    top: -77px !important;
+    left: -29px !important;
     position: absolute !important;
   }
 }
 @media (min-width: 1200px) {
   .product-card-inner .wk-button{
-    top: -58px !important;
-    left: -42px !important;
+    top: -77px !important;
+    left: -41px !important;
     position: absolute !important;
   }
 }
