@@ -5670,10 +5670,10 @@ body.quick-view-open {
   .button,
   .btn-primary {
     text-align: center;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 12px;
+    line-height: 15px;
     font-weight: 500;
-    padding: 11px 30px;
+    padding: 10px 20px !important;
     font-family: var(--first-font);
     letter-spacing: 1.4px;
     color: #ffffff;
