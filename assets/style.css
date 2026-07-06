@@ -5648,6 +5648,9 @@ body.quick-view-open {
   .informative-section .info-col-ic img{
     height: 75px;
   }
+  body wk-button a{
+    left: 100%;
+  }
 }
 @media (min-width: 480px) {
   .product-card-inner .wk-button{
