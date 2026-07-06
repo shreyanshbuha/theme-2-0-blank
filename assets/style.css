@@ -5675,6 +5675,12 @@ body.quick-view-open {
     z-index:9999;
     text-align: center;
   }
+  .social-list svg{
+    width: 18px;
+  }
+  .social-list wishlist-link{
+    width: 30px;
+  }
 }
 
 @media (min-width: 480px) {
@@ -5714,6 +5720,12 @@ body.quick-view-open {
   .compare-btn{
     bottom: 50%;
   }
+  .social-list svg{
+    width: 25px;
+  }
+  .social-list wishlist-link{
+    width: 33px;
+  }
 }
 
 
@@ -5727,9 +5739,3 @@ body.quick-view-open {
     left: -26px !important;
   }
 } 
-.social-list svg{
-  width: 18px;
-}
-.social-list wishlist-link{
-  width: 30px;
-}
