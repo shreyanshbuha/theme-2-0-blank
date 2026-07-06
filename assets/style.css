@@ -5649,7 +5649,7 @@ body.quick-view-open {
     height: 75px;
   }
   body wk-button a{
-    right: 50%;
+    right: 70%;
   }
 }
 @media (min-width: 480px) {
