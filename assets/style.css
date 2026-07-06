@@ -5665,6 +5665,28 @@ body.quick-view-open {
   .review-section .review-item{
     width: 330px !important;
   }
+  .btn,
+  button,
+  .button,
+  .btn-primary {
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    padding: 11px 30px;
+    font-family: var(--first-font);
+    letter-spacing: 1.4px;
+    color: #ffffff;
+    background-color: var(--theme-color);
+    text-transform: uppercase;
+    transition: all ease-in-out 0.4s;
+    box-shadow: none;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 21px;
+  }
 }
 
 @media (min-width: 480px) {
@@ -5717,7 +5739,28 @@ body.quick-view-open {
   .review-section .review-item{
     width: 580px !important;
   }
-  .btn-primary
+  .btn,
+  button,
+  .button,
+  .btn-primary {
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    padding: 11px 30px;
+    font-family: var(--first-font);
+    letter-spacing: 1.4px;
+    color: #ffffff;
+    background-color: var(--theme-color);
+    text-transform: uppercase;
+    transition: all ease-in-out 0.4s;
+    box-shadow: none;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 21px;
+  }
 }
 
 
