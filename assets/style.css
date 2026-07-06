@@ -5684,7 +5684,7 @@ body.quick-view-open {
   }
 
   .review-section .review-item{
-    width: 330px;
+    width: 330px !important;
   }
 }
 
@@ -5736,7 +5736,7 @@ body.quick-view-open {
     width: 140px;
   }
   .review-section .review-item{
-    width: 250px;
+    width: 250px !important;
   }
 }
 
