@@ -5665,13 +5665,7 @@ body.quick-view-open {
     position: absolute !important;
   }
 } */
-@media (max-width: 1439px) {
-  .product-card-media .wk-button{
-    top: -75px !important;
-    left: -27px !important;
-    position: absolute !important;
-  }
-}
+
 
 
 @media (min-width: 320px) {
