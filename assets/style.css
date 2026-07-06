@@ -5660,8 +5660,6 @@ body.quick-view-open {
   }
   .main-product-section {
     display: block;
-    /* margin: 0px 84px; */
-    /* text-align: center; */
   }
 
   .main-product-section form{
@@ -5672,6 +5670,9 @@ body.quick-view-open {
   }
   .main-product-section .product-media {
     width: 100% !important;
+  }
+  .image-slider-width{
+    width: 100px !important;
   }
 }
 
@@ -5706,6 +5707,9 @@ body.quick-view-open {
   .main-product-section .product-media {
     width: 60% !important;
   }
+  .image-slider-width{
+    width: 420px !important;
+  }
 }
 
 
@@ -5719,7 +5723,3 @@ body.quick-view-open {
     left: -26px !important;
   }
 } 
-
-.image-slider-width{
-  width: 700px !important;
-}
