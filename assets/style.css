@@ -1223,17 +1223,7 @@ button:hover,
 .footer-style-one .form-inner {
   position: relative;
 }
-.footer-style-one .form-inner .btn-primary {
-  position: absolute;
-  top: 0;
-  right: -1px;
-  padding: 10px 21px;
-  letter-spacing: 1.3px;
-  font-size: 13px;
-  width: 140px;
-  height: 100%;
-  border-radius: 19px;
-}
+
 .footer-style-one .footer-contact-widget h4 {
   margin-bottom: 6px;
 }
@@ -5681,6 +5671,17 @@ body.quick-view-open {
   .social-list wishlist-link{
     width: 30px;
   }
+  .footer-style-one .form-inner .btn-primary {
+    position: absolute;
+    top: 0;
+    right: -1px;
+    padding: 10px 21px;
+    letter-spacing: 1.3px;
+    font-size: 13px;
+    width: 140px;
+    height: 100%;
+    border-radius: 19px;
+  }
 }
 
 @media (min-width: 480px) {
@@ -5726,6 +5727,17 @@ body.quick-view-open {
   .social-list wishlist-link{
     width: 33px;
   }
+  .footer-style-one .form-inner .btn-primary {
+  position: absolute;
+  top: 0;
+  right: -1px;
+  padding: 10px 21px;
+  letter-spacing: 1.3px;
+  font-size: 13px;
+  width: 140px;
+  height: 100%;
+  border-radius: 19px;
+}
 }
 
 
