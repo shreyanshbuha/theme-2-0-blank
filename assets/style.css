@@ -5662,6 +5662,19 @@ body.quick-view-open {
   .image-slider-width{
     width: 280px !important;
   }
+  .compare-btn{
+    background-color: black;
+      color: white;
+      padding: 7px 10px;
+      font-weight: 600;
+      font-size: 16px;
+      position: fixed;
+      bottom: 50%;
+      right: -30px;
+      transform: rotate(270deg);
+      z-index:9999;
+      text-align: center;
+  }
 }
 
 @media (min-width: 480px) {
@@ -5697,6 +5710,19 @@ body.quick-view-open {
   }
   .image-slider-width{
     width: 420px !important;
+  }
+  .compare-btn{
+    background-color: black;
+      color: white;
+      padding: 7px 10px;
+      font-weight: 600;
+      font-size: 16px;
+      position: fixed;
+      bottom: 50%;
+      right: -30px;
+      transform: rotate(270deg);
+      z-index:9999;
+      text-align: center;
   }
 }
 
