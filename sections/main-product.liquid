@@ -93,7 +93,7 @@
                 </div>
               {% else %}
                 {% if media.preview_image.alt == blank %}
-                  {{ media.preview_image | image_url: width: 100, height: 100 | image_tag }}
+                  <img src="{{ media.preview_image | image_url }}" width="100%" height="100%">
                 {% endif %}
               {% endif %}
             {% endunless %}
