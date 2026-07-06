@@ -5656,7 +5656,7 @@ body.quick-view-open {
   #MainContent{
     overflow: hidden;
   }
-  .covet-pics-wrap swiper-wrapper{
+  .covet-pics-wrap .swiper-wrapper{
     gap: 5px !important;
   }
 }
