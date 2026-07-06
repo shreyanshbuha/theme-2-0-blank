@@ -5685,8 +5685,11 @@ body.quick-view-open {
     top: -77px !important;
     left: -29px !important;
   }
-   .main-product-section {
+  .main-product-section {
     display: flex;
+  }
+  .main-product-section form{
+    width: 40% !important;
   }
 }
 @media (min-width: 1200px) {
