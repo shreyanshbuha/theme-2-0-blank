@@ -5634,3 +5634,11 @@ body.quick-view-open {
   }
 
 }
+
+
+/* ------------------ Responsive --------------------- */
+@media (max-width: 768px){
+  .product-card-media wk-button{
+    top: 100%
+  }
+}
