@@ -5727,3 +5727,6 @@ body.quick-view-open {
     left: -26px !important;
   }
 } 
+.social-list svg{
+  width: 2px;
+}
