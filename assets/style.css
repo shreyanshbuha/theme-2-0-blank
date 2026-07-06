@@ -5638,35 +5638,35 @@ body.quick-view-open {
 
 /* ------------------ Responsive --------------------- */
 @media (max-width: 479px){
-  .product-card-media wk-button{
+  .product-card-media .wk-button{
     top: 6px !important;
     left: -13px !important;
     position: absolute !important;
   }
 }
 @media (max-width: 767px) {
-  .product-card-media wk-button{
+  .product-card-media .wk-button{
     top: 23px !important;
     left: -45px !important;
     position: absolute !important;
   }
 }
 @media (max-width: 991px) {
-  .product-card-media wk-button{
+  .product-card-media .wk-button{
     top: 23px !important;
     left: -45px !important;
     position: absolute !important;
   }
 }
 @media (max-width: 1199px) {
-  .product-card-media wk-button{
+  .product-card-media .wk-button{
     top: 23px !important;
     left: -45px !important;
     position: absolute !important;
   }
 }
 @media (max-width: 1439px) {
-  .product-card-media wk-button{
+  .product-card-media .wk-button{
     top: 23px !important;
     left: -45px !important;
     position: absolute !important;
