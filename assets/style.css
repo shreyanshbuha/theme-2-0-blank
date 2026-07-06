@@ -5664,32 +5664,27 @@ body.quick-view-open {
   .product-card-inner .wk-button{
     top: -53px !important;
     left: -7px !important;
-    position: absolute !important;
   }
 }
 @media (min-width: 768px) {
   .product-card-inner .wk-button{
     top: -70px !important;
     left: -11px !important;
-    position: absolute !important;
   }
 }
 @media (min-width: 992px) {
   .product-card-inner .wk-button{
     top: -77px !important;
     left: -29px !important;
-    position: absolute !important;
   }
 }
 @media (min-width: 1200px) {
   .product-card-inner .wk-button{
     left: -41px !important;
-    position: absolute !important;
   }
 }
 @media (min-width: 1440px) {
   .product-card-inner .wk-button{
     left: -26px !important;
-    position: absolute !important;
   }
 }
