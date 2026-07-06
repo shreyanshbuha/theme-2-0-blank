@@ -5656,9 +5656,7 @@ body.quick-view-open {
   #MainContent{
     overflow: hidden;
   }
-  .covet-pics-wrap .swiper-wrapper{
-    gap: 5px !important;
-  }
+ 
 }
 @media (min-width: 480px) {
   .product-card-inner .wk-button{
