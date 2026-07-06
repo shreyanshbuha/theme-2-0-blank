@@ -1012,7 +1012,7 @@ button:hover,
 .header-style-one .mobile-nav .mobile-list .mobile-link {
   text-align: center;
   display: inline-block;
-  font: normal normal normal 50px/70px var(--second-font);
+  font: normal normal normal 50px/60px var(--second-font);
   letter-spacing: 0px;
   color: #ffffff;
   text-transform: uppercase;
