@@ -5719,3 +5719,7 @@ body.quick-view-open {
     left: -26px !important;
   }
 } 
+
+.image-slider-width{
+  width: 700px;
+}
