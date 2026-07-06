@@ -5637,7 +5637,7 @@ body.quick-view-open {
 
 
 /* ------------------ Responsive --------------------- */
-@media (max-width: 768px){
+@media (max-width: 767px){
   .product-card-media wk-button{
     top: 6px !important;
     left: -13px !important;
