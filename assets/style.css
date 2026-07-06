@@ -5639,11 +5639,7 @@ body.quick-view-open {
 
 /* ------------------ Responsive --------------------- */
 
-@media (max-width: 767px) {
-   .main-product-section {
-    display: block;
-  }
-}
+
 @media (max-width: 479px) {
  body wishlist-link-floating{
     right: 3%;
@@ -5662,7 +5658,9 @@ body.quick-view-open {
   #MainContent{
     overflow: hidden;
   }
-  
+   .main-product-section {
+    display: block;
+  }
 }
 @media (min-width: 480px) {
   .product-card-inner .wk-button{
@@ -5680,6 +5678,9 @@ body.quick-view-open {
   .product-card-inner .wk-button{
     top: -77px !important;
     left: -29px !important;
+  }
+   .main-product-section {
+    display: flex;
   }
 }
 @media (min-width: 1200px) {
