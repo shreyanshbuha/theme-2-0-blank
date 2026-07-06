@@ -5687,6 +5687,9 @@ body.quick-view-open {
     border: none;
     border-radius: 21px;
   }
+  .search-container button{
+    padding: 0 !important;
+  }
 }
 
 @media (min-width: 480px) {
