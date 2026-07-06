@@ -3812,8 +3812,8 @@ body.filterOpen {
     margin-top: 0;
   }
   .product-card-inner {
-    height: auto;
-    /* height: 452px; */
+    /* height: auto; */
+    height: 100%;
     /* flex: 1; */
     border-radius: 15px;
     padding-bottom: 14px;
