@@ -5639,6 +5639,11 @@ body.quick-view-open {
 
 /* ------------------ Responsive --------------------- */
 
+@media (max-width: 479px) {
+ body wk-button a{
+    right: 80%;
+  }
+}
 @media (min-width: 320px) {
   .product-card-inner .wk-button{
     top: -79px !important;
@@ -5648,9 +5653,9 @@ body.quick-view-open {
   .informative-section .info-col-ic img{
     height: 75px;
   }
-  body wk-button a{
+  /* body wk-button a{
     right: 80%;
-  }
+  } */
 }
 @media (min-width: 480px) {
   .product-card-inner .wk-button{
