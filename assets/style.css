@@ -5668,10 +5668,10 @@ body.quick-view-open {
     width: 100% !important;
   }
   .main-product-section .mobile_only_slider {
-    width: 100%;
+    width: 100% !important;
   }
   .main-product-section .product-media {
-    width: 100%;
+    width: 100% !important;
   }
 }
 
@@ -5701,10 +5701,10 @@ body.quick-view-open {
     width: 40% !important;
   }
   .main-product-section .mobile_only_slider {
-    width: 60%;
+    width: 60% !important;
   }
   .main-product-section .product-media {
-    width: 60%;
+    width: 60% !important;
   }
 }
 
