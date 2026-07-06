@@ -42,7 +42,7 @@
     {% if product.selected_or_first_available_variant.featured_image != blank %}
       <div class="product-card-media">
         <a href="{{ product.selected_or_first_available_variant.url | within: collection}}" class="product-image">
-            <img src="{{ product.selected_or_first_available_variant.featured_image | image_url: width: 500 }}" class="fly-img"  alt="{{ product.selected_or_first_available_variant.featured_image.alt }}" width="250" height="250" loading="lazy">
+            <img src="{{ product.selected_or_first_available_variant.featured_image | image_url: width: 500 }}" class="fly-img"  alt="{{ product.selected_or_first_available_variant.featured_image.alt }}" width="100%" height="100%" loading="lazy">
         </a>
       </div>
     {% else %}
