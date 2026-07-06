@@ -5641,7 +5641,7 @@ body.quick-view-open {
 
 @media (max-width: 479px) {
  body wishlist-link-floating{
-    right: 80%;
+    right: 14%;
   }
 }
 @media (min-width: 320px) {
