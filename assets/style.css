@@ -5016,19 +5016,7 @@ wishlist-button-block .wk-button{
 
 
 /* compare product */
-.compare-btn{
-  background-color: black;
-    color: white;
-    padding: 7px 10px;
-    font-weight: 600;
-    font-size: 16px;
-    position: fixed;
-    bottom: 50%;
-    right: -30px;
-    transform: rotate(270deg);
-    z-index:9999;
-    text-align: center;
-}
+
 
 .blankCompareData{
   text-align: center;
