@@ -93,7 +93,7 @@
                 </div>
               {% else %}
                 {% if media.preview_image.alt == blank %}
-                  <img src="{{ media.preview_image | image_url }}" width="100%" height="100%">
+                  <img src="{{ media.preview_image | image_url }}" width="100%" height="100%" class="image-slider-width">
                 {% endif %}
               {% endif %}
             {% endunless %}
