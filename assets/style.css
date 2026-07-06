@@ -5688,3 +5688,10 @@ body.quick-view-open {
     position: absolute !important;
   }
 }
+@media (min-width: 1440px) {
+  .product-card-inner .wk-button{
+    top: -77px !important;
+    left: -41px !important;
+    position: absolute !important;
+  }
+}
