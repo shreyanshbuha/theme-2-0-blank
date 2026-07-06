@@ -5721,5 +5721,5 @@ body.quick-view-open {
 } 
 
 .image-slider-width{
-  width: 700px;
+  width: 700px !important;
 }
