@@ -5646,8 +5646,8 @@ body.quick-view-open {
 }
 @media (max-width: 479px) {
   .product-card-media wk-button{
-    top: 6px !important;
-    left: -13px !important;
+    top: 23px !important;
+    left: -45px !important;
     position: absolute !important;
   }
 }
