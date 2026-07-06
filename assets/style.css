@@ -5763,3 +5763,8 @@ body.quick-view-open {
     left: -26px !important;
   }
 } 
+
+.product-card-media .wk-button{
+  width: 30px;
+  height: 30px;
+}
