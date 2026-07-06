@@ -5643,9 +5643,9 @@ body.quick-view-open {
  body wishlist-link-floating{
     right: 3%;
   }
-  .main-product-section {
+  /* .main-product-section {
     display: block;
-  }
+  } */
 }
 @media (min-width: 320px) {
   .product-card-inner .wk-button{
