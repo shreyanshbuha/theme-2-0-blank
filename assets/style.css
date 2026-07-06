@@ -5682,6 +5682,10 @@ body.quick-view-open {
     height: 100%;
     border-radius: 19px;
   }
+
+  .review-section .review-item{
+    width: 330px;
+  }
 }
 
 @media (min-width: 480px) {
@@ -5730,6 +5734,9 @@ body.quick-view-open {
   .footer-style-one .form-inner .btn-primary {
     padding: 10px 21px;
     width: 140px;
+  }
+  .review-section .review-item{
+    width: 250px;
   }
 }
 
