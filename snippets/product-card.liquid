@@ -48,7 +48,7 @@
       </div>
     {% else %}
       {% for media in product.media %}
-        {% assign mediaimage = media.preview_image %}
+        {% assign mediaimage = media.preview_image.src %}
       {% endfor %}
       {% comment %} <img
         src="{{ mediaimage | image_url: width: 500 }}"
