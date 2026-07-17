@@ -5174,12 +5174,12 @@ wishlist-button-block .wk-button{
 
 
 
-.product-card-media .wk-floating{
+.product-card-media .wk-button{
   top: -30px !important;
   left: -25px !important;
 }
 
-.wk-floating:hover {
+.wk-button:hover {
   top: -30px !important;
   left: -25px !important;
 }
