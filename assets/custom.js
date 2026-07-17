@@ -411,13 +411,13 @@ function deskslider(){
         var currentscroll = jQuery(this).scrollLeft(); // get current scroll position
         var divwidth = jQuery(this).width(); //get div width
         //var divwidth = jQuery(elem).width(); //get div width
-        pos = pos + currentscroll - divwidth / 2; // for center position if you want adjust then change this
-        jQuery(this).animate(
-          {
-            scrollLeft: pos,
-          },
-          speed == undefined ? 1000 : speed
-        );
+        // pos = pos + currentscroll - divwidth / 2; // for center position if you want adjust then change this
+        // jQuery(this).animate(
+        //   {
+        //     scrollLeft: pos,
+        //   },
+        //   speed == undefined ? 1000 : speed
+        // );
         return this;
       };
       jQuery.fn.scrollleft = function (elem, speed) {
