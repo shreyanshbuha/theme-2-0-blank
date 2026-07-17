@@ -4906,10 +4906,7 @@ del {
 .cartDrawer wishlist-link-floating {
   z-index: -1 !important;
 }
-.best-sell-item .wk-button ,.best-sell-item wishlist-button-collection .wk-button:hover{
-    /* top: -75px; */
-    left: 50px !important;
-}
+
 
 .product-row-collection .wk-button ,.best-sell-item wishlist-button-collection .wk-button:hover{
     /* top: -75px;
