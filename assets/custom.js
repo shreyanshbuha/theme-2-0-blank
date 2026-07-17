@@ -407,7 +407,7 @@ function deskslider(){
         var active = jQuery(this).find(elem); // find the active element
         //var activeWidth = active.width(); // get active width
         var activeWidth = active.width() / 2; // get active width center
-        var pos = active.position().left + activeWidth; //get left position of active li + center position
+        // var pos = active.position().left + activeWidth; //get left position of active li + center position
         var currentscroll = jQuery(this).scrollLeft(); // get current scroll position
         var divwidth = jQuery(this).width(); //get div width
         //var divwidth = jQuery(elem).width(); //get div width
