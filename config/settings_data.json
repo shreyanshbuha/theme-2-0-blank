@@ -381,7 +381,7 @@
           "icon_size": 18,
           "icon_stroke_width": 1,
           "app_integration_preset": "none",
-          "product_link_selector": ".product-top > .pro-lable",
+          "product_link_selector": ".product-card-inner > .fly-source",
           "floating_reference_js": ""
         }
       }
