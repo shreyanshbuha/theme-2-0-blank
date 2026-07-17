@@ -5767,3 +5767,9 @@ body.quick-view-open {
 .product-card-media .wk-button{
   width: 60px;
 }
+
+@media (max-width: 768px) {
+  .show-filter-data .accordion{
+    flex-wrap: wrap;
+  }
+}
