@@ -5171,16 +5171,13 @@ wishlist-button-block .wk-button{
 
 
 
-.product-card-media .wk-button{
+.product-card-media .wk-button, .product-row-collection .wk-button, .best-sell-item wishlist-button-collection .wk-button:hover{
   top: -110px !important;
   left: 7px !important;
   width: 60px;
 }
 
-.wk-button:hover {
-  top: -30px !important;
-  left: -25px !important;
-}
+
 
 .product-media .slick-track{
   width: 8800px !important;
