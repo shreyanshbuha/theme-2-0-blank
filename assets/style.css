@@ -5172,8 +5172,9 @@ wishlist-button-block .wk-button{
 
 
 .product-card-media .wk-button{
-  top: -30px !important;
-  left: -25px !important;
+  top: -110px !important;
+  left: 7px !important;
+  width: 60px;
 }
 
 .wk-button:hover {
