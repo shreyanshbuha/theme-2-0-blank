@@ -5773,7 +5773,7 @@ body.quick-view-open {
     flex-wrap: wrap;
     margin-bottom: 20px;
   }
-  .show-filter-data .accordion > .flex{
+  .show-filter-data .form-filter > .flex{
     margin: 0 0 20px 0;
   }
 }
