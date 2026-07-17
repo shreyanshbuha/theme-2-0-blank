@@ -5771,5 +5771,6 @@ body.quick-view-open {
 @media (max-width: 768px) {
   .show-filter-data .accordion{
     flex-wrap: wrap;
+    margin-bottom: 20px;
   }
 }
