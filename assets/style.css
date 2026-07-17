@@ -5776,4 +5776,7 @@ body.quick-view-open {
   .show-filter-data .form-filter > .flex{
     margin: 0 0 20px 0;
   }
+  .show-filter-data .form-filter > .filter-label{
+    margin: 0 0 20px 0;
+  }
 }
