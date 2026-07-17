@@ -407,17 +407,17 @@ function deskslider(){
         var active = jQuery(this).find(elem); // find the active element
         //var activeWidth = active.width(); // get active width
         var activeWidth = active.width() / 2; // get active width center
-        // var pos = active.position().left + activeWidth; //get left position of active li + center position
+        var pos = active.position().left + activeWidth; //get left position of active li + center position
         var currentscroll = jQuery(this).scrollLeft(); // get current scroll position
         var divwidth = jQuery(this).width(); //get div width
         //var divwidth = jQuery(elem).width(); //get div width
-        // pos = pos + currentscroll - divwidth / 2; // for center position if you want adjust then change this
-        // jQuery(this).animate(
-        //   {
-        //     scrollLeft: pos,
-        //   },
-        //   speed == undefined ? 1000 : speed
-        // );
+        pos = pos + currentscroll - divwidth / 2; // for center position if you want adjust then change this
+        jQuery(this).animate(
+          {
+            scrollLeft: pos,
+          },
+          speed == undefined ? 1000 : speed
+        );
         return this;
       };
       jQuery.fn.scrollleft = function (elem, speed) {
@@ -575,7 +575,7 @@ $.fn.isOnScreen = function () {
   viewport.bottom = viewport.top + win.height();
   var bounds = this.offset();
   // bounds.right = bounds.left + this.outerWidth();
-  bounds.bottom = bounds.top + this.outerHeight();
+  // bounds.bottom = bounds.top + this.outerHeight();
   return !(
     viewport.right < bounds.left ||
     viewport.left > bounds.right ||
