@@ -5179,7 +5179,7 @@ wishlist-button-block .wk-button{
   left: -25px !important;
 }
 
-wishlist-button-collection .wk-button, wishlist-button-collection .wk-button:hover {
+wishlist-button-collection .wk-button:hover {
   top: -30px !important;
   left: -25px !important;
 }
