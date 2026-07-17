@@ -5799,3 +5799,7 @@ body.quick-view-open {
     font-size: 10px;
   }
 }
+
+.psc-left-col < .premium-swiss-canabis{
+  background-color: red;
+}
