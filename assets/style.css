@@ -5777,6 +5777,6 @@ body.quick-view-open {
     margin: 0 0 20px 0;
   }
   .show-filter-data .form-filter > .filter-label{
-    margin: 0 0 20px 0;
+    margin: 0 10px;
   }
 }
