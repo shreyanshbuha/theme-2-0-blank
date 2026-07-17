@@ -5180,8 +5180,8 @@ wishlist-button-block .wk-button{
 }
 
 wishlist-button-collection .wk-button, wishlist-button-collection .wk-button:hover {
-      left: 10px !important;
-    bottom: 77px !important;
+  top: -30px !important;
+  left: -25px !important;
 }
 
 .product-media .slick-track{
