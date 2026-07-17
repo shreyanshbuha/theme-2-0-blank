@@ -866,7 +866,7 @@ button:hover,
 .header-style-one {
   position: fixed;
   top: 0px;
-  z-index: 3;
+  z-index: 99999999;
   width: 100%;
   background-color: transparent;
   transition: all ease-in-out 0.2s;
