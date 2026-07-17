@@ -381,7 +381,7 @@
           "icon_size": 18,
           "icon_stroke_width": 1,
           "app_integration_preset": "none",
-          "product_link_selector": ".product-card-media > a",
+          "product_link_selector": ".product-card-media > img",
           "floating_reference_js": ""
         }
       }
