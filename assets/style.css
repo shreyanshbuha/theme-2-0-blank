@@ -5780,7 +5780,7 @@ body.quick-view-open {
     margin: 0 10px;
   }
   .show-filter-data .form-filter > .filter-label p{
-    margin-right: 10px;
+    margin-right: 10px !important;
   }
   .show-filter-data .form-filter > .filter-label p:not(:last-of-type){
     margin-bottom: 10px;
