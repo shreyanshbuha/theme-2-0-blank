@@ -42,24 +42,41 @@
     {% if product.selected_or_first_available_variant.featured_image != blank %}
       <div class="product-card-media">
         <a href="{{ product.selected_or_first_available_variant.url | within: collection}}" class="product-image">
-            {% comment %} <img src="{{ product.selected_or_first_available_variant.featured_image | image_url: width: 500 }}" class="fly-img"  alt="{{ product.selected_or_first_available_variant.featured_image.alt }}" width="250" height="250" loading="lazy"> {% endcomment %}
-            {{ product.selected_or_first_available_variant.featured_image | image_url: width: 500 , height: 250| image_tag: widths: '200, 500' , class: 'fly-img' , alt: product.selected_or_first_available_variant.featured_image.alt , loading: 'lazy' }}
+          {% comment %} <img src="{{ product.selected_or_first_available_variant.featured_image | image_url: width: 500 }}" class="fly-img"  alt="{{ product.selected_or_first_available_variant.featured_image.alt }}" width="250" height="250" loading="lazy"> {% endcomment %}
+          {{
+            product.selected_or_first_available_variant.featured_image
+            | image_url: width: 500, height: 250
+            | image_tag:
+              widths: '200, 500',
+              class: 'fly-img',
+              alt: product.selected_or_first_available_variant.featured_image.alt,
+              loading: 'lazy'
+          }}
         </a>
       </div>
     {% else %}
       {% for media in product.media %}
         {% assign mediaimage = media.preview_image %}
       {% endfor %}
-      {% comment %} <img
-        src="{{ mediaimage | image_url: width: 500 }}"
-        width="250px"
-        height="250px"
-        style="margin: 0 auto;"
-        class="fly-img" loading="lazy"
-        alt="{{ mediaimage.alt }}"
-      > {% endcomment %}
-      {{ mediaimage | image_url: width: 500, height: 200 | image_tag: widths: '200, 500' , class: 'fly-img' , alt: mediaimage.alt , loading: 'lazy' }}
-
+      {% comment %}
+        <img
+          src="{{ mediaimage | image_url: width: 500 }}"
+          width="250px"
+          height="250px"
+          style="margin: 0 auto;"
+          class="fly-img" loading="lazy"
+          alt="{{ mediaimage.alt }}"
+        >
+      {% endcomment %}
+      <div class="product-card-media">
+        <a href="{{ product.selected_or_first_available_variant.url | within: collection}}" class="product-image">
+          {{
+            mediaimage
+            | image_url: width: 500, height: 200
+            | image_tag: widths: '200, 500', class: 'fly-img', alt: mediaimage.alt, loading: 'lazy'
+          }}
+        </a>
+      </div>
     {% endif %}
 
     {% for option in product.options_with_values %}
