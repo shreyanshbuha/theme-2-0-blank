@@ -129,14 +129,13 @@
       {% endif %}
     {% endfor %}
 
-    {% comment %} weight {% endcomment %}
-    {% comment %} <div class="product-bottom">
+    <div class="product-bottom">
       <div class="flex product-select-opt justify-center">
         <div class="opt">
-          {{
+          {% comment %} {{
             product.selected_or_first_available_variant.weight
             | weight_with_unit: product.selected_or_first_available_variant.weight_unit
-          }}
+          }} {% endcomment %}
           {% comment %}
             <div class="product-view-opt text-center">
               <a href="#" class="view-btn desk-only">
@@ -151,6 +150,6 @@
           {% endunless %}
         </div>
       </div>
-    </div> {% endcomment %}
+    </div>
   </div>
 </div>
