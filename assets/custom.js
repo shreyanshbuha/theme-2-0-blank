@@ -2436,3 +2436,15 @@ document.addEventListener("click", function (e) {
       applyActiveSwatch();
     });
   });
+
+
+
+
+
+
+
+
+
+
+
+  
