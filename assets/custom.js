@@ -2430,7 +2430,7 @@ document.addEventListener("click", function (e) {
         $('label[for="' + id + '"]').addClass("active");
       });
     }
-
+sss
     applyActiveSwatch();
     $(document).on("change", ".color-swatch-input", function () {
       applyActiveSwatch();
