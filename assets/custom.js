@@ -541,14 +541,21 @@ function mobileslider() {
           slidesToScroll: 1,
           responsive: [
             {
-              breakpoint: 200,
+              breakpoint: 500,
               settings: {
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 adaptiveHeight: true,
               },
             },
-           
+            {
+              breakpoint: 500,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                adaptiveHeight: true,
+              },
+            },
           ],
         });
       }
