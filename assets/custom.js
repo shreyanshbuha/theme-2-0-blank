@@ -543,7 +543,7 @@ function mobileslider() {
           slidesToScroll: 1,
           responsive:  [
       {
-        breakpoint: 768,
+        breakpoint: 300,
         settings: {
           slidesToShow: 1
         }
