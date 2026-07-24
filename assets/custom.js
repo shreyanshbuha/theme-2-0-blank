@@ -540,14 +540,7 @@ function mobileslider() {
           slidesToShow: 1,
           slidesToScroll: 1,
           responsive: [
-            {
-              breakpoint: 200,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                adaptiveHeight: true,
-              },
-            },
+       
             {
               breakpoint: 200,
               settings: {
