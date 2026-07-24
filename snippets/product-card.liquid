@@ -45,9 +45,9 @@
           {% comment %} <img src="{{ product.selected_or_first_available_variant.featured_image | image_url: width: 500 }}" class="fly-img"  alt="{{ product.selected_or_first_available_variant.featured_image.alt }}" width="250" height="250" loading="lazy"> {% endcomment %}
           {{
             product.selected_or_first_available_variant.featured_image
-            | image_url: width: 200, height: 250
+            | image_url: width: 250, height: 250
             | image_tag:
-              widths: '100, 200',
+              widths: '100, 250',
               class: 'fly-img',
               alt: product.selected_or_first_available_variant.featured_image.alt,
               loading: 'lazy'
@@ -72,8 +72,8 @@
         <a href="{{ product.selected_or_first_available_variant.url | within: collection}}" class="product-image">
           {{
             mediaimage
-            | image_url: width: 200, height: 250
-            | image_tag: widths: '100, 200', class: 'fly-img', alt: mediaimage.alt, loading: 'lazy'
+            | image_url: width: 250, height: 250
+            | image_tag: widths: '100, 250', class: 'fly-img', alt: mediaimage.alt, loading: 'lazy'
           }}
         </a>
       </div>
