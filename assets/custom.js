@@ -570,7 +570,7 @@ function mobileslider() {
     //   // }
     // }
 
-    if ($(window).width() < 768) {
+    if ($(window).width() < 2200) {
   if (!$mobile_only_slider.hasClass("slick-initialized")) {
     $mobile_only_slider.slick({
       infinite: false,
