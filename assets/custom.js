@@ -527,40 +527,43 @@ function mobileslider() {
       };
       $(".cat-tab").scrollCenter(".active", 100);
     } else {
-      console.log($mobile_only_slider.length);
-      console.log(typeof $.fn.slick);
-      if (!$mobile_only_slider.hasClass("slick-initialized")) {
-        $("ul.tabs .tab-link").click(function () {
-          $(".best-seller-slider").slick("refresh");
-        });
-        $mobile_only_slider.slick({
-          infinite: false,
-          centerMode: false,
-          arrows: true,
-          dots: false,
-          autoplay: false,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          responsive: [
-            {
-              breakpoint: 500,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                adaptiveHeight: true,
-              },
-            },
-            {
-              breakpoint: 500,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-                adaptiveHeight: true,
-              },
-            },
-          ],
-        });
-      }
+      if ($mobile_only_slider.hasClass("slick-initialized")) {
+    $mobile_only_slider.slick("unslick");
+  }
+      // console.log($mobile_only_slider.length);
+      // console.log(typeof $.fn.slick);
+      // if (!$mobile_only_slider.hasClass("slick-initialized")) {
+      //   $("ul.tabs .tab-link").click(function () {
+      //     $(".best-seller-slider").slick("refresh");
+      //   });
+      //   $mobile_only_slider.slick({
+      //     infinite: false,
+      //     centerMode: false,
+      //     arrows: true,
+      //     dots: false,
+      //     autoplay: false,
+      //     slidesToShow: 1,
+      //     slidesToScroll: 1,
+      //     responsive: [
+      //       {
+      //         breakpoint: 500,
+      //         settings: {
+      //           slidesToShow: 3,
+      //           slidesToScroll: 1,
+      //           adaptiveHeight: true,
+      //         },
+      //       },
+      //       {
+      //         breakpoint: 500,
+      //         settings: {
+      //           slidesToShow: 2,
+      //           slidesToScroll: 1,
+      //           adaptiveHeight: true,
+      //         },
+      //       },
+      //     ],
+      //   });
+      // }
     }
   });
 }
