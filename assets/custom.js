@@ -527,6 +527,7 @@ function mobileslider() {
       };
       $(".cat-tab").scrollCenter(".active", 100);
     } else {
+      console.log($mobile_only_slider.length);
       if (!$mobile_only_slider.hasClass("slick-initialized")) {
         $("ul.tabs .tab-link").click(function () {
           $(".best-seller-slider").slick("refresh");
