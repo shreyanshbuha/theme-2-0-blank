@@ -487,104 +487,79 @@ function mobileslider() {
     var $mobile_only_slider = $(this);
     /* Initializes a slick carousel only on mobile screens */
     // slick on mobile
-    // if ($(window).width() < 768) {
-    //   if ($mobile_only_slider.hasClass("slick-initialized")) {
-    //     $mobile_only_slider.slick("unslick");
-    //   }
-    //   $(".cat-tab .tab-link").on("click", function () {
-    //     // $(".cat-tab .tab-link").removeClass("active");
-    //     // $(this).addClass("active");
-    //     $(".cat-tab").scrollCenter(".active", 100);
-    //   });
-    //   jQuery.fn.scrollCenter = function (elem, speed) {
-    //     var active = jQuery(this).find(elem); // find the active element
-    //     //var activeWidth = active.width(); // get active width
-    //     var activeWidth = active.width() / 2; // get active width center
-    //     // var pos = active.position().left + activeWidth; //get left position of active li + center position
-    //     var currentscroll = jQuery(this).scrollLeft(); // get current scroll position
-    //     var divwidth = jQuery(this).width(); //get div width
-    //     //var divwidth = jQuery(elem).width(); //get div width
-    //     // pos = pos + currentscroll - divwidth / 2; // for center position if you want adjust then change this
-    //     // jQuery(this).animate(
-    //     //   {
-    //     //     scrollLeft: pos,
-    //     //   },
-    //     //   speed == undefined ? 1000 : speed
-    //     // );
-    //     return this;
-    //   };
-    //   jQuery.fn.scrollleft = function (elem, speed) {
-    //     jQuery(this).animate(
-    //       {
-    //         scrollLeft:
-    //           jQuery(this).scrollLeft() -
-    //           jQuery(this).offset().left +
-    //           jQuery(elem).offset().left,
-    //       },
-    //       speed == undefined ? 1000 : speed
-    //     );
-    //     return this;
-    //   };
-    //   $(".cat-tab").scrollCenter(".active", 100);
-    // } else {
-    //   console.log($mobile_only_slider.length);
-    //   console.log(typeof $.fn.slick);
-    //   if (!$mobile_only_slider.hasClass("slick-initialized")) {
-    //     $("ul.tabs .tab-link").click(function () {
-    //       $(".best-seller-slider").slick("refresh");
-    //     });
-    //     $mobile_only_slider.slick({
-    //       infinite: false,
-    //       centerMode: false,
-    //       arrows: true,
-    //       dots: false,
-    //       autoplay: false,
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //       responsive:  [
-    //         {
-    //           breakpoint: 300,
-    //           settings: {
-    //             slidesToShow: 1
-    //           }
-    //         }
-    //       ]
-    //     });
-    //   }
-    //   // if (!$mobile_only_slider.hasClass("slick-initialized")) {
-    //   //   $mobile_only_slider.slick({
-    //   //     infinite: false,
-    //   //     arrows: true,
-    //   //     dots: false,
-    //   //     slidesToShow: 1,
-    //   //     slidesToScroll: 1,
-    //   //     responsive: [
-    //   //       {
-    //   //         breakpoint: 768,
-    //   //         settings: {
-    //   //           slidesToShow: 1
-    //   //         }
-    //   //       }
-    //   //     ]
-    //   //   });
-    //   // }
-    // }
-
-    if ($(window).width() < 2200) {
-  if (!$mobile_only_slider.hasClass("slick-initialized")) {
-    $mobile_only_slider.slick({
-      infinite: false,
-      arrows: true,
-      dots: false,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-    });
-  }
-} else {
-  if ($mobile_only_slider.hasClass("slick-initialized")) {
-    $mobile_only_slider.slick("unslick");
-  }
-}
+    if ($(window).width() < 2299) {
+      if ($mobile_only_slider.hasClass("slick-initialized")) {
+        $mobile_only_slider.slick("unslick");
+      }
+      $(".cat-tab .tab-link").on("click", function () {
+        // $(".cat-tab .tab-link").removeClass("active");
+        // $(this).addClass("active");
+        $(".cat-tab").scrollCenter(".active", 100);
+      });
+      jQuery.fn.scrollCenter = function (elem, speed) {
+        var active = jQuery(this).find(elem); // find the active element
+        //var activeWidth = active.width(); // get active width
+        var activeWidth = active.width() / 2; // get active width center
+        // var pos = active.position().left + activeWidth; //get left position of active li + center position
+        var currentscroll = jQuery(this).scrollLeft(); // get current scroll position
+        var divwidth = jQuery(this).width(); //get div width
+        //var divwidth = jQuery(elem).width(); //get div width
+        // pos = pos + currentscroll - divwidth / 2; // for center position if you want adjust then change this
+        // jQuery(this).animate(
+        //   {
+        //     scrollLeft: pos,
+        //   },
+        //   speed == undefined ? 1000 : speed
+        // );
+        return this;
+      };
+      jQuery.fn.scrollleft = function (elem, speed) {
+        jQuery(this).animate(
+          {
+            scrollLeft:
+              jQuery(this).scrollLeft() -
+              jQuery(this).offset().left +
+              jQuery(elem).offset().left,
+          },
+          speed == undefined ? 1000 : speed
+        );
+        return this;
+      };
+      $(".cat-tab").scrollCenter(".active", 100);
+    } else {
+      if (!$mobile_only_slider.hasClass("slick-initialized")) {
+        $("ul.tabs .tab-link").click(function () {
+          $(".best-seller-slider").slick("refresh");
+        });
+        $mobile_only_slider.slick({
+          infinite: false,
+          centerMode: false,
+          arrows: true,
+          dots: false,
+          autoplay: false,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          responsive: [
+            {
+              breakpoint: 500,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                adaptiveHeight: true,
+              },
+            },
+            {
+              breakpoint: 500,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                adaptiveHeight: true,
+              },
+            },
+          ],
+        });
+      }
+    }
   });
 }
 
