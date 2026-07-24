@@ -531,33 +531,33 @@ function mobileslider() {
         $("ul.tabs .tab-link").click(function () {
           $(".best-seller-slider").slick("refresh");
         });
-        // $mobile_only_slider.slick({
-        //   infinite: false,
-        //   centerMode: false,
-        //   arrows: true,
-        //   dots: false,
-        //   autoplay: false,
-        //   slidesToShow: 1,
-        //   slidesToScroll: 1,
-        //   responsive: [
-        //     {
-        //       breakpoint: 200,
-        //       settings: {
-        //         slidesToShow: 3,
-        //         slidesToScroll: 1,
-        //         adaptiveHeight: true,
-        //       },
-        //     },
-        //     {
-        //       breakpoint: 200,
-        //       settings: {
-        //         slidesToShow: 2,
-        //         slidesToScroll: 1,
-        //         adaptiveHeight: true,
-        //       },
-        //     },
-        //   ],
-        // });
+        $mobile_only_slider.slick({
+          infinite: false,
+          centerMode: false,
+          arrows: true,
+          dots: false,
+          autoplay: false,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          responsive: [
+            {
+              breakpoint: 200,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                adaptiveHeight: true,
+              },
+            },
+            {
+              breakpoint: 200,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                adaptiveHeight: true,
+              },
+            },
+          ],
+        });
       }
     }
   });
