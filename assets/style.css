@@ -5769,5 +5769,5 @@ body.quick-view-open {
 }
 
 .best-sell-item {
-  width: 330px;
+  width: 330px !important;
 }
