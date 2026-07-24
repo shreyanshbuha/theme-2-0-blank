@@ -487,7 +487,7 @@ function mobileslider() {
     var $mobile_only_slider = $(this);
     /* Initializes a slick carousel only on mobile screens */
     // slick on mobile
-    if ($(window).width() < 2299) {
+    if ($(window).width() < 768) {
       if ($mobile_only_slider.hasClass("slick-initialized")) {
         $mobile_only_slider.slick("unslick");
       }
@@ -539,24 +539,24 @@ function mobileslider() {
           autoplay: false,
           slidesToShow: 1,
           slidesToScroll: 1,
-          // responsive: [
-          //   {
-          //     breakpoint: 500,
-          //     settings: {
-          //       slidesToShow: 3,
-          //       slidesToScroll: 1,
-          //       adaptiveHeight: true,
-          //     },
-          //   },
-          //   {
-          //     breakpoint: 500,
-          //     settings: {
-          //       slidesToShow: 2,
-          //       slidesToScroll: 1,
-          //       adaptiveHeight: true,
-          //     },
-          //   },
-          // ],
+          responsive: [
+            {
+              breakpoint: 500,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                adaptiveHeight: true,
+              },
+            },
+            {
+              breakpoint: 500,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                adaptiveHeight: true,
+              },
+            },
+          ],
         });
       }
     }
