@@ -578,11 +578,11 @@ function mobileslider() {
           dots: false,
           slidesToShow: 1,
           slidesToScroll: 1,
-    });
-  }
-} else {
-  if ($mobile_only_slider.hasClass("slick-initialized")) {
-    $mobile_only_slider.slick("unslick");
+        });
+      }
+    } else {
+      if ($mobile_only_slider.hasClass("slick-initialized")) {
+        $mobile_only_slider.slick("unslick");
       }
     }
   });
