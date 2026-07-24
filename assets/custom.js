@@ -527,11 +527,8 @@ function mobileslider() {
       };
       $(".cat-tab").scrollCenter(".active", 100);
     } else {
-      if ($mobile_only_slider.hasClass("slick-initialized")) {
-    $mobile_only_slider.slick("unslick");
-  }
-      // console.log($mobile_only_slider.length);
-      // console.log(typeof $.fn.slick);
+      console.log($mobile_only_slider.length);
+      console.log(typeof $.fn.slick);
       // if (!$mobile_only_slider.hasClass("slick-initialized")) {
       //   $("ul.tabs .tab-link").click(function () {
       //     $(".best-seller-slider").slick("refresh");
@@ -564,6 +561,23 @@ function mobileslider() {
       //     ],
       //   });
       // }
+      if (!$mobile_only_slider.hasClass("slick-initialized")) {
+        $mobile_only_slider.slick({
+          infinite: false,
+          arrows: true,
+          dots: false,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          responsive: [
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 1
+              }
+            }
+          ]
+        });
+      }
     }
   });
 }
