@@ -4392,7 +4392,7 @@ del {
   width: 80%;
 }
 .btn-space {
-  padding: 4px 9px 4px 11px;
+  padding: 4px 9px 4px 11px !important;
   margin: 5px;
 }
 .btn-input {
