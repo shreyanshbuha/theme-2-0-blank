@@ -5767,7 +5767,7 @@ body.quick-view-open {
     left: 10px !important;
   }
   .quick-view-product-details{
-    display: block;
+    display: block !important;
   }
 }
 
