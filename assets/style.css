@@ -5766,6 +5766,9 @@ body.quick-view-open {
     top: -75px !important;
     left: 10px !important;
   }
+  .quick-view-product-details{
+    display: block;
+  }
 }
 
 .best-sell-item {
