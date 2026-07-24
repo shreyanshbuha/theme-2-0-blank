@@ -913,7 +913,7 @@ button:hover,
   .ivory-header-right
   .social-list
   li:not(:last-of-type) {
-  margin-right: 14px;
+  margin-right: 10px;
 }
 .header-style-one .ivory-logobar .ivory-header-right .social-list li a {
   display: block;
