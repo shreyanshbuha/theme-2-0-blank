@@ -4,15 +4,15 @@
     class="product-recommendations"
     data-url="{{ routes.product_recommendations_url }}?product_id={{ product.id }}&limit={{ section.settings.limit }}&section_id=recommendation-product&intent=related"
   >
-    {% if section.settings.heading != blank %}
-      <div class="section-title text-center">
-        <h2>
-          {{ section.settings.heading }}
-        </h2>
-      </div>
-    {% endif %}
     {% if recommendations.performed? %}
       {% if recommendations.products_count > 0 %}
+        {% if section.settings.heading != blank %}
+          <div class="section-title text-center">
+            <h2>
+              {{ section.settings.heading }}
+            </h2>
+          </div>
+        {% endif %}
         <div class="desk_only_slider product-row" style="display:flex;">
           {% for product in recommendations.products %}
             {% render 'product-card', product: product %}
@@ -42,7 +42,7 @@
       "min": 1,
       "max": 10,
       "default": 1
-    },
+    }
   ],
   "presets": [
     {
