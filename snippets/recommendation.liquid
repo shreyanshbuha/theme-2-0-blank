@@ -1,0 +1,44 @@
+{% comment %} {% if product.id %}
+  {% assign id = product.id %}
+  {% assign section_id = 'recommendation-product' %}
+{% else %}
+  {% for item in cart.items %}
+    {% assign id = cart.items.first.product.id %}
+    {% assign section_id = 'cart-drawer' %}
+  {% endfor %}
+{% endif %}
+
+<div class="container" style="margin-bottom:30px;">
+  {% if section.settings.heading != blank %}
+    <div class="section-title text-center">
+      <h2>
+        {{ section.settings.heading }}
+      </h2>
+    </div>
+  {% endif %}
+
+  <div
+    class="product-recommendations"
+    data-url="{{ routes.product_recommendations_url }}?product_id={{ id }}&limit={{ section.settings.limit }}&section_id={{ section_id }}"
+  >
+    {% if recommendations.performed? %}
+      {% if recommendations.products_count > 0 %}
+        {% if template == 'product' %}
+          {% assign product = cart.items.first.product.id %}
+          <div class="umay-lik-slider-wrp">
+            <div class="u-may-like-slider" style="display:flex;">
+              {% for product in recommendations.products %}
+                {% render 'cart-recommendation', product: product, limit: section.settings.limit %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+          <div class="desk_only_slider product-row" style="display:flex;">
+            {% for product in recommendations.products %}
+              {% render 'product-card', product: product %}
+            {% endfor %}
+          </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</div> {% endcomment %}
