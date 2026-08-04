@@ -14,7 +14,7 @@
           </div>
         {% endif %}
         <div class="desk_only_slider product-row" style="display:flex;">
-          {% for product in recommendations.products %}
+          {% for product in recommendations.products limit: 9 %}
             {% render 'product-card', product: product %}
           {% endfor %}
         </div>
