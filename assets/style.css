@@ -5777,3 +5777,7 @@ body.quick-view-open {
 .best-sell-item .wk-button{
   display: none;
 }
+
+.product-recommendations .slick-track{
+  width: 3300px;
+}
