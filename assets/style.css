@@ -5782,3 +5782,7 @@ body.quick-view-open {
   width: 3400px !important;
   padding: 10px;
 }
+
+.product-recommendations .product-card-inner{
+  height: 455px !important;
+}
