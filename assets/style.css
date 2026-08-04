@@ -5797,7 +5797,11 @@ body.quick-view-open {
   border-radius: 0 !important;
 }
 
-
+.cartDrawer .checkout-link{
+  align-items: center;
+    display: flex;
+    justify-content: center;
+}
 
 .product-bundel-grid .color-swatch-wrapper{
   display: none;
