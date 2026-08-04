@@ -5779,5 +5779,6 @@ body.quick-view-open {
 }
 
 .product-recommendations .slick-track{
-  width: 4000px !important;
+  width: 3400px !important;
+  padding: 10px;
 }
