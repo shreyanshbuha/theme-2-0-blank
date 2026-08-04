@@ -5770,34 +5770,3 @@ body.quick-view-open {
     display: block !important;
   }
 }
-
-.best-sell-item {
-  width: 330px !important;
-}
-.best-sell-item .wk-button{
-  display: none;
-}
-
-.product-recommendations .slick-track{
-  width: 3400px !important;
-  padding: 10px;
-}
-
-.product-recommendations .product-card-inner{
-  height: 455px !important;
-}
-
-.product-bundel-grid .product-card{
-  width: 100%;
-  max-width: 100%;
-}
-.product-bundel-grid .product-card-inner{
-  height: 415px !important;
-}
-.product-bundel-grid .product-card-inner{
-  border-radius: 0 !important;
-}
-
-.cart{
-  z-index:9999999999;
-}
