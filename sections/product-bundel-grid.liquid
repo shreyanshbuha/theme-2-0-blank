@@ -6,7 +6,7 @@
       data-section="Product Bundel Grid"
     >
       {% for this_product in section.settings.productlist %}
-        <div style="display:flex;">
+        <div style="display:flex; width: 275px;">
           <div
             class="product-card"
             data-variant-id="{{ this_product.selected_or_first_available_variant.id }}"
