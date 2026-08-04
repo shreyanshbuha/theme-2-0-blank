@@ -5797,3 +5797,7 @@ body.quick-view-open {
 .product-bundel-grid .product-card-inner{
   border-radius: 0 !important;
 }
+
+.cart{
+  z-index:9999999999;
+}
