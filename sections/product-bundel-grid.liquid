@@ -14,15 +14,17 @@
           >
             {% render 'product-card', product: this_product %}
 
-            <button type="button" class="qty-minus" style="padding:3px 10px;">-</button>
-            <input
-              type="number"
-              class="qty-input"
-              value="1"
-              min="1"
-              style="width:60px;text-align:center;"
-            >
-            <button type="button" class="qty-plus" style="padding:3px 10px;">+</button>
+            <div>
+              <button type="button" class="qty-minus" style="padding:3px 10px;">-</button>
+              <input
+                type="number"
+                class="qty-input"
+                value="1"
+                min="1"
+                style="width:60px;text-align:center;"
+              >
+              <button type="button" class="qty-plus" style="padding:3px 10px;">+</button>
+            </div>
           </div>
         </div>
       {% endfor %}
