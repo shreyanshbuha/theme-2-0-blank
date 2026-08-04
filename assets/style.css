@@ -5787,3 +5787,7 @@ body.quick-view-open {
   height: 455px !important;
 }
 
+.product-bundel-grid .product-card{
+  width: 100%;
+  max-width: 100%;
+}
