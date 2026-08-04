@@ -5797,6 +5797,8 @@ body.quick-view-open {
   border-radius: 0 !important;
 }
 
-.cart{
-  z-index:9999999999;
+
+
+.product-bundel-grid .color-swatch-wrapper{
+  display: none;
 }
