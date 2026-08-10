@@ -1238,6 +1238,7 @@ button:hover,
 }
 .ivory-home-banner .home-banner-img img {
   width: 100%;
+  height: 100%;
 }
 .ivory-home-banner .home-banner-inner {
   max-width: 368px;
