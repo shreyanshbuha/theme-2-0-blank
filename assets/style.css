@@ -5674,6 +5674,7 @@ body.quick-view-open {
     cursor: pointer;
     border: none;
     border-radius: 21px;
+    padding: 8px 13px;
   }
   .search-container button{
     padding: 0 !important;
