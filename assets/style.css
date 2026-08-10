@@ -5694,6 +5694,10 @@ body.quick-view-open {
   }
   .quantity-wrapper{
     display: flex;
+        align-items: center;
+  }
+  .product-content .quantity-wrapper input{
+    height: 25px;
   }
 }
 
