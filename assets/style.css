@@ -5679,6 +5679,10 @@ body.quick-view-open {
   .search-container button{
     padding: 0 !important;
   }
+
+  variant-picker .variant-option{
+    flex-wrap: .no-wrap;
+  }
 }
 
 
