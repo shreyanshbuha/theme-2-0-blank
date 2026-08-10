@@ -5689,7 +5689,7 @@ body.quick-view-open {
   .product-content .product-price , .product-content .comapre-price , .compare-product-button, .add-to-cart-button{
     white-space: nowrap;
   } 
-  .quick-view-modal .compare-product-button{
+  .quick-view-modal .compare-product-button , .add-to-cart-button{
     padding: 8px 13px !important;
   }
   .quantity-wrapper{
