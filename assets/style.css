@@ -5690,7 +5690,7 @@ body.quick-view-open {
     white-space: nowrap;
   } 
   .quick-view-modal .compare-product-button{
-    padding: 8px 13px;
+    padding: 8px 13px !important;
   }
 }
 
