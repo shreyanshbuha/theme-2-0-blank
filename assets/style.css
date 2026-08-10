@@ -5681,7 +5681,7 @@ body.quick-view-open {
   }
 
   variant-picker .variant-option{
-    flex-wrap: .no-wrap;
+    flex-wrap: no-wrap;
   }
 }
 
