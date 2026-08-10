@@ -5684,6 +5684,10 @@ body.quick-view-open {
     flex-wrap: nowrap;
     width: 230px;
   }
+  .box{
+    padding: 0px 8px 1px 8px;
+    height: 0;
+  }
 }
 
 
