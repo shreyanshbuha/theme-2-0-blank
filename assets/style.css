@@ -5692,6 +5692,9 @@ body.quick-view-open {
   .quick-view-modal .compare-product-button , .add-to-cart-button{
     padding: 8px 13px !important;
   }
+  .add-to-cart-button{
+    margin: 0;
+  }
   .quantity-wrapper{
     display: flex;
         align-items: center;
