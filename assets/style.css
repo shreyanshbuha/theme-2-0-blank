@@ -5686,7 +5686,7 @@ body.quick-view-open {
   .box{
     padding: 0px 8px 1px 8px;
   }
-  .product-content .product-price , .product-content .comapre-price , .compare-product-button{
+  .product-content .product-price , .product-content .comapre-price , .compare-product-button, .add-to-cart-button{
     white-space: nowrap;
   } 
   .quick-view-modal .compare-product-button{
