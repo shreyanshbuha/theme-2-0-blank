@@ -5556,13 +5556,13 @@ body.quick-view-open {
   margin: 5px 10px;
   position: absolute;
   right: 52px;
-  top: 35px;
+  top: 37px;
 }
 .language_selection{
   margin: 5px 10px;
   position: absolute;
-    right: 90px;
-    bottom: 8px;
+  right: 90px;
+  bottom: 8px;
 }
 @media screen and (max-width: 749px){
 
