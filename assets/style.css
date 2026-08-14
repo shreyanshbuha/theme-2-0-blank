@@ -5561,8 +5561,8 @@ body.quick-view-open {
 .language_selection{
   margin: 5px 10px;
   position: absolute;
-  right: 95px;
-  bottom: 6px;
+    right: 90px;
+    bottom: 8px;
 }
 @media screen and (max-width: 749px){
 
