@@ -102,7 +102,7 @@
       </div>
     {% endif %}
 
-    {% form 'product', product, id: 'myForm', style: "width:40%"; %}
+    {% form 'product', product, id: 'myForm', style: "width:40%" %}
       <div class="product-content">
         {% for block in section.blocks %}
           {% case block.type %}
@@ -486,3 +486,13 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% form ''product'', product, id: ''myForm'', style: "width:40%"; %}'
+  to: '{% form ''product'', product, id: ''myForm'', style: "width:40%" %}'
+  position: 4322..4385
+{% endcomment %}
